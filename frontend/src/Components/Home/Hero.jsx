@@ -2,7 +2,7 @@ import { useState } from "react"
 import { Link } from "react-router-dom"
 import { IoMdClose } from "react-icons/io";
 import { HiMenuAlt2 } from "react-icons/hi";
-import logo from "/image.png"
+import logo from "/logo.png"
 
 function Hero() {
 
@@ -16,10 +16,11 @@ function Hero() {
             </Link>
             <div className='w-0.5 h-8 bg-gray-50 hidden md:flex'></div>
             <div id="menu" className={`max-md:absolute max-md:bg-white/70 max-md:h-196.25 max-md:overflow-hidden max-md:transition-[width] max-md:duration-300 max-md:top-0 max-md:left-0 max-md:flex-col max-md:justify-center max-md:backdrop-blur flex items-center gap-8 z-50 md:gap-10 flex-1 ${mobileOpen ? 'max-md:w-full' : 'max-md:w-0'}`}>
-                <Link to="/" onClick={() => setMobileOpen(false)} className="text-gray-600 hover:text-gray-700 text-sm">Home</Link>
-                <Link to="#" onClick={() => setMobileOpen(false)} className="text-gray-600 hover:text-gray-700 text-sm">Features</Link>
-                <Link to="#" onClick={() => setMobileOpen(false)} className="text-gray-600 hover:text-gray-700 text-sm">Testimonials</Link>
-                <Link to="#" onClick={() => setMobileOpen(false)} className="text-gray-600 hover:text-gray-700 text-sm">Contact Us</Link>
+                <a href="/" onClick={() => setMobileOpen(false)} className="text-gray-600 hover:text-gray-700 text-sm">Home</a>
+                <a href="#features" onClick={() => setMobileOpen(false)} className="text-gray-600 hover:text-gray-700 text-sm">Features</a>
+                <a href="#testimonials" onClick={() => setMobileOpen(false)} className="text-gray-600 hover:text-gray-700 text-sm">Testimonials</a>
+                <a href="#contact" onClick={() => setMobileOpen(false)} className="text-gray-600 hover:text-gray-700 text-sm">Contact Us</a>
+                <Link to={"/login"} onClick={() => setMobileOpen(false)} className="text-gray-600 hover:text-gray-700 text-sm md:hidden">Login</Link>
 
                 <button id="close-menu" onClick={() => setMobileOpen(false)} className="md:hidden bg-violet-500 active:bg-violet-600 text-white p-2 rounded-md aspect-square font-medium transition">
                     <IoMdClose size={25}/>
@@ -28,7 +29,7 @@ function Hero() {
 
             <div className="flex items-center gap-2 md:pr-1">
                 <button className="hidden md:inline-block bg-violet-600 hover:bg-violet-800 text-white px-4 md:px-6 py-2 md:py-3 rounded-full text-xs md:text-sm transition cursor-pointer">
-                    Get Template
+                    Get Started
                 </button>
                 <Link to={"/login"} className="hidden md:inline-block bg-transparent text-violet-600 border-2 border-violet-700 hover:bg-violet-700 hover:text-white px-4 md:px-6 py-2 md:py-3 rounded-full text-xs md:text-sm transition cursor-pointer">
                     Login

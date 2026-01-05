@@ -14,7 +14,7 @@ function CTA() {
                     & Proven Results!
                 </h2>
                 <p className="text-slate-500 mt-2 max-w-lg max-md:text-sm">Achieve your goals faster with personalized strategies, hands-on support, and results that speak for themselves.</p>
-                <button type="button" className="bg-linear-to-r from-purple-600 to-blue-500 text-white text-sm px-5 py-2.5 rounded-xl font-medium mt-4 hover:scale-105 active:scale-95 transition-all duration-300"> 
+                <button type="button" className="bg-linear-to-r from-purple-600 to-blue-500 text-white text-sm px-5 py-2.5 rounded-xl font-medium mt-4 hover:scale-105 active:scale-95 transition-all duration-300 cursor-pointer"> 
                     Get Started Today
                 </button>
             </div>

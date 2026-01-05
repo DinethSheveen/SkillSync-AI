@@ -1,12 +1,12 @@
 function Footer() {
   return (
-    <div className='bg-black py-12 px-4 sm:px-6 lg:px-8'>
+    <div className='bg-violet-900 py-12 px-4 sm:px-6 lg:px-8'>
         <div className='w-full max-w-7xl mx-auto'>
     
             <div className="flex flex-wrap justify-between gap-y-12 lg:gap-x-8">
     
                 <div className="w-full md:w-[45%] lg:w-[35%] flex flex-col items-center md:items-start text-center md:text-left">
-                    <a href="https://prebuiltui.com">
+                    <a href="#home">
                         <p className="text-white text-3xl font-bold font-serif">Skill Sync-AI</p>
                     </a>
                     <div className='w-full max-w-52 h-px mt-8 bg-linear-to-r from-black via-white/25 to-black'></div>
@@ -40,7 +40,7 @@ function Footer() {
             <div className='w-full h-px mt-16 mb-4 bg-linear-to-r from-black via-white/25 to-black'></div>
     
             <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-                <p className='text-xs text-white/60'>© 2025 Skill Sync-AI</p>
+                <p className='text-xs text-white/60'>© 2026 Skill Sync-AI</p>
                 <div className="flex items-center gap-6">
                     <a href='#' className='text-xs text-white/60 hover:text-white transition-colors'>Terms & Conditions</a>
                     <div className='w-px h-4 bg-white/20'></div>

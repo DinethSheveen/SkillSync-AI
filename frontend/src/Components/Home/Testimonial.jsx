@@ -43,7 +43,7 @@ function Testimonial() {
         },
     ];
   return (
-    <div id='testimonials'>
+    <div id='testimonials' className='scroll-mt-10'>
         <Title small_title="What Our Users Say" title="Testimonials" description="Hear from our satisfied users who have transformed their resume-building experience with us."/>
         <div className="flex flex-wrap items-center justify-center gap-6 my-10">
             {testimonials.map((testimonial, index) => (

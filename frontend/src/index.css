@@ -3,3 +3,7 @@
 html{
     scroll-behavior: smooth;
 }
+
+.resume-card:hover .resume-edit-options{
+    opacity: 1;
+}

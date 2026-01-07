@@ -57,7 +57,7 @@ function Dashboard() {
 
       {createResumePopup && 
         // ALERT BOX ON CREATE RESUME
-        <form onSubmit={handleResumeCreate} className="absolute top-[30%] left-0 w-full flex flex-col justify-between items-center transition-all duration-300">
+        <form onSubmit={handleResumeCreate} className="absolute top-[30%] left-0 w-full flex flex-col justify-between items-center transition-all duration-300 z-10">
             {/* ALERT TITLE */}
             <div className="flex flex-col justify-between items-center w-[75%] max-w-125 gap-5 backdrop-blur-lg shadow-lg px-4 py-5 bg-white rounded-lg">
               <div className="flex gap-5 justify-between items-center w-full">
@@ -77,7 +77,7 @@ function Dashboard() {
 
       {uploadResumePopup &&
         // ALERT BOX ON UPLOAD RESUME
-        <form onSubmit={handleResumeUpload} className="absolute top-[10%] left-0 w-full flex flex-col justify-between items-center transition-all duration-300">
+        <form onSubmit={handleResumeUpload} className="absolute top-[10%] left-0 w-full flex flex-col justify-between items-center transition-all duration-300 z-10">
             {/* ALERT TITLE */}
             <div className="flex flex-col justify-between items-center w-[75%] max-w-125 gap-5 backdrop-blur-lg shadow-lg px-4 py-5 bg-white rounded-lg">
               <div className="flex gap-5 justify-between items-center w-full">

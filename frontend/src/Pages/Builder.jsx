@@ -9,6 +9,7 @@ import { LuUniversity, LuLayoutTemplate  } from "react-icons/lu";
 import PersonalInfo from "../Components/ResumeBuilder/PersonalInfo";
 import Summary from "../Components/ResumeBuilder/Summary";
 import Preview from "../Components/ResumeBuilder/Preview";
+import TemplateSelector from "../Components/ResumeBuilder/TemplateSelector";
 
 function Builder() {
 
@@ -27,6 +28,7 @@ function Builder() {
     template : "classic",
     accent_color : "#14B8A6"
   })
+  const [templateMenu, setTemplateMenu] = useState(false)
 
   const sections = [
     {
@@ -69,7 +71,6 @@ function Builder() {
       if(resume){
         setResumeData(resume)
         document.title = resume.title
-        console.log(resumeData);
       }
     }
     loadResumeData()
@@ -78,7 +79,7 @@ function Builder() {
   return (
     <div className="builder">
       {/* LINK TO DASHBOARD */}
-      <Link to="/app" className="flex py-3 px-1 items-center gap-1 text-slate-600">
+      <Link to="/app" className="inline-flex py-3 px-1 items-center gap-1 text-slate-600">
         <IoIosArrowRoundBack size={25}/>
         <p>Dashboard</p>  
       </Link>
@@ -87,7 +88,7 @@ function Builder() {
       <div className="flex flex-col justify-between items-start gap-5 p-2 md:flex-row">
         
         {/* SECTIONS LIST */}
-        <div className="min-w-full flex flex-col gap-3 justify-between bg-gray-100 rounded-lg px-2 py-4 relative md:min-w-[40 %] md:max-w-[40%]">
+        <div className="min-w-full flex flex-col gap-3 justify-between bg-gray-100 rounded-lg px-1 py-4 relative md:min-w-[40%] md:max-w-[40%]">
           {/*FLEX ITEM 01 - PROGRESS BAR */}
           <div className="absolute top-0 left-0 right-0 h-1 bg-cyan-500 transition-all duration-800" style={{width: `${(activeSectionIndex / sections.length) *100}%`}}>
           </div>
@@ -95,15 +96,16 @@ function Builder() {
           {/* FLEX ITEM 02 - SECTION CONTROLS */}
           <div className="flex justify-between items-center text-[15px]">
             {/* TEMPLATES AND ACCENT COLOR */}
-            <div className="flex items-center gap-1">
-              <div className="flex items-center gap-1 p-1 bg-violet-300 text-violet-800 rounded-md">
-                <LuLayoutTemplate size={15}/>
+            <div className="flex items-center gap-1 relative">
+              <div className="flex items-center gap-1 p-1 bg-violet-300 text-violet-800 rounded-md cursor-pointer" onClick={()=>{setTemplateMenu(prev => !prev)}}>
+                <LuLayoutTemplate className="hidden sm:flex" size={15}/>
                 <p>Template</p>
               </div>
               <div className="flex items-center gap-1 p-1 bg-blue-300 text-blue-800 rounded-md">
-                <IoIosColorPalette size={15}/>
+                <IoIosColorPalette className="hidden sm:flex" size={15}/>
                 <p>Accent Color</p>
               </div>
+              <TemplateSelector templateMenu={templateMenu} setTemplateMenu={setTemplateMenu} setResumeData={setResumeData} />
             </div>
             {/* PREVIOUS AND NEXT BUTTONS */}
             <div className="flex items-center gap-1">
@@ -136,7 +138,7 @@ function Builder() {
         </div>
         {/* RESUME  */}
         <div className="flex-1">
-          <Preview data={resumeData} />
+          <Preview data={resumeData} template={resumeData.template} accent_color={resumeData.accent_color}/>
         </div>
       </div>
 

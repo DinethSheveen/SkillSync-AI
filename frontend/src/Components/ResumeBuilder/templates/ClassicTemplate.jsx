@@ -3,7 +3,7 @@ import { CiGlobe, CiMail } from "react-icons/ci";
 import { IoLocationOutline } from "react-icons/io5";
 import { LuPhone } from "react-icons/lu";
 
-const ClassicTemplate = ({ data, accentColor }) => {
+const ClassicTemplate = ({ data, accent_color }) => {
     const formatDate = (dateStr) => {
         if (!dateStr) return "";
         const [year, month] = dateStr.split("-");
@@ -16,8 +16,8 @@ const ClassicTemplate = ({ data, accentColor }) => {
     return (
         <div className="max-w-4xl mx-auto p-8 bg-white text-gray-800 leading-relaxed">
             {/* Header */}
-            <header className="text-center mb-8 pb-6 border-b-2" style={{ borderColor: accentColor }}>
-                <h1 className="text-3xl font-bold mb-2" style={{ color: accentColor }}>
+            <header className="text-center mb-8 pb-6 border-b-2" style={{ borderColor: accent_color }}>
+                <h1 className="text-3xl font-bold mb-2" style={{ color: accent_color }}>
                     {data?.personal_info?.full_name || "Your Name"}
                 </h1>
 
@@ -58,7 +58,7 @@ const ClassicTemplate = ({ data, accentColor }) => {
             {/* Professional Summary */}
             {data?.professional_summary && (
                 <section className="mb-6">
-                    <h2 className="text-xl font-semibold mb-3" style={{ color: accentColor }}>
+                    <h2 className="text-xl font-semibold mb-3" style={{ color: accent_color }}>
                         PROFESSIONAL SUMMARY
                     </h2>
                     <p className="text-gray-700 leading-relaxed">{data.professional_summary}</p>
@@ -68,13 +68,13 @@ const ClassicTemplate = ({ data, accentColor }) => {
             {/* Experience */}
             {data?.experience && data.experience.length > 0 && (
                 <section className="mb-6">
-                    <h2 className="text-xl font-semibold mb-4" style={{ color: accentColor }}>
+                    <h2 className="text-xl font-semibold mb-4" style={{ color: accent_color }}>
                         PROFESSIONAL EXPERIENCE
                     </h2>
 
                     <div className="space-y-4">
                         {data.experience.map((exp, index) => (
-                            <div key={index} className="border-l-3 pl-4" style={{ borderColor: accentColor }}>
+                            <div key={index} className="border-l-3 pl-4" style={{ borderColor: accent_color }}>
                                 <div className="flex justify-between items-start mb-2">
                                     <div>
                                         <h3 className="font-semibold text-gray-900">{exp.position}</h3>
@@ -98,7 +98,7 @@ const ClassicTemplate = ({ data, accentColor }) => {
             {/* Projects */}
             {data?.project && data.project.length > 0 && (
                 <section className="mb-6">
-                    <h2 className="text-xl font-semibold mb-4" style={{ color: accentColor }}>
+                    <h2 className="text-xl font-semibold mb-4" style={{ color: accent_color }}>
                         PROJECTS
                     </h2>
 
@@ -118,7 +118,7 @@ const ClassicTemplate = ({ data, accentColor }) => {
             {/* Education */}
             {data?.education && data.education.length > 0 && (
                 <section className="mb-6">
-                    <h2 className="text-xl font-semibold mb-4" style={{ color: accentColor }}>
+                    <h2 className="text-xl font-semibold mb-4" style={{ color: accent_color }}>
                         EDUCATION
                     </h2>
 
@@ -144,7 +144,7 @@ const ClassicTemplate = ({ data, accentColor }) => {
             {/* Skills */}
             {data?.skills && data.skills.length > 0 && (
                 <section className="mb-6">
-                    <h2 className="text-xl font-semibold mb-4" style={{ color: accentColor }}>
+                    <h2 className="text-xl font-semibold mb-4" style={{ color: accent_color }}>
                         CORE SKILLS
                     </h2>
 

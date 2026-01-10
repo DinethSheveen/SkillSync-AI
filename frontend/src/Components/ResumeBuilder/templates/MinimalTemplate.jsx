@@ -1,5 +1,5 @@
 
-const MinimalTemplate = ({ data, accentColor }) => {
+const MinimalTemplate = ({ data, accent_color }) => {
     const formatDate = (dateStr) => {
         if (!dateStr) return "";
         const [year, month] = dateStr.split("-");
@@ -42,7 +42,7 @@ const MinimalTemplate = ({ data, accentColor }) => {
             {/* Experience */}
             {data.experience && data.experience.length > 0 && (
                 <section className="mb-10">
-                    <h2 className="text-sm uppercase tracking-widest mb-6 font-medium" style={{ color: accentColor }}>
+                    <h2 className="text-sm uppercase tracking-widest mb-6 font-medium" style={{ color: accent_color }}>
                         Experience
                     </h2>
 
@@ -70,7 +70,7 @@ const MinimalTemplate = ({ data, accentColor }) => {
             {/* Projects */}
             {data.project && data.project.length > 0 && (
                 <section className="mb-10">
-                    <h2 className="text-sm uppercase tracking-widest mb-6 font-medium" style={{ color: accentColor }}>
+                    <h2 className="text-sm uppercase tracking-widest mb-6 font-medium" style={{ color: accent_color }}>
                         Projects
                     </h2>
 
@@ -88,7 +88,7 @@ const MinimalTemplate = ({ data, accentColor }) => {
             {/* Education */}
             {data.education && data.education.length > 0 && (
                 <section className="mb-10">
-                    <h2 className="text-sm uppercase tracking-widest mb-6 font-medium" style={{ color: accentColor }}>
+                    <h2 className="text-sm uppercase tracking-widest mb-6 font-medium" style={{ color: accent_color }}>
                         Education
                     </h2>
 
@@ -114,7 +114,7 @@ const MinimalTemplate = ({ data, accentColor }) => {
             {/* Skills */}
             {data.skills && data.skills.length > 0 && (
                 <section>
-                    <h2 className="text-sm uppercase tracking-widest mb-6 font-medium" style={{ color: accentColor }}>
+                    <h2 className="text-sm uppercase tracking-widest mb-6 font-medium" style={{ color: accent_color }}>
                         Skills
                     </h2>
 

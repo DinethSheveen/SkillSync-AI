@@ -2,7 +2,7 @@ import { CiMail } from "react-icons/ci";
 import { IoLocationOutline } from "react-icons/io5";
 import { LuPhone } from "react-icons/lu";
 
-const MinimalImageTemplate = ({ data, accentColor }) => {
+const MinimalImageTemplate = ({ data, accent_color }) => {
     const formatDate = (dateStr) => {
         if (!dateStr) return "";
         const [year, month] = dateStr.split("-");
@@ -20,7 +20,7 @@ const MinimalImageTemplate = ({ data, accentColor }) => {
                     {/* Image */}
                     {data.personal_info?.image && typeof data.personal_info.image === 'string' ? (
                         <div className="mb-6">
-                            <img src={data.personal_info.image} alt="Profile" className="w-32 h-32 object-cover rounded-full mx-auto" style={{ background: accentColor+'70' }} />
+                            <img src={data.personal_info.image} alt="Profile" className="w-32 h-32 object-cover rounded-full mx-auto" style={{ background: accent_color+'70' }} />
                         </div>
                     ) : (
                         data.personal_info?.image && typeof data.personal_info.image === 'object' ? (
@@ -53,19 +53,19 @@ const MinimalImageTemplate = ({ data, accentColor }) => {
                         <div className="space-y-2 text-sm">
                             {data.personal_info?.phone && (
                                 <div className="flex items-center gap-2">
-                                    <LuPhone size={14} style={{ color: accentColor }} />
+                                    <LuPhone size={14} style={{ color: accent_color }} />
                                     <span>{data.personal_info.phone}</span>
                                 </div>
                             )}
                             {data.personal_info?.email && (
                                 <div className="flex items-center gap-2">
-                                    <CiMail size={14} style={{ color: accentColor }} />
+                                    <CiMail size={14} style={{ color: accent_color }} />
                                     <span>{data.personal_info.email}</span>
                                 </div>
                             )}
                             {data.personal_info?.location && (
                                 <div className="flex items-center gap-2">
-                                    <IoLocationOutline size={14} style={{ color: accentColor }} />
+                                    <IoLocationOutline size={14} style={{ color: accent_color }} />
                                     <span>{data.personal_info.location}</span>
                                 </div>
                             )}
@@ -113,7 +113,7 @@ const MinimalImageTemplate = ({ data, accentColor }) => {
                     {/* Summary */}
                     {data.professional_summary && (
                         <section className="mb-8">
-                            <h2 className="text-sm font-semibold tracking-widest mb-3" style={{ color: accentColor }} >
+                            <h2 className="text-sm font-semibold tracking-widest mb-3" style={{ color: accent_color }} >
                                 SUMMARY
                             </h2>
                             <p className="text-zinc-700 leading-relaxed">
@@ -125,7 +125,7 @@ const MinimalImageTemplate = ({ data, accentColor }) => {
                     {/* Experience */}
                     {data.experience && data.experience.length > 0 && (
                         <section>
-                            <h2 className="text-sm font-semibold tracking-widest mb-4" style={{ color: accentColor }} >
+                            <h2 className="text-sm font-semibold tracking-widest mb-4" style={{ color: accent_color }} >
                                 EXPERIENCE
                             </h2>
                             <div className="space-y-6 mb-8">
@@ -140,7 +140,7 @@ const MinimalImageTemplate = ({ data, accentColor }) => {
                                                 {exp.is_current ? "Present" : formatDate(exp.end_date)}
                                             </span>
                                         </div>
-                                        <p className="text-sm mb-2" style={{ color: accentColor }} >
+                                        <p className="text-sm mb-2" style={{ color: accent_color }} >
                                             {exp.company}
                                         </p>
                                         {exp.description && (
@@ -159,14 +159,14 @@ const MinimalImageTemplate = ({ data, accentColor }) => {
                     {/* Projects */}
                     {data.project && data.project.length > 0 && (
                         <section>
-                            <h2 className="text-sm uppercase tracking-widest font-semibold" style={{ color: accentColor }}>
+                            <h2 className="text-sm uppercase tracking-widest font-semibold" style={{ color: accent_color }}>
                                 PROJECTS
                             </h2>
                             <div className="space-y-4">
                                 {data.project.map((project, index) => (
                                     <div key={index}>
                                         <h3 className="text-md font-medium text-zinc-800 mt-3">{project.name}</h3>
-                                        <p className="text-sm mb-1" style={{ color: accentColor }} >
+                                        <p className="text-sm mb-1" style={{ color: accent_color }} >
                                             {project.type}
                                         </p>
                                         {project.description && (

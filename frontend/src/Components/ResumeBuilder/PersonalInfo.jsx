@@ -3,7 +3,7 @@ import { FiUser, FiPhone  } from "react-icons/fi";
 import { MdOutlineMailOutline } from "react-icons/md";
 import { IoBriefcaseOutline } from "react-icons/io5";
 import { SlSocialLinkedin } from "react-icons/sl";
-import { CiGlobe } from "react-icons/ci";
+import { CiGlobe, CiLocationOn } from "react-icons/ci";
 
 function PersonalInfo({icon,title,data,setResumeData}) {
 
@@ -28,6 +28,13 @@ function PersonalInfo({icon,title,data,setResumeData}) {
             icon : <FiPhone size={15}/>,
             required : false,
             type : "tel"
+        },
+        {
+            key : "location",
+            label : "Location",
+            icon : <CiLocationOn size={15}/>,
+            required : false,
+            type : "text"
         },
         {
             key : "profession",

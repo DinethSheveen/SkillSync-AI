@@ -1,18 +1,22 @@
 import { useEffect, useState } from "react"
 import { Link, useParams } from "react-router-dom"
 import { dummyResumeData } from "../assets/assets"
-import { IoIosArrowRoundBack } from "react-icons/io";
+import { IoIosArrowRoundBack, IoIosColorPalette } from "react-icons/io";
 import { FaRegUser } from "react-icons/fa";
 import { GoProjectSymlink } from "react-icons/go";
-import { MdCastForEducation } from "react-icons/md";
-import { LuUniversity } from "react-icons/lu";
+import { MdCastForEducation, MdKeyboardArrowLeft, MdKeyboardArrowRight, MdOutlineContentPasteSearch } from "react-icons/md";
+import { LuUniversity, LuLayoutTemplate  } from "react-icons/lu";
+import PersonalInfo from "../Components/ResumeBuilder/PersonalInfo";
+import Summary from "../Components/ResumeBuilder/Summary";
+import Preview from "../Components/ResumeBuilder/Preview";
 
 function Builder() {
 
   const { resumeId } = useParams()
-  const [activeSectionIndex, setActiveSectionIndex] = useState(1)
+  const [activeSectionIndex, setActiveSectionIndex] = useState(0)
   const [resumeData, setResumeData] = useState({
-    personalInfo: {},
+    personal_info : {},
+    professional_summary : "",
     _id : "",
     title : "",
     skills : [],
@@ -31,9 +35,9 @@ function Builder() {
       icon : <FaRegUser />
     },
     {
-      name: "skills",
-      title: "Skills",
-      icon : <LuUniversity />
+      name : "summary",
+      title : "Professional Summary",
+      icon : <MdOutlineContentPasteSearch />
     },
     {
       name: "experience",
@@ -45,6 +49,16 @@ function Builder() {
       title: "Education",
       icon : <MdCastForEducation />
     },
+    {
+      name: "projects",
+      title: "Projects",
+      icon : <MdCastForEducation />
+    },
+    {
+      name: "skills",
+      title: "Skills",
+      icon : <LuUniversity />
+    }
   ]
 
   const activeSection = sections[activeSectionIndex]
@@ -59,7 +73,7 @@ function Builder() {
       }
     }
     loadResumeData()
-  },[resumeId,resumeData])
+  },[resumeId])
 
   return (
     <div className="builder">
@@ -70,16 +84,59 @@ function Builder() {
       </Link>
 
       {/* BUILDER SECTION */}
-      <div className="flex justify-between items-center gap-5 p-5">
+      <div className="flex flex-col justify-between items-start gap-5 p-2 md:flex-row">
         
         {/* SECTIONS LIST */}
-        <div className="min-w-md bg-gray-100 rounded-sm p-2 relative">
-          {/*PROGRESS BAR */}
-          <div className="absolute top-0 left-0 right-0 h-1 bg-cyan-500" style={{width: `${(activeSectionIndex / sections.length) *100}%`}}></div>
+        <div className="min-w-full flex flex-col gap-3 justify-between bg-gray-100 rounded-lg px-2 py-4 relative md:min-w-[40 %] md:max-w-[40%]">
+          {/*FLEX ITEM 01 - PROGRESS BAR */}
+          <div className="absolute top-0 left-0 right-0 h-1 bg-cyan-500 transition-all duration-800" style={{width: `${(activeSectionIndex / sections.length) *100}%`}}>
+          </div>
+
+          {/* FLEX ITEM 02 - SECTION CONTROLS */}
+          <div className="flex justify-between items-center text-[15px]">
+            {/* TEMPLATES AND ACCENT COLOR */}
+            <div className="flex items-center gap-1">
+              <div className="flex items-center gap-1 p-1 bg-violet-300 text-violet-800 rounded-md">
+                <LuLayoutTemplate size={15}/>
+                <p>Template</p>
+              </div>
+              <div className="flex items-center gap-1 p-1 bg-blue-300 text-blue-800 rounded-md">
+                <IoIosColorPalette size={15}/>
+                <p>Accent Color</p>
+              </div>
+            </div>
+            {/* PREVIOUS AND NEXT BUTTONS */}
+            <div className="flex items-center gap-1">
+              <p className={`flex items-center cursor-pointer ${activeSectionIndex === 0?"text-slate-400":""}`} onClick={()=>{if(activeSectionIndex>0){
+                setActiveSectionIndex(prevIndex => prevIndex-1)
+              }}}>
+                <MdKeyboardArrowLeft />
+                Previous
+              </p>
+              <p className={`flex items-center cursor-pointer ${activeSectionIndex === sections.length-1?"text-slate-400":""}`} onClick={()=>{if(activeSectionIndex < sections.length){
+                setActiveSectionIndex(prevIndex => prevIndex+1)
+              }}}>
+                Next
+                <MdKeyboardArrowRight />
+              </p>
+            </div>
+          </div>
+
+          <hr className="border border-gray-300 "/>
+
+          {/* FLEX ITEM 03 - INFORMATION FILL IN */}
+          {activeSection?.name === "personalInfo" ? 
+            <PersonalInfo icon={activeSection?.icon} title={activeSection?.title} data={resumeData.personal_info} setResumeData={setResumeData} />
+            :
+            activeSection?.name === "summary" ?
+            <Summary icon={activeSection?.icon} title={activeSection?.title} professional_summary={resumeData.professional_summary} setResumeData={setResumeData} />
+            :
+            ""
+          }
         </div>
         {/* RESUME  */}
         <div className="flex-1">
-          hi
+          <Preview data={resumeData} />
         </div>
       </div>
 

@@ -35,7 +35,10 @@ function TemplateSelector({setTemplateMenu,templateMenu,setResumeData}) {
                 templates.map((template)=>{
                     return (
                         <div key={template.id} onClick={()=>{setTemplateMenu(prev=>!prev); setSelectedTemplate(template.id); setResumeData(prev=> ({...prev, template : template.id}))}} className={`bg-gray-500 m-1 p-1 rounded-md ${selectedTemplate === template.id ? "border-2 border-gray-900":"opacity-50 cursor-pointer"}`}>
-                            <p className="font-bold my-1 text-white">{template.name}</p>
+                            <div className="flex justify-between items-center font-bold">
+                                <p className="my-1 text-white">{template.name}</p>
+                                {selectedTemplate === template.id && <p className="text-white">Selected</p>}    
+                            </div>
                             <p className="text-sm mb-2 bg-gray-100 p-1 rounded-sm">{template.description}</p>
                         </div>
                     )

@@ -1,8 +1,8 @@
 import { useState } from "react"
 
-function TemplateSelector({setTemplateMenu,templateMenu,setResumeData}) {
+function TemplateSelector({setTemplateMenu,templateMenu,setResumeData,resumeTemplate}) {
 
-    const [selectedTemplate, setSelectedTemplate] = useState("classic")
+    const [selectedTemplate, setSelectedTemplate] = useState(resumeTemplate)
     
     const templates = [
         {

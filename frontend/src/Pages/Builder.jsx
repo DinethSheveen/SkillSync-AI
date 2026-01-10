@@ -10,6 +10,7 @@ import PersonalInfo from "../Components/ResumeBuilder/PersonalInfo";
 import Summary from "../Components/ResumeBuilder/Summary";
 import Preview from "../Components/ResumeBuilder/Preview";
 import TemplateSelector from "../Components/ResumeBuilder/TemplateSelector";
+import ColorSelector from "../Components/ResumeBuilder/ColorSelector";
 
 function Builder() {
 
@@ -29,6 +30,7 @@ function Builder() {
     accent_color : "#14B8A6"
   })
   const [templateMenu, setTemplateMenu] = useState(false)
+  const [colorMenu, setColorMenu] = useState(false)
 
   const sections = [
     {
@@ -97,25 +99,28 @@ function Builder() {
           <div className="flex justify-between items-center text-[15px]">
             {/* TEMPLATES AND ACCENT COLOR */}
             <div className="flex items-center gap-1 relative">
-              <div className="flex items-center gap-1 p-1 bg-violet-300 text-violet-800 rounded-md cursor-pointer" onClick={()=>{setTemplateMenu(prev => !prev)}}>
+              <div className="flex items-center gap-1 p-1 bg-violet-300 text-violet-800 rounded-md cursor-pointer" onClick={()=>{setTemplateMenu(prev => !prev); setColorMenu(false)}}>
                 <LuLayoutTemplate className="hidden sm:flex" size={15}/>
                 <p>Template</p>
               </div>
-              <div className="flex items-center gap-1 p-1 bg-blue-300 text-blue-800 rounded-md">
+              <div className="flex items-center gap-1 p-1 bg-blue-300 text-blue-800 rounded-md cursor-pointer" onClick={()=>{setColorMenu(prev => !prev); setTemplateMenu(false)}}>
                 <IoIosColorPalette className="hidden sm:flex" size={15}/>
                 <p>Accent Color</p>
               </div>
-              <TemplateSelector templateMenu={templateMenu} setTemplateMenu={setTemplateMenu} setResumeData={setResumeData} />
+
+              <TemplateSelector templateMenu={templateMenu} setTemplateMenu={setTemplateMenu} setResumeData={setResumeData} resumeTemplate={resumeData.template} />
+              <ColorSelector setResumeData={setResumeData} setColorMenu={setColorMenu} colorMenu={colorMenu} resumeColor={resumeData.accent_color} />
+            
             </div>
             {/* PREVIOUS AND NEXT BUTTONS */}
             <div className="flex items-center gap-1">
-              <p className={`flex items-center cursor-pointer ${activeSectionIndex === 0?"text-slate-400":""}`} onClick={()=>{if(activeSectionIndex>0){
+              <p className={`flex items-center ${activeSectionIndex === 0?"text-slate-400 cursor-not-allowed":"cursor-pointer"}`} onClick={()=>{if(activeSectionIndex>0){
                 setActiveSectionIndex(prevIndex => prevIndex-1)
               }}}>
                 <MdKeyboardArrowLeft />
                 Previous
               </p>
-              <p className={`flex items-center cursor-pointer ${activeSectionIndex === sections.length-1?"text-slate-400":""}`} onClick={()=>{if(activeSectionIndex < sections.length){
+              <p className={`flex items-center ${activeSectionIndex === sections.length?"text-slate-400 cursor-not-allowed":"cursor-pointer"}`} onClick={()=>{if(activeSectionIndex < sections.length){
                 setActiveSectionIndex(prevIndex => prevIndex+1)
               }}}>
                 Next

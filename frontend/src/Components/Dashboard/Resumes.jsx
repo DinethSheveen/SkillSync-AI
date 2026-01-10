@@ -27,7 +27,7 @@ function Resumes({setResumeTitle,setEditTitlePopup}) {
     },[])
 
   return (
-    <div className="resumes flex-1 grid grid-cols-6 gap-2 justify-start">
+    <div className="resumes flex-1 grid grid-cols-2 gap-2 justify-start md:grid-cols-5 lg:grid-cols-6">
         { resumes && resumes.map((resume,index)=>{
             return (
                 <div style={{backgroundColor : resumeColors[index % resumeColors.length]}} className="max-h-60 p-2 rounded-lg" key={resume._id}>

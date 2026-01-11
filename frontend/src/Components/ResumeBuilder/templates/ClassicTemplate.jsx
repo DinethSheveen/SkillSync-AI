@@ -52,6 +52,12 @@ const ClassicTemplate = ({ data, accent_color }) => {
                             <span className="break-all">{data.personal_info.website}</span>
                         </div>
                     )}
+                    {data?.personal_info?.github && (
+                        <div className="flex items-center gap-1">
+                            <CiGlobe className="size-4" />
+                            <span className="break-all">{data.personal_info.github}</span>
+                        </div>
+                    )}
                 </div>
             </header>
 

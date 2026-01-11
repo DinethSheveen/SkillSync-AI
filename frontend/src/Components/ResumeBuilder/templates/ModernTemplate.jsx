@@ -1,7 +1,7 @@
 import { BiLogoLinkedin } from "react-icons/bi";
 import { CiGlobe, CiMail } from "react-icons/ci";
 import { IoLocationOutline } from "react-icons/io5";
-import { LuPhone } from "react-icons/lu";
+import { LuPhone, LuGithub  } from "react-icons/lu";
 
 const ModernTemplate = ({ data, accent_color }) => {
 	const formatDate = (dateStr) => {
@@ -50,6 +50,12 @@ const ModernTemplate = ({ data, accent_color }) => {
 						<a target="_blank" href={data.personal_info?.website} className="flex items-center gap-2">
 							<CiGlobe className="size-4" />
 							<span className="break-all text-xs">{data.personal_info.website.split("https://")[1] ? data.personal_info.website.split("https://")[1] : data.personal_info.website}</span>
+						</a>
+					)}
+					{data.personal_info?.github && (
+						<a target="_blank" href={data.personal_info?.github} className="flex items-center gap-2">
+							<LuGithub className="size-4" />
+							<span className="break-all text-xs">{data.personal_info.github.split("https://")[1] ? data.personal_info.github.split("https://")[1] : data.personal_info.github}</span>
 						</a>
 					)}
 				</div>

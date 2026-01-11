@@ -16,7 +16,7 @@ const ModernTemplate = ({ data, accent_color }) => {
 	return (
 		<div className="max-w-4xl mx-auto bg-white text-gray-800">
 			{/* Header */}
-			<header className="p-8 text-black" style={{ backgroundColor: accent_color }}>
+			<header className="p-8 text-white" style={{ backgroundColor: accent_color }}>
 				<h1 className="text-4xl font-light mb-3">
 					{data.personal_info?.full_name || "Your Name"}
 				</h1>

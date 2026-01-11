@@ -11,6 +11,7 @@ import Summary from "../Components/ResumeBuilder/Summary";
 import Preview from "../Components/ResumeBuilder/Preview";
 import TemplateSelector from "../Components/ResumeBuilder/TemplateSelector";
 import ColorSelector from "../Components/ResumeBuilder/ColorSelector";
+import Education from "../Components/ResumeBuilder/Education";
 
 function Builder() {
 
@@ -137,6 +138,9 @@ function Builder() {
             :
             activeSection?.name === "summary" ?
             <Summary icon={activeSection?.icon} title={activeSection?.title} professional_summary={resumeData.professional_summary} setResumeData={setResumeData} />
+            :
+            activeSection?.name === "education" ?
+            <Education setResumeData={setResumeData} data={resumeData.education} icon={activeSection?.icon} title={activeSection?.title} />
             :
             ""
           }

@@ -13,6 +13,7 @@ import TemplateSelector from "../Components/ResumeBuilder/TemplateSelector";
 import ColorSelector from "../Components/ResumeBuilder/ColorSelector";
 import Education from "../Components/ResumeBuilder/Education";
 import Experience from "../Components/ResumeBuilder/Experience";
+import Projects from "../Components/ResumeBuilder/Projects";
 
 function Builder() {
 
@@ -135,17 +136,20 @@ function Builder() {
 
           {/* FLEX ITEM 03 - INFORMATION FILL IN */}
           {activeSection?.name === "personalInfo" ? 
-            <PersonalInfo setResumeData={setResumeData} data={resumeData.personal_info} icon={activeSection?.icon} title={activeSection?.title} />
+            <PersonalInfo setResumeData={setResumeData} data={resumeData?.personal_info} icon={activeSection?.icon} title={activeSection?.title} />
             :
             activeSection?.name === "summary" ?
-            <Summary setResumeData={setResumeData} professional_summary={resumeData.professional_summary} icon={activeSection?.icon} title={activeSection?.title} />
+            <Summary setResumeData={setResumeData} professional_summary={resumeData?.professional_summary} icon={activeSection?.icon} title={activeSection?.title} />
             :
             activeSection?.name === "education" ?
-            <Education setResumeData={setResumeData} data={resumeData.education} icon={activeSection?.icon} title={activeSection?.title} />
+            <Education setResumeData={setResumeData} data={resumeData?.education} icon={activeSection?.icon} title={activeSection?.title} />
             :
             activeSection?.name === "experience" ?
-            <Experience setResumeData={setResumeData} data={resumeData.experience} icon={activeSection?.icon} title={activeSection?.title} />
+            <Experience setResumeData={setResumeData} data={resumeData?.experience} icon={activeSection?.icon} title={activeSection?.title} />
             :
+            activeSection?.name === "projects"?
+            <Projects setResumeData={setResumeData} data={resumeData?.project} title={activeSection?.title} icon={activeSection?.icon} />
+            : 
             ""
           }
         </div>

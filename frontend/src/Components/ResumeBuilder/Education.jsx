@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { CiCirclePlus } from "react-icons/ci";
 import { RiDeleteBin6Line } from "react-icons/ri";
+import { PiBooksLight } from "react-icons/pi";
 
 function Education({data, setResumeData, icon, title}) {
 
@@ -51,6 +52,13 @@ function Education({data, setResumeData, icon, title}) {
             
             {/* EDUCATION SECTIONS */}
             {
+                education.length===0?
+                <div className="flex flex-col justify-center items-center gap-1">
+                    <PiBooksLight size={60} className="text-gray-300" />
+                    <p className="text-gray-500 text-sm">Education section is currently empty</p>
+                    <p className="text-gray-500 text-sm">Use “Add Education to populate it</p>
+                </div>
+                :
                 education && education.map((edu,index)=>{
                     return (
                         <div key={index} className="border border-black rounded-lg p-2 flex flex-col gap-3">

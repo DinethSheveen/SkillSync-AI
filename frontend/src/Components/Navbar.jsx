@@ -3,7 +3,7 @@ import logo from "/logo.png"
 
 function Navbar() {
   return (
-    <div className="navbar">
+    <div className="navbar print:hidden">
         <div className="fixed top-0 w-full py-2 px-4 bg-violet-300 z-20">
             <div className="flex justify-between items-center">
                 <Link to="/">

@@ -7,3 +7,13 @@ html{
 .resume-card:hover .resume-edit-options{
     opacity: 1;
 }
+
+/* REMOVE PRINT MARGINS */
+@media print {
+  @page {
+    margin: 0;
+  }
+  body {
+    margin: 0;
+  }
+}

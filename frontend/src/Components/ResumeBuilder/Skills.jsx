@@ -40,9 +40,9 @@ function Skills({setResumeData,data,title,icon}) {
             <div className="flex justify-between items-center gap-2">
                 <input type="text" placeholder="Type your Skill here..." className="border border-gray-400 flex-1 rounded-md px-2 py-1 outline-none focus:ring focus:ring-cyan-500" value={newSkill} onKeyDown={(e)=>{if(e.key=="Enter"){addSkill(newSkill)}}} onChange={(e)=>{setNewSkill(e.target.value)}} />
                 
-                <div className="flex items-center gap-0.5 px-2 py-1 bg-violet-300 cursor-pointer rounded-md text-violet-600 hover:bg-violet-400 active:bg-violet-300" onClick={()=>{addSkill(newSkill)}}>
+                <div className="flex flex-wrap justify-center items-center gap-0.5 px-2 py-1 bg-violet-300 cursor-pointer rounded-md text-violet-600 hover:bg-violet-400 active:bg-violet-300" onClick={()=>{addSkill(newSkill)}}>
                     <FaPlus />
-                    <p className="font-semibold">Add skill</p>
+                    <p className="font-semibold whitespace-nowrap">Add skill</p>
                 </div>
             </div>
 
@@ -61,13 +61,17 @@ function Skills({setResumeData,data,title,icon}) {
                         return (
                             <div key={index} className="flex justify-center items-center gap-1 bg-gray-500 px-2 py-1 rounded-full text-white">
                                 <p>{skill}</p>
-                                <IoIosClose size={20} className="cursor-pointer" onClick={()=>{deleteSkill(index)}}/>
+                                <IoIosClose size={20} className="cursor-pointer rounded-full bg-gray-600" onClick={()=>{deleteSkill(index)}}/>
                             </div>
                         )
                     })}
-
                 </div>
             }
+
+            {/* TIPS */}
+            <div className="bg-violet-100 font-semibold p-2 mx-2 rounded-md">
+                <p className="text-violet-400"><span className="text-violet-500">Tip:</span>To create a strong and well-rounded skills section, include about 10 skills that cover both technical tools and important soft skills.</p>
+            </div>
 
             {/* SAVE BUTTON */}        
             <div className="my-2">

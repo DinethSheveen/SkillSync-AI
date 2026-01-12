@@ -4,9 +4,8 @@ import { dummyResumeData } from "../assets/assets"
 import { IoIosArrowRoundBack, IoIosColorPalette, IoIosEyeOff, IoMdEye } from "react-icons/io";
 import { FaRegUser } from "react-icons/fa";
 import { GoProjectSymlink } from "react-icons/go";
-import { MdCastForEducation, MdKeyboardArrowLeft, MdKeyboardArrowRight, MdOutlineContentPasteSearch } from "react-icons/md";
+import { MdCastForEducation, MdKeyboardArrowLeft, MdKeyboardArrowRight, MdOutlineContentPasteSearch, MdOutlineIosShare } from "react-icons/md";
 import { LuUniversity, LuLayoutTemplate  } from "react-icons/lu";
-import { MdOutlineIosShare } from "react-icons/md";
 import PersonalInfo from "../Components/ResumeBuilder/PersonalInfo";
 import Summary from "../Components/ResumeBuilder/Summary";
 import Preview from "../Components/ResumeBuilder/Preview";
@@ -37,6 +36,7 @@ function Builder() {
   const [templateMenu, setTemplateMenu] = useState(false)
   const [colorMenu, setColorMenu] = useState(false)
 
+  // INFORMATION SECTION
   const sections = [
     {
       name: "personalInfo",
@@ -71,6 +71,35 @@ function Builder() {
   ]
 
   const activeSection = sections[activeSectionIndex]
+
+  // SHARE RESUME LOGIC
+  const shareResume = ()=>{
+    const location = window.location.href
+    const clientUrl = location.split("/app/")[0]
+    const viewUrl = clientUrl+"/view/"+resumeId    
+
+    if(navigator.share){
+      navigator.share(
+        {
+          url:viewUrl,
+          text : "My Resume"
+        }
+      )
+    }
+    else{
+      window.alert("Navigator does not support the browser been used")
+    }
+  }
+
+  // DOWNLOAD RESUME LOGIC
+  const downloadResume = ()=>{
+    window.print()
+  }
+
+  // CHANGE VISIBILITY OF THE RESUME LOGIC
+  const changeResumeVisibility = ()=>{
+    setResumeData(prev => ({...prev,public : !resumeData.public}))
+  }
   
   useEffect(()=>{
     const loadResumeData = () => {
@@ -86,16 +115,42 @@ function Builder() {
   return (
     <div className="builder">
       {/* LINK TO DASHBOARD */}
-      <Link to="/app" className="inline-flex py-3 px-1 items-center gap-1 text-slate-600">
+      <Link to="/app" className="inline-flex py-3 px-1 items-center gap-1 text-slate-600 print:hidden">
         <IoIosArrowRoundBack size={25}/>
         <p>Dashboard</p>  
       </Link>
+
+      {/* RESUME VISIBILITY CONTROLS AND DOWNLOAD */}
+      <div className="flex justify-end items-center px-2 gap-3 print:hidden">
+        
+        {/* SHARE - INVISIBILE UNLESS PUBLIC */}
+        {
+          resumeData.public?
+          <div className="flex items-center gap-0.5 px-2 py-1 rounded-md cursor-pointer bg-green-500 text-white" onClick={shareResume}>
+            <MdOutlineIosShare />
+            <p>Share</p>
+          </div>
+          :""
+        }
+        
+        {/* PUBLIC OR PRIVATE */}
+        <div className="flex items-center gap-0.5 px-2 py-1 rounded-md cursor-pointer bg-black text-white" onClick={changeResumeVisibility}>
+          {resumeData.public? <IoMdEye />:<IoIosEyeOff />}
+          <p>{resumeData.public? "Public" : "Private" }</p>
+        </div>
+
+        {/* DOWNLOAD */}
+        <div className="flex items-center gap-0.5 px-2 py-1 rounded-md cursor-pointer bg-violet-500 text-white" onClick={downloadResume}>
+          <MdOutlineIosShare className="rotate-180"/>
+          <p>Download</p>
+        </div>
+      </div>
 
       {/* BUILDER SECTION */}
       <div className="flex flex-col justify-between items-start gap-5 p-2 md:flex-row">
         
         {/* SECTIONS LIST */}
-        <div className="min-w-full flex flex-col gap-3 justify-between bg-gray-100 rounded-lg px-1 py-4 relative overflow-hidden md:min-w-[40%] md:max-w-[40%]">
+        <div className="min-w-full flex flex-col gap-3 justify-between bg-gray-100 rounded-lg px-1 py-4 relative overflow-hidden md:min-w-[40%] md:max-w-[40%] print:hidden">
           {/*FLEX ITEM 01 - PROGRESS BAR */}
           <div className="absolute top-0 left-0 right-0 h-1 bg-cyan-500 transition-all duration-800" style={{width: `${(activeSectionIndex / (sections.length-1))*100}%`}}>
           </div>
@@ -155,30 +210,9 @@ function Builder() {
             <Skills setResumeData={setResumeData} data={resumeData.skills} title={activeSection?.title} icon={activeSection?.icon}  />
           }
         </div>
+
         {/* RESUME  */}
-        <div className="flex flex-col justify-between items-center gap-2">
-          {/* RESUME VISIBILITY CONTROLS AND DOWNLOAD */}
-          <div className="flex justify-end items-center gap-3">
-            {/* SHARE - INVISIBILE UNLESS PUBLIC */}
-            {
-              resumeData.public?
-              <div className="flex items-center gap-0.5 px-2 py-1 rounded-md cursor-pointer bg-green-500 text-white">
-                <MdOutlineIosShare />
-                <p>Share</p>
-              </div>
-              :""
-            }
-            {/* PUBLIC OR PRIVATE */}
-            <div className="flex items-center gap-0.5 px-2 py-1 rounded-md cursor-pointer bg-black text-white" onClick={()=>{setResumeData(prev => ({...prev,public : !resumeData.public}))}}>
-              {resumeData.public? <IoMdEye />:<IoIosEyeOff />}
-              <p>{resumeData.public? "Public" : "Private" }</p>
-            </div>
-            {/* DOWNLOAD */}
-            <div className="flex items-center gap-0.5 px-2 py-1 rounded-md cursor-pointer bg-violet-500 text-white">
-              <MdOutlineIosShare className="rotate-180"/>
-              <p>Download</p>
-            </div>
-          </div>
+        <div className="flex flex-col justify-between items-center gap-2 print-area">
           <div className="flex-1">
             <Preview data={resumeData} template={resumeData.template} accent_color={resumeData.accent_color}/>
           </div>

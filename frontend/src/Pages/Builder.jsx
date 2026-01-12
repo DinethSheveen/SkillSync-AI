@@ -14,6 +14,7 @@ import ColorSelector from "../Components/ResumeBuilder/ColorSelector";
 import Education from "../Components/ResumeBuilder/Education";
 import Experience from "../Components/ResumeBuilder/Experience";
 import Projects from "../Components/ResumeBuilder/Projects";
+import Skills from "../Components/ResumeBuilder/Skills";
 
 function Builder() {
 
@@ -150,7 +151,7 @@ function Builder() {
             activeSection?.name === "projects"?
             <Projects setResumeData={setResumeData} data={resumeData?.project} title={activeSection?.title} icon={activeSection?.icon} />
             : 
-            ""
+            <Skills setResumeData={setResumeData} data={resumeData.skills} title={activeSection?.title} icon={activeSection?.icon}  />
           }
         </div>
         {/* RESUME  */}

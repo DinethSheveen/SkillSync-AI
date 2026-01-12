@@ -56,7 +56,7 @@ function Education({data, setResumeData, icon, title}) {
                         <div key={index} className="border border-black rounded-lg p-2 flex flex-col gap-3">
                             <div className="flex items-center justify-between">
                                 <p className="font-semibold">Education #{index+1}</p>
-                                <RiDeleteBin6Line size={20} className="text-red-500" onClick={()=>{deleteEducation(index)}} />
+                                <RiDeleteBin6Line className="text-red-500" onClick={()=>{deleteEducation(index)}} />
                             </div>
                             <form>
                                 <div className="grid grid-cols-2 items-center gap-2">
@@ -106,6 +106,11 @@ function Education({data, setResumeData, icon, title}) {
                     )
                 })
             }
+             
+            {/* SAVE BUTTON */}        
+            <div className="my-2">
+                <button className="border border-violet-500 text-violet-800 bg-violet-300 cursor-pointer py-2 px-4 w-fit rounded-lg hover:bg-violet-400 active:bg-violet-500">Save Changes</button>
+            </div>
         </div>
     </div>
   )

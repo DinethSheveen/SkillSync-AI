@@ -12,6 +12,7 @@ import Preview from "../Components/ResumeBuilder/Preview";
 import TemplateSelector from "../Components/ResumeBuilder/TemplateSelector";
 import ColorSelector from "../Components/ResumeBuilder/ColorSelector";
 import Education from "../Components/ResumeBuilder/Education";
+import Experience from "../Components/ResumeBuilder/Experience";
 
 function Builder() {
 
@@ -45,14 +46,14 @@ function Builder() {
       icon : <MdOutlineContentPasteSearch />
     },
     {
-      name: "experience",
-      title: "Experience",
-      icon : <GoProjectSymlink />
-    },
-    {
       name: "education",
       title: "Education",
       icon : <MdCastForEducation />
+    },
+    {
+      name: "experience",
+      title: "Experience",
+      icon : <GoProjectSymlink />
     },
     {
       name: "projects",
@@ -134,13 +135,16 @@ function Builder() {
 
           {/* FLEX ITEM 03 - INFORMATION FILL IN */}
           {activeSection?.name === "personalInfo" ? 
-            <PersonalInfo icon={activeSection?.icon} title={activeSection?.title} data={resumeData.personal_info} setResumeData={setResumeData} />
+            <PersonalInfo setResumeData={setResumeData} data={resumeData.personal_info} icon={activeSection?.icon} title={activeSection?.title} />
             :
             activeSection?.name === "summary" ?
-            <Summary icon={activeSection?.icon} title={activeSection?.title} professional_summary={resumeData.professional_summary} setResumeData={setResumeData} />
+            <Summary setResumeData={setResumeData} professional_summary={resumeData.professional_summary} icon={activeSection?.icon} title={activeSection?.title} />
             :
             activeSection?.name === "education" ?
             <Education setResumeData={setResumeData} data={resumeData.education} icon={activeSection?.icon} title={activeSection?.title} />
+            :
+            activeSection?.name === "experience" ?
+            <Experience setResumeData={setResumeData} data={resumeData.experience} icon={activeSection?.icon} title={activeSection?.title} />
             :
             ""
           }

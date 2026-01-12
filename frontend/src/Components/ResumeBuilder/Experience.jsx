@@ -67,7 +67,7 @@ function Experience({title,icon,setResumeData,data}) {
                         <div key={index} className="border border-black rounded-lg p-2 flex flex-col gap-3">
                             <div className="flex justify-between items-center">
                                 <p className="font-semibold">Experience #{index+1}</p>
-                                <RiDeleteBin6Line className="text-red-500" onClick={()=>{deleteExperience(index)}} />
+                                <RiDeleteBin6Line size={20} className="text-red-500 cursor-pointer" onClick={()=>{deleteExperience(index)}} />
                             </div>
 
                             <form>

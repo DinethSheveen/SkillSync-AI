@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { CiCirclePlus } from "react-icons/ci";
 import { RiDeleteBin6Line } from "react-icons/ri";
+import { FaProjectDiagram } from "react-icons/fa";
 
 function Projects({setResumeData,data,title,icon}) {
 
@@ -48,6 +49,14 @@ function Projects({setResumeData,data,title,icon}) {
             
             {/* PROJECTS SECTIONS */}
             {
+                projects.length === 0 ?
+                <div className="flex flex-col justify-center items-center gap-1">
+                    <FaProjectDiagram size={60} className="text-gray-300" />
+                    <p className="text-gray-500 text-sm">Project section is currently empty</p>
+                    <p className="text-gray-500 text-sm">Use “Add Project" to populate it</p>
+                </div>
+                :
+
                 projects && projects.map((project,index)=>{
                     return (
                         <div key={index} className="border border-black rounded-lg p-2 flex flex-col gap-3">

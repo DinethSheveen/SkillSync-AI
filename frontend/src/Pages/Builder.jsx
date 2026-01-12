@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react"
 import { Link, useParams } from "react-router-dom"
 import { dummyResumeData } from "../assets/assets"
-import { IoIosArrowRoundBack, IoIosColorPalette } from "react-icons/io";
+import { IoIosArrowRoundBack, IoIosColorPalette, IoIosEyeOff, IoMdEye } from "react-icons/io";
 import { FaRegUser } from "react-icons/fa";
 import { GoProjectSymlink } from "react-icons/go";
 import { MdCastForEducation, MdKeyboardArrowLeft, MdKeyboardArrowRight, MdOutlineContentPasteSearch } from "react-icons/md";
 import { LuUniversity, LuLayoutTemplate  } from "react-icons/lu";
+import { MdOutlineIosShare } from "react-icons/md";
 import PersonalInfo from "../Components/ResumeBuilder/PersonalInfo";
 import Summary from "../Components/ResumeBuilder/Summary";
 import Preview from "../Components/ResumeBuilder/Preview";
@@ -104,11 +105,11 @@ function Builder() {
             {/* TEMPLATES AND ACCENT COLOR */}
             <div className="flex items-center gap-1 relative">
               <div className="flex items-center gap-1 p-1 bg-violet-300 text-violet-800 rounded-md cursor-pointer" onClick={()=>{setTemplateMenu(prev => !prev); setColorMenu(false)}}>
-                <LuLayoutTemplate className="hidden sm:flex" size={15}/>
+                <LuLayoutTemplate size={15}/>
                 <p>Template</p>
               </div>
               <div className="flex items-center gap-1 p-1 bg-blue-300 text-blue-800 rounded-md cursor-pointer" onClick={()=>{setColorMenu(prev => !prev); setTemplateMenu(false)}}>
-                <IoIosColorPalette className="hidden sm:flex" size={15}/>
+                <IoIosColorPalette size={15}/>
                 <p>Color</p>
               </div>
 
@@ -155,8 +156,32 @@ function Builder() {
           }
         </div>
         {/* RESUME  */}
-        <div className="flex-1">
-          <Preview data={resumeData} template={resumeData.template} accent_color={resumeData.accent_color}/>
+        <div className="flex flex-col justify-between items-center gap-2">
+          {/* RESUME VISIBILITY CONTROLS AND DOWNLOAD */}
+          <div className="flex justify-end items-center gap-3">
+            {/* SHARE - INVISIBILE UNLESS PUBLIC */}
+            {
+              resumeData.public?
+              <div className="flex items-center gap-0.5 px-2 py-1 rounded-md cursor-pointer bg-green-500 text-white">
+                <MdOutlineIosShare />
+                <p>Share</p>
+              </div>
+              :""
+            }
+            {/* PUBLIC OR PRIVATE */}
+            <div className="flex items-center gap-0.5 px-2 py-1 rounded-md cursor-pointer bg-black text-white" onClick={()=>{setResumeData(prev => ({...prev,public : !resumeData.public}))}}>
+              {resumeData.public? <IoMdEye />:<IoIosEyeOff />}
+              <p>{resumeData.public? "Public" : "Private" }</p>
+            </div>
+            {/* DOWNLOAD */}
+            <div className="flex items-center gap-0.5 px-2 py-1 rounded-md cursor-pointer bg-violet-500 text-white">
+              <MdOutlineIosShare className="rotate-180"/>
+              <p>Download</p>
+            </div>
+          </div>
+          <div className="flex-1">
+            <Preview data={resumeData} template={resumeData.template} accent_color={resumeData.accent_color}/>
+          </div>
         </div>
       </div>
 

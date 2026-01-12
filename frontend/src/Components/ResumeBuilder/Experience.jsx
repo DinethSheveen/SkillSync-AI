@@ -26,10 +26,14 @@ function Experience({title,icon,setResumeData,data}) {
     },[data,experience])
 
     // ADD EXPERIENCE ENTRY
-    const addExperience = ()=>{}
+    const addExperience = ()=>{        
+        setResumeData(prev => ({...prev,experience : [...prev.experience,{company : "", position: "", start_date: "", end_date: "", description: "", is_current: false,}]}))
+    }
 
     // DELETE EXPERIENCE ENTRY
-    const deleteExperience = () => {}
+    const deleteExperience = (indexedExperience) => {
+        setResumeData(prev=> ({...prev,experience : experience.filter((_,index)=>{return index !== indexedExperience})}))
+    }
 
   return (
     <div className="experience">
@@ -55,7 +59,7 @@ function Experience({title,icon,setResumeData,data}) {
                         <div key={index} className="border border-black rounded-lg p-2 flex flex-col gap-3">
                             <div className="flex justify-between items-center">
                                 <p className="font-semibold">Experience #{index+1}</p>
-                                < RiDeleteBin6Line className="text-red-500" />
+                                <RiDeleteBin6Line className="text-red-500" onClick={()=>{deleteExperience(index)}} />
                             </div>
 
                             <form>

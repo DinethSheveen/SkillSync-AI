@@ -84,7 +84,7 @@ function Education({data, setResumeData, icon, title}) {
                                             element
                                         )
                                     })}))}}/>
-                                    <input type="text" placeholder="End Date" className="p-2 border border-gray-300 rounded-lg" value={edu.graduation_date} onChange={(e)=>{setResumeData(prev => ({...prev,education : prev.education.map((element,i)=>{
+                                    <input type="month" placeholder="End Date" className="p-2 border border-gray-300 rounded-lg" value={edu.graduation_date} onChange={(e)=>{setResumeData(prev => ({...prev,education : prev.education.map((element,i)=>{
                                         return (
                                             i === index ? 
                                             {...element, graduation_date: e.target.value}

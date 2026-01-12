@@ -94,9 +94,9 @@ function Builder() {
       <div className="flex flex-col justify-between items-start gap-5 p-2 md:flex-row">
         
         {/* SECTIONS LIST */}
-        <div className="min-w-full flex flex-col gap-3 justify-between bg-gray-100 rounded-lg px-1 py-4 relative md:min-w-[40%] md:max-w-[40%]">
+        <div className="min-w-full flex flex-col gap-3 justify-between bg-gray-100 rounded-lg px-1 py-4 relative overflow-hidden md:min-w-[40%] md:max-w-[40%]">
           {/*FLEX ITEM 01 - PROGRESS BAR */}
-          <div className="absolute top-0 left-0 right-0 h-1 bg-cyan-500 transition-all duration-800" style={{width: `${(activeSectionIndex / sections.length) *100}%`}}>
+          <div className="absolute top-0 left-0 right-0 h-1 bg-cyan-500 transition-all duration-800" style={{width: `${(activeSectionIndex / (sections.length-1))*100}%`}}>
           </div>
 
           {/* FLEX ITEM 02 - SECTION CONTROLS */}
@@ -109,7 +109,7 @@ function Builder() {
               </div>
               <div className="flex items-center gap-1 p-1 bg-blue-300 text-blue-800 rounded-md cursor-pointer" onClick={()=>{setColorMenu(prev => !prev); setTemplateMenu(false)}}>
                 <IoIosColorPalette className="hidden sm:flex" size={15}/>
-                <p>Accent Color</p>
+                <p>Color</p>
               </div>
 
               <TemplateSelector templateMenu={templateMenu} setTemplateMenu={setTemplateMenu} setResumeData={setResumeData} resumeTemplate={resumeData.template} />
@@ -117,14 +117,14 @@ function Builder() {
             
             </div>
             {/* PREVIOUS AND NEXT BUTTONS */}
-            <div className="flex items-center gap-1">
+            <div className="flex items-center gap-2">
               <p className={`flex items-center ${activeSectionIndex === 0?"text-slate-400 cursor-not-allowed":"cursor-pointer"}`} onClick={()=>{if(activeSectionIndex>0){
                 setActiveSectionIndex(prevIndex => prevIndex-1)
               }}}>
                 <MdKeyboardArrowLeft />
                 Previous
               </p>
-              <p className={`flex items-center ${activeSectionIndex === sections.length?"text-slate-400 cursor-not-allowed":"cursor-pointer"}`} onClick={()=>{if(activeSectionIndex < sections.length){
+              <p className={`flex items-center ${activeSectionIndex === sections.length-1?"text-slate-400 cursor-not-allowed":"cursor-pointer"}`} onClick={()=>{if(activeSectionIndex < sections.length-1){
                 setActiveSectionIndex(prevIndex => prevIndex+1)
               }}}>
                 Next

@@ -56,7 +56,6 @@ function Projects({setResumeData,data,title,icon}) {
                     <p className="text-gray-500 text-sm">Use “Add Project" to populate it</p>
                 </div>
                 :
-
                 projects && projects.map((project,index)=>{
                     return (
                         <div key={index} className="border border-black rounded-lg p-2 flex flex-col gap-3">

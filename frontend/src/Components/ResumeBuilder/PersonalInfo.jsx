@@ -84,7 +84,7 @@ function PersonalInfo({icon,title,data,setResumeData}) {
         </div>
 
         {/* IMAGE SECTION */}
-        <label className="flex items-center gap-2 cursor-pointer px-2">
+         <label className="flex items-center gap-2 cursor-pointer px-2 w-fit">
             <input type="file" accept=".jpg , .jpeg , .png" className="hidden" onChange={(e)=>{handleImageUpload(e.target.files[0])}}/>
             {
                 data?.image?

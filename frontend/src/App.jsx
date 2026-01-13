@@ -4,7 +4,7 @@ import Home from './Pages/Home'
 import Layout from './Pages/Layout'
 import Dashboard from './Pages/Dashboard'
 import Builder from './Pages/Builder'
-import Preview from './Pages/Preview'
+import ViewResume from './Pages/ViewResume'
 import Login from './Pages/Login'
 import Register from './Pages/Register'
 
@@ -18,7 +18,7 @@ function App() {
           <Route path="builder/:resumeId" element={<Builder/>}/>
         </Route>
 
-        <Route path="preview/:resumeId" element={<Preview/>} />
+        <Route path="preview/:resumeId" element={<ViewResume />} />
         <Route path='login' element={<Login/>} />
         <Route path='register' element={<Register/>} />
       </Routes>

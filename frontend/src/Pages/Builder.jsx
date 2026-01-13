@@ -28,7 +28,7 @@ function Builder() {
     skills : [],
     experience : [],
     education : [],
-    projects : [],
+    project : [],
     public : false,
     template : "classic",
     accent_color : "#14B8A6"
@@ -76,7 +76,7 @@ function Builder() {
   const shareResume = ()=>{
     const location = window.location.href
     const clientUrl = location.split("/app/")[0]
-    const viewUrl = clientUrl+"/view/"+resumeId    
+    const viewUrl = clientUrl+"/preview/"+resumeId    
 
     if(navigator.share){
       navigator.share(
@@ -207,14 +207,14 @@ function Builder() {
             activeSection?.name === "projects"?
             <Projects setResumeData={setResumeData} data={resumeData?.project} title={activeSection?.title} icon={activeSection?.icon} />
             : 
-            <Skills setResumeData={setResumeData} data={resumeData.skills} title={activeSection?.title} icon={activeSection?.icon}  />
+            <Skills setResumeData={setResumeData} data={resumeData?.skills} title={activeSection?.title} icon={activeSection?.icon}  />
           }
         </div>
 
         {/* RESUME  */}
         <div className="flex flex-col justify-between items-center gap-2 print-area">
           <div className="flex-1">
-            <Preview data={resumeData} template={resumeData.template} accent_color={resumeData.accent_color}/>
+            <Preview data={resumeData} template={resumeData?.template} accent_color={resumeData?.accent_color}/>
           </div>
         </div>
       </div>

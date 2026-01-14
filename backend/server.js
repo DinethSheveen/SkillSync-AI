@@ -2,19 +2,25 @@ import "dotenv/config"
 import express from "express"
 import cors from "cors"
 import connectDatabase from "./Config/dbConfig.js"
+import authRouter from "./Routes/authRouter.js"
 
 // APP CONFIG
 const app = express()
+
+// BASIC MIDDLEWARE
+app.use(express.json())
 app.use(cors())
 
 // DATABASE CONNECTION
-connectDatabase()
+await connectDatabase()
+
+// ROUTING
+app.use("/api/auth",authRouter)
 
 // PORT
 const PORT  = process.env.PORT 
 
 // RUNNING SERVER 
-app.listen((PORT,()=>{
-    console.log(`Sever is running on http://localhost:${PORT}`);
-}))
-
+app.listen(PORT, () => {
+    console.log(`Server is running on http://localhost:${PORT}`);
+});

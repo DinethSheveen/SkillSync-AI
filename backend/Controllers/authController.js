@@ -72,8 +72,13 @@ export const login = async (req,res)=>{
             return res.status(400).json({message : "Invalid credentials"})
         }
 
+        // RETRIEVING USER INFORMATION EXCEPT FOR THE PASSWORD
+        const {password : hashPassword,...rest} = registeredUser._doc
+
+        const userInfo = rest
+
         const token = createToken(registeredUser._id)
-        res.status(200).json({message : "Logging in",token})
+        res.status(200).json({message : "Logging in",token,userInfo})
    } catch (error) {
         res.status(500).json({message : "Server Error"})
    }

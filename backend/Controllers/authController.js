@@ -83,3 +83,27 @@ export const login = async (req,res)=>{
         res.status(500).json({message : "Server Error"})
    }
 }
+
+// USER AUTH ENDPOINT
+export const getUserById = async(req,res)=>{
+    const userId = req.userId
+
+    try {
+        const user = await userModel.findById(userId)
+
+        if(!user){
+            return res.status(400).json({message : "Invalid user id"})
+        }
+
+        // GETTING USER INFORMATION EXCEPT FOR THE PASSWORD
+        const {password : hashPassword,...rest} = user._doc
+
+        const userInfo = rest
+
+        res.status(200).json({userInfo})
+
+    } catch (error) {
+        res.status(500).json({message : "Server Error"})
+    }
+
+}

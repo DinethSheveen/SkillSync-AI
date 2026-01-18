@@ -1,6 +1,7 @@
 
 import { Router } from "express"
-import { login, register } from "../Controllers/authController.js"
+import { getUserById, login, register } from "../Controllers/authController.js"
+import getMe from "../Middelware/authMiddleware.js"
 
 const authRouter = Router()
 
@@ -9,5 +10,8 @@ authRouter.post("/register",register)
 
 // LOGIN ROUTER
 authRouter.post("/login",login)
+
+// USER AUTHENTICATING ROUTER
+authRouter.get("/authenticate",getMe,getUserById)
 
 export default authRouter

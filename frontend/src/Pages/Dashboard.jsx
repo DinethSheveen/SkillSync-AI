@@ -2,8 +2,10 @@ import { IoIosAddCircleOutline } from "react-icons/io";
 import { FiUploadCloud } from "react-icons/fi";
 import { IoCloseOutline } from "react-icons/io5";
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Resumes from "../Components/Dashboard/Resumes";
+import axios from "axios"
+import toast from "react-hot-toast"
 
 function Dashboard() {
 
@@ -14,11 +16,17 @@ function Dashboard() {
   const [resume, setResume] = useState(null)
   const navigate = useNavigate()
 
-  const handleResumeCreate = (e)=>{
-    e.preventDefault()
-    setResumeTitle("")
-    setCreateResumePopup(false)
-    navigate("builder/ansjan")
+  const handleResumeCreate = async(e)=>{
+    try {
+      e.preventDefault()
+      const response = await axios.post("http://localhost:3000/api/resumes/create",{resumeTitle},{headers : {Authorization : localStorage.getItem("token")}})
+      toast.success(response?.data?.message);
+      setResumeTitle("")
+      setCreateResumePopup(false)
+      navigate(`builder/${response?.data?.newResume?._id}`)
+    } catch (error) {
+      toast.error(error?.response?.data?.message);
+    }
   }
 
   const handleResumeUpload = (e)=>{

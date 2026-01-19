@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import mongoose, { Types } from "mongoose";
 
 const userSchema = mongoose.Schema({
     name : {
@@ -16,7 +16,13 @@ const userSchema = mongoose.Schema({
         type : String,
         required : true,
         minLength : 5
-    }
+    },
+    resumes : [
+        {
+            type : Types.ObjectId,
+            ref : "resume"
+        }
+    ]
 },{timestamps : true})
 
 export const userModel = mongoose.model("user",userSchema)

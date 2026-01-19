@@ -212,7 +212,7 @@ function Builder() {
         </div>
 
         {/* RESUME  */}
-        <div className="flex flex-col justify-between items-center gap-2 print-area">
+        <div className="w-full flex flex-col justify-between items-center gap-2 print-area">
           <div className="flex-1">
             <Preview data={resumeData} template={resumeData?.template} accent_color={resumeData?.accent_color}/>
           </div>

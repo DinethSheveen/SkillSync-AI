@@ -18,6 +18,7 @@ function Login() {
         try {
             const response = await axios.post("http://localhost:3000/api/auth/login",formData)
             toast.success(response?.data?.message)
+            localStorage.setItem("token",response?.data?.token)
             setFormData({password : "", email : ""})
             navigate("/app")
         } catch (error) {

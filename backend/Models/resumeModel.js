@@ -6,7 +6,7 @@ const resumeSchema = mongoose.Schema({
         ref  : "user",
         required : true
     },
-    title : {
+    resumeTitle : {
         type : String,
         required : true
     },

@@ -7,14 +7,14 @@ export const createResume = async(req,res)=>{
         const userId = req.userId
 
         // RESUME TITLE
-        const {title} = req.body
+        const {resumeTitle} = req.body
 
-        if(!title){
+        if(!resumeTitle){
             return res.status(400).json({message : "Resume Title is Required"})
         }
 
         // CREATING THE NEW RESUME
-        const newResume = await resumeModel.create({title,user : userId})
+        const newResume = await resumeModel.create({resumeTitle,user : userId})
 
         // ADDING THE NEW RESUME TO THE USER'S RESUME LIST
         const updatedUser = await userModel.findByIdAndUpdate(userId,{$push : {resumes : newResume._id}})
@@ -73,7 +73,7 @@ export const deleteResume = async(req,res)=>{
         const {resumeId} = req.params
 
         // DELETING THE RESUME ID FROM THE RESUME MODEL
-        const resume = await resumeModel.deleteById(resumeId)
+        const resume = await resumeModel.deleteOne({_id : resumeId})
 
         // REMOVING THE RESUME FROM THE USER'S RESUMES 
         const updatedUser = await userModel.findByIdAndUpdate(userId,{$pull : {resumes : resumeId} })

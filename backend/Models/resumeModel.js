@@ -23,18 +23,18 @@ const resumeSchema = mongoose.Schema({
         default : false
     },
     personalInfo : {
-        fullName : {type : String},
-        email : {type : String},
-        phone : {type : String},
-        location : {type : String},
-        linkedin : {type : String},
-        github : {type : String},
-        website : {type : String},
-        profession : {type : String},
-        image : {type : String}
+        fullName : {type : String,default:""},
+        email : {type : String,default:""},
+        phone : {type : String,default:""},
+        location : {type : String,default:""},
+        linkedin : {type : String,default:""},
+        github : {type : String,default:""},
+        website : {type : String,default:""},
+        profession : {type : String,default:""},
+        image : {type : String,default:""}
     },
-    personalSummary : {
-        type : String
+    professionalSummary : {
+        type : String,default:""
     },
     skills : [{type : String}],
     experience : [
@@ -56,7 +56,7 @@ const resumeSchema = mongoose.Schema({
             gpa : {type : String}
         }
     ],
-    projects : [
+    project : [
         {
             name : {type : String},
             type : {type : String},

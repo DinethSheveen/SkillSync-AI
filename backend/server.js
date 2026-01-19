@@ -3,6 +3,7 @@ import express from "express"
 import cors from "cors"
 import connectDatabase from "./Config/dbConfig.js"
 import authRouter from "./Routes/authRouter.js"
+import resumeRouter from "./Routes/resumeRouter.js"
 
 // APP CONFIG
 const app = express()
@@ -16,6 +17,7 @@ await connectDatabase()
 
 // ROUTING
 app.use("/api/auth",authRouter)
+app.use("/api/resumes",resumeRouter)
 
 // PORT
 const PORT  = process.env.PORT 

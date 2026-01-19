@@ -1,10 +1,13 @@
 import { HiOutlineMailOpen } from "react-icons/hi";
 import { IoLockClosedOutline } from "react-icons/io5";
 import { useState } from "react"
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios"
+import toast from  "react-hot-toast"
 
 function Login() {
 
+    const navigate = useNavigate()
     const [formData, setFormData] = useState({
         email: '',
         password: ''
@@ -12,9 +15,17 @@ function Login() {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
+        try {
+            const response = await axios.post("http://localhost:3000/api/auth/login",formData)
+            toast.success(response?.data?.message)
+            setFormData({password : "", email : ""})
+            navigate("/app")
+        } catch (error) {
+            toast.error(error?.response?.data?.message);
+        }
     }
 
-    const handleChange = (e) => {
+    const handleChange = (e) => {        
         const { name, value } = e.target
         setFormData(prev => ({ ...prev, [name]: value }))
     }
@@ -27,12 +38,12 @@ function Login() {
             
             <div className="flex items-center w-full mt-4 bg-white border border-gray-300/80 h-12 rounded-full overflow-hidden pl-6 gap-2">
                 <HiOutlineMailOpen size={16} color="#6B7280" />
-                <input type="email" name="email" placeholder="Email id" className="border-none outline-none ring-0" value={formData.email} onChange={handleChange} required />
+                <input type="email" name="email" placeholder="Email id" className="border-none outline-none ring-0" value={formData.email} onChange={handleChange} />
             </div>
 
             <div className="flex items-center mt-4 w-full bg-white border border-gray-300/80 h-12 rounded-full overflow-hidden pl-6 gap-2">
                 <IoLockClosedOutline size={16} color="#6B7280" />
-                <input type="password" name="password" placeholder="Password" className="border-none outline-none ring-0" value={formData.password} onChange={handleChange} required />
+                <input type="password" name="password" placeholder="Password" className="border-none outline-none ring-0" value={formData.password} onChange={handleChange} />
             </div>
 
             <div className="mt-4 text-left text-violet-500">

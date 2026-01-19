@@ -2,16 +2,29 @@ import { useState } from 'react'
 import { FaRegUser } from "react-icons/fa";
 import { HiOutlineMailOpen } from "react-icons/hi";
 import { IoLockClosedOutline } from "react-icons/io5";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios"
+import toast from "react-hot-toast"
 
 function Register() {
     const [formData, setFormData] = useState({
+        name : "",
         email: '',
         password: ''
     })
 
+    const navigate = useNavigate()
+
     const handleSubmit = async (e) => {
         e.preventDefault()
+        try {
+            const response = await axios.post("http://localhost:3000/api/auth/register",formData)
+            toast.success(response?.data?.message)
+            setFormData({name : "",  password : "", email : ""})
+            navigate("/login")
+        } catch (error) {
+            toast.error(error?.response?.data?.message);
+        }
     }
 
     const handleChange = (e) => {
@@ -26,17 +39,17 @@ function Register() {
 
             <div className="flex items-center mt-6 w-full bg-white border border-gray-300/80 h-12 rounded-full overflow-hidden pl-6 gap-2">
                 <FaRegUser size={16} color="#6B7280" />
-                <input type="text" name="name" placeholder="Name" className="border-none outline-none ring-0" value={formData.name} onChange={handleChange} required />
+                <input type="text" name="name" placeholder="Name" className="border-none outline-none ring-0" value={formData.name} onChange={handleChange} />
             </div>
             
             <div className="flex items-center w-full mt-4 bg-white border border-gray-300/80 h-12 rounded-full overflow-hidden pl-6 gap-2">
                 <HiOutlineMailOpen size={16} color="#6B7280" />
-                <input type="email" name="email" placeholder="Email id" className="border-none outline-none ring-0" value={formData.email} onChange={handleChange} required />
+                <input type="text" name="email" placeholder="Email id" className="border-none outline-none ring-0" value={formData.email} onChange={handleChange} />
             </div>
 
             <div className="flex items-center mt-4 w-full bg-white border border-gray-300/80 h-12 rounded-full overflow-hidden pl-6 gap-2">
                 <IoLockClosedOutline size={16} color="#6B7280" />
-                <input type="password" name="password" placeholder="Password" className="border-none outline-none ring-0" value={formData.password} onChange={handleChange} required />
+                <input type="password" name="password" placeholder="Password" className="border-none outline-none ring-0" value={formData.password} onChange={handleChange} />
             </div>
 
             <button type="submit" className="mt-2 w-full h-11 rounded-full text-white bg-violet-700 hover:opacity-90 transition-opacity">

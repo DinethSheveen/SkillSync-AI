@@ -78,7 +78,7 @@ export const login = async (req,res)=>{
         const userInfo = rest
 
         const token = createToken(registeredUser._id)
-        res.status(200).json({message : "Logging in",token,userInfo})
+        res.status(200).json({message : "Successfully Logged in",token,userInfo})
    } catch (error) {
         res.status(500).json({message : "Server Error"})
    }

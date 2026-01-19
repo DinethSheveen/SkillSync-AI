@@ -1,4 +1,3 @@
-import React from 'react'
 import { Route, Routes } from 'react-router-dom'
 import Home from './Pages/Home'
 import Layout from './Pages/Layout'
@@ -7,10 +6,12 @@ import Builder from './Pages/Builder'
 import ViewResume from './Pages/ViewResume'
 import Login from './Pages/Login'
 import Register from './Pages/Register'
+import { Toaster } from "react-hot-toast"
 
 function App() {
   return (
     <>
+      <Toaster />
       <Routes>
         <Route path="/" element={<Home/>} />
         <Route path="app" element={<Layout/>}>

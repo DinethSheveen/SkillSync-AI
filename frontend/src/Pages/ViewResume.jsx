@@ -16,7 +16,7 @@ function ViewResume() {
       setResume(dummyResumeData.find((resume)=>{return resume._id === resumeId}) || null)
     }
     fetchResumeData()
-  },[])
+  },[resumeId])
 
   return (
     <div className="max-w-[50%] py-5 mx-auto">

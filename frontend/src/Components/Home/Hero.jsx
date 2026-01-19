@@ -28,9 +28,9 @@ function Hero() {
             </div>
 
             <div className="flex items-center gap-2 md:pr-1">
-                <button className="hidden md:inline-block bg-violet-600 hover:bg-violet-800 text-white px-4 md:px-6 py-2 md:py-3 rounded-full text-xs md:text-sm transition cursor-pointer">
+                <Link to="/register" className="hidden md:inline-block bg-violet-600 hover:bg-violet-800 text-white px-4 md:px-6 py-2 md:py-3 rounded-full text-xs md:text-sm transition cursor-pointer">
                     Get Started
-                </button>
+                </Link>
                 <Link to={"/login"} className="hidden md:inline-block bg-transparent text-violet-600 border-2 border-violet-700 hover:bg-violet-700 hover:text-white px-4 md:px-6 py-2 md:py-3 rounded-full text-xs md:text-sm transition cursor-pointer">
                     Login
                 </Link>

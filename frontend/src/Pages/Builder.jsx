@@ -15,23 +15,24 @@ import Education from "../Components/ResumeBuilder/Education";
 import Experience from "../Components/ResumeBuilder/Experience";
 import Projects from "../Components/ResumeBuilder/Projects";
 import Skills from "../Components/ResumeBuilder/Skills";
+import SaveButton from "../Components/ResumeBuilder/SaveButton";
 
 function Builder() {
 
   const { resumeId } = useParams()
   const [activeSectionIndex, setActiveSectionIndex] = useState(0)
   const [resumeData, setResumeData] = useState({
-    personal_info : {},
-    professional_summary : "",
+    personalInfo : {},
+    professionalSummary : "",
     _id : "",
-    title : "",
+    resumeTitle : "",
     skills : [],
     experience : [],
     education : [],
-    project : [],
+    projects : [],
     public : false,
     template : "classic",
-    accent_color : "#14B8A6"
+    color : "#14B8A6"
   })
   const [templateMenu, setTemplateMenu] = useState(false)
   const [colorMenu, setColorMenu] = useState(false)
@@ -193,10 +194,10 @@ function Builder() {
 
           {/* FLEX ITEM 03 - INFORMATION FILL IN */}
           {activeSection?.name === "personalInfo" ? 
-            <PersonalInfo setResumeData={setResumeData} data={resumeData?.personal_info} icon={activeSection?.icon} title={activeSection?.title} />
+            <PersonalInfo setResumeData={setResumeData} data={resumeData?.personalInfo} icon={activeSection?.icon} title={activeSection?.title} />
             :
             activeSection?.name === "summary" ?
-            <Summary setResumeData={setResumeData} professional_summary={resumeData?.professional_summary} icon={activeSection?.icon} title={activeSection?.title} />
+            <Summary setResumeData={setResumeData} professionalSummary={resumeData?.professionalSummary} icon={activeSection?.icon} title={activeSection?.title} />
             :
             activeSection?.name === "education" ?
             <Education setResumeData={setResumeData} data={resumeData?.education} icon={activeSection?.icon} title={activeSection?.title} />
@@ -205,16 +206,19 @@ function Builder() {
             <Experience setResumeData={setResumeData} data={resumeData?.experience} icon={activeSection?.icon} title={activeSection?.title} />
             :
             activeSection?.name === "projects"?
-            <Projects setResumeData={setResumeData} data={resumeData?.project} title={activeSection?.title} icon={activeSection?.icon} />
+            <Projects setResumeData={setResumeData} data={resumeData?.projects} title={activeSection?.title} icon={activeSection?.icon} />
             : 
             <Skills setResumeData={setResumeData} data={resumeData?.skills} title={activeSection?.title} icon={activeSection?.icon}  />
           }
+
+          {/* SAVE BUTTON */}
+          <SaveButton resumeData={resumeData} />
         </div>
 
         {/* RESUME  */}
         <div className="w-full flex flex-col justify-between items-center gap-2 print-area">
           <div className="flex-1">
-            <Preview data={resumeData} template={resumeData?.template} accent_color={resumeData?.accent_color}/>
+            <Preview data={resumeData} template={resumeData?.template} color={resumeData?.color}/>
           </div>
         </div>
       </div>

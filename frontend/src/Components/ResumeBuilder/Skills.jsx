@@ -72,11 +72,6 @@ function Skills({setResumeData,data,title,icon}) {
             <div className="bg-violet-100 font-semibold p-2 mx-2 rounded-md">
                 <p className="text-violet-400"><span className="text-violet-500">Tip:</span>To create a strong and well-rounded skills section, include about 10 skills that cover both technical tools and important soft skills.</p>
             </div>
-
-            {/* SAVE BUTTON */}        
-            <div className="my-2">
-                <button className="border border-violet-500 text-violet-800 bg-violet-300 cursor-pointer py-2 px-4 w-fit rounded-lg hover:bg-violet-400 active:bg-violet-500">Save Changes</button>
-            </div>
         </div>
     </div>
   )

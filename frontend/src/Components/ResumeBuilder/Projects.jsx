@@ -5,8 +5,7 @@ import { FaProjectDiagram } from "react-icons/fa";
 
 function Projects({setResumeData,data,title,icon}) {
 
-
-    const [projects, setProjects] = useState([
+    const [projectsList, setProjectsList] = useState([
         {
             name: "",
             type: "",
@@ -15,20 +14,20 @@ function Projects({setResumeData,data,title,icon}) {
     ])
 
     const addProject = ()=>{
-        setResumeData(prev => ({...prev,project : [...prev.project,{name:"",type:"",description:""}]}))
+        setResumeData(prev => ({...prev,projects : [...prev.projects,{name:"",type:"",description:""}]}))
     }
 
     const deleteProject = (indexedProject)=>{
-        setResumeData(prev => ({...prev,project : projects.filter((_,index)=>{return index !== indexedProject})}))
+        setResumeData(prev => ({...prev,projects : projectsList.filter((_,index)=>{return index !== indexedProject})}))
     }
 
     useEffect(()=>{
         const loadProjects = ()=>{
-            setProjects(data)
+            setProjectsList(data)
         }
         
         loadProjects()
-    },[projects,data])
+    },[projectsList,data])
 
   return (
     <div className="projects">
@@ -49,14 +48,14 @@ function Projects({setResumeData,data,title,icon}) {
             
             {/* PROJECTS SECTIONS */}
             {
-                projects.length === 0 ?
+                projectsList.length === 0 ?
                 <div className="flex flex-col justify-center items-center gap-1">
                     <FaProjectDiagram size={60} className="text-gray-300" />
                     <p className="text-gray-500 text-sm">Project section is currently empty</p>
                     <p className="text-gray-500 text-sm">Use “Add Project" to populate it</p>
                 </div>
                 :
-                projects && projects.map((project,index)=>{
+                projectsList && projectsList.map((project,index)=>{
                     return (
                         <div key={index} className="border border-black rounded-lg p-2 flex flex-col gap-3">
                             <div className="flex justify-between items-center">
@@ -94,11 +93,6 @@ function Projects({setResumeData,data,title,icon}) {
                     )
                 })
             }
-
-            {/* SAVE BUTTON */}        
-            <div className="my-2">
-                <button className="border border-violet-500 text-violet-800 bg-violet-300 cursor-pointer py-2 px-4 w-fit rounded-lg hover:bg-violet-400 active:bg-violet-500">Save Changes</button>
-            </div>
         </div>
     </div>
   )

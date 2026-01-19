@@ -3,7 +3,7 @@ import { CiGlobe, CiMail } from "react-icons/ci";
 import { IoLocationOutline } from "react-icons/io5";
 import { LuPhone } from "react-icons/lu";
 
-const ClassicTemplate = ({ data, accent_color }) => {
+const ClassicTemplate = ({ data, color }) => {
     const formatDate = (dateStr) => {
         if (!dateStr) return "";
         const [year, month] = dateStr.split("-");
@@ -16,71 +16,71 @@ const ClassicTemplate = ({ data, accent_color }) => {
     return (
         <div className="max-w-4xl mx-auto p-8 bg-white text-gray-800 leading-relaxed">
             {/* Header */}
-            <header className="text-center mb-8 pb-6 border-b-2" style={{ borderColor: accent_color }}>
-                <h1 className="text-3xl font-bold mb-2" style={{ color: accent_color }}>
-                    {data?.personal_info?.full_name || "Your Name"}
+            <header className="text-center mb-8 pb-6 border-b-2" style={{ borderColor: color }}>
+                <h1 className="text-3xl font-bold mb-2" style={{ color: color }}>
+                    {data?.personalInfo?.full_name || "Your Name"}
                 </h1>
 
                 <div className="flex flex-wrap justify-center gap-4 text-sm text-gray-600">
-                    {data?.personal_info?.email && (
+                    {data?.personalInfo?.email && (
                         <div className="flex items-center gap-1">
                             <CiMail className="size-4" />
-                            <span>{data.personal_info.email}</span>
+                            <span>{data.personalInfo.email}</span>
                         </div>
                     )}
-                    {data?.personal_info?.phone && (
+                    {data?.personalInfo?.phone && (
                         <div className="flex items-center gap-1">
                             <LuPhone className="size-4" />
-                            <span>{data.personal_info.phone}</span>
+                            <span>{data.personalInfo.phone}</span>
                         </div>
                     )}
-                    {data?.personal_info?.location && (
+                    {data?.personalInfo?.location && (
                         <div className="flex items-center gap-1">
                             <IoLocationOutline className="size-4" />
-                            <span>{data.personal_info.location}</span>
+                            <span>{data.personalInfo.location}</span>
                         </div>
                     )}
-                    {data?.personal_info?.linkedin && (
+                    {data?.personalInfo?.linkedin && (
                         <div className="flex items-center gap-1">
                             <BiLogoLinkedin className="size-4" />
-                            <span className="break-all">{data.personal_info.linkedin}</span>
+                            <span className="break-all">{data.personalInfo.linkedin}</span>
                         </div>
                     )}
-                    {data?.personal_info?.website && (
+                    {data?.personalInfo?.website && (
                         <div className="flex items-center gap-1">
                             <CiGlobe className="size-4" />
-                            <span className="break-all">{data.personal_info.website}</span>
+                            <span className="break-all">{data.personalInfo.website}</span>
                         </div>
                     )}
-                    {data?.personal_info?.github && (
+                    {data?.personalInfo?.github && (
                         <div className="flex items-center gap-1">
                             <CiGlobe className="size-4" />
-                            <span className="break-all">{data.personal_info.github}</span>
+                            <span className="break-all">{data.personalInfo.github}</span>
                         </div>
                     )}
                 </div>
             </header>
 
             {/* Professional Summary */}
-            {data?.professional_summary && (
+            {data?.professionalSummary && (
                 <section className="mb-6">
-                    <h2 className="text-xl font-semibold mb-3" style={{ color: accent_color }}>
+                    <h2 className="text-xl font-semibold mb-3" style={{ color: color }}>
                         PROFESSIONAL SUMMARY
                     </h2>
-                    <p className="text-gray-700 leading-relaxed">{data.professional_summary}</p>
+                    <p className="text-gray-700 leading-relaxed">{data.professionalSummary}</p>
                 </section>
             )}
 
             {/* Experience */}
             {data?.experience && data.experience.length > 0 && (
                 <section className="mb-6">
-                    <h2 className="text-xl font-semibold mb-4" style={{ color: accent_color }}>
+                    <h2 className="text-xl font-semibold mb-4" style={{ color: color }}>
                         PROFESSIONAL EXPERIENCE
                     </h2>
 
                     <div className="space-y-4">
                         {data.experience.map((exp, index) => (
-                            <div key={index} className="border-l-3 pl-4" style={{ borderColor: accent_color }}>
+                            <div key={index} className="border-l-3 pl-4" style={{ borderColor: color }}>
                                 <div className="flex justify-between items-start mb-2">
                                     <div>
                                         <h3 className="font-semibold text-gray-900">{exp.position}</h3>
@@ -102,14 +102,14 @@ const ClassicTemplate = ({ data, accent_color }) => {
             )}
 
             {/* Projects */}
-            {data?.project && data.project.length > 0 && (
+            {data?.projects && data.projects.length > 0 && (
                 <section className="mb-6">
-                    <h2 className="text-xl font-semibold mb-4" style={{ color: accent_color }}>
+                    <h2 className="text-xl font-semibold mb-4" style={{ color: color }}>
                         PROJECTS
                     </h2>
 
                     <ul className="space-y-3 ">
-                        {data.project.map((proj, index) => (
+                        {data.projects.map((proj, index) => (
                             <div key={index} className="flex justify-between items-start border-l-3 border-gray-300 pl-6">
                                 <div>
                                     <li className="font-semibold text-gray-800 ">{proj.name}</li>
@@ -124,7 +124,7 @@ const ClassicTemplate = ({ data, accent_color }) => {
             {/* Education */}
             {data?.education && data.education.length > 0 && (
                 <section className="mb-6">
-                    <h2 className="text-xl font-semibold mb-4" style={{ color: accent_color }}>
+                    <h2 className="text-xl font-semibold mb-4" style={{ color: color }}>
                         EDUCATION
                     </h2>
 
@@ -150,7 +150,7 @@ const ClassicTemplate = ({ data, accent_color }) => {
             {/* Skills */}
             {data?.skills && data.skills.length > 0 && (
                 <section className="mb-6">
-                    <h2 className="text-xl font-semibold mb-4" style={{ color: accent_color }}>
+                    <h2 className="text-xl font-semibold mb-4" style={{ color: color }}>
                         CORE SKILLS
                     </h2>
 

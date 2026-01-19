@@ -1,6 +1,6 @@
 import { WiStars } from "react-icons/wi";
 
-function Summary({icon,title,professional_summary,setResumeData}) {
+function Summary({icon,title,professionalSummary,setResumeData}) {
   return (
     <div className="flex flex-col justify-between gap-3 px-2">
         {/* HEADING */}
@@ -23,17 +23,12 @@ function Summary({icon,title,professional_summary,setResumeData}) {
 
         {/* TEXTAREA */}
         <div className="flex flex-col gap-1 px-2">
-            <textarea placeholder="Skilled in full-stack development, with experience in React, Node.js, and MongoDB. Adept at problem-solving and eager to contribute to dynamic teams." className="w-full h-32 resize-none outline-none border border-slate-500 rounded-md px-2 py-1 text-sm focus:border-cyan-600 focus:border-2" value={professional_summary || ""} onChange={(e)=>{setResumeData(prev => ({...prev,professional_summary:e.target.value}))}} />
+            <textarea placeholder="Skilled in full-stack development, with experience in React, Node.js, and MongoDB. Adept at problem-solving and eager to contribute to dynamic teams." className="w-full h-32 resize-none outline-none border border-slate-500 rounded-md px-2 py-1 text-sm focus:border-cyan-600 focus:border-2" value={professionalSummary || ""} onChange={(e)=>{setResumeData(prev => ({...prev,professionalSummary:e.target.value}))}} />
 
             {/* TIP */}
             <div className="text-slate-400 text-center">
                 <p className="text-[12px]">Tip: Write a compelling summary that highlights your key strengths and career goals.</p>
             </div>
-        </div>
-
-        {/* SAVE BUTTON */}        
-        <div className="px-2">
-            <button className="border border-violet-500 text-violet-800 bg-violet-300 cursor-pointer py-2 px-4 w-fit rounded-lg hover:bg-violet-400 active:bg-violet-500">Save Changes</button>
         </div>
     </div>
   )

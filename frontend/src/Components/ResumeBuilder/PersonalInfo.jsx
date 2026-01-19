@@ -69,7 +69,7 @@ function PersonalInfo({icon,title,data,setResumeData}) {
     const handleImageUpload = (file)=>{
         const imageFile = file;
         const image = URL.createObjectURL(imageFile);
-        setResumeData(prev=> ({...prev,personal_info:{...prev.personal_info,image:image}}))
+        setResumeData(prev=> ({...prev,personalInfo:{...prev.personalInfo,image:image}}))
     }
 
   return (
@@ -107,15 +107,10 @@ function PersonalInfo({icon,title,data,setResumeData}) {
                         <p>{field.required && <span className="text-red-600">*</span>}</p>
                     </div>
 
-                    <input type={field.type} className="outline-none border border-slate-500 rounded-md px-2 py-1 text-sm focus:border-cyan-600 focus:border-2" value={data?.[field.key] || ""} onChange={(e)=>{setResumeData(prev=>({...prev,personal_info:{...prev.personal_info,[field.key]:e.target.value}}))}} required={field.required} placeholder={`Enter your ${field.label}`}/>
+                    <input type={field.type} className="outline-none border border-slate-500 rounded-md px-2 py-1 text-sm focus:border-cyan-600 focus:border-2" value={data?.[field.key] || ""} onChange={(e)=>{setResumeData(prev=>({...prev,personalInfo:{...prev.personalInfo,[field.key]:e.target.value}}))}} required={field.required} placeholder={`Enter your ${field.label}`}/>
                 </div>
             )
         })}
-
-        {/* SAVE BUTTON */}
-        <div className="px-2">
-            <button className="border border-violet-500 text-violet-800 bg-violet-300 cursor-pointer py-2 px-4 w-fit rounded-lg hover:bg-violet-400 active:bg-violet-500">Save Changes</button>
-        </div>
     </div>
   )
 }

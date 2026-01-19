@@ -1,5 +1,5 @@
 
-const MinimalTemplate = ({ data, accent_color }) => {
+const MinimalTemplate = ({ data, color }) => {
     const formatDate = (dateStr) => {
         if (!dateStr) return "";
         const [year, month] = dateStr.split("-");
@@ -14,30 +14,30 @@ const MinimalTemplate = ({ data, accent_color }) => {
             {/* Header */}
             <header className="mb-10">
                 <h1 className="text-4xl font-thin mb-4 tracking-wide">
-                    {data.personal_info?.full_name || "Your Name"}
+                    {data.personalInfo?.full_name || "Your Name"}
                 </h1>
 
                 <div className="flex flex-wrap gap-6 text-sm text-gray-600">
-                    {data.personal_info?.email && <span>{data.personal_info.email}</span>}
-                    {data.personal_info?.phone && <span>{data.personal_info.phone}</span>}
-                    {data.personal_info?.location && <span>{data.personal_info.location}</span>}
-                    {data.personal_info?.linkedin && (
-                        <span className="break-all">{data.personal_info.linkedin}</span>
+                    {data.personalInfo?.email && <span>{data.personalInfo.email}</span>}
+                    {data.personalInfo?.phone && <span>{data.personalInfo.phone}</span>}
+                    {data.personalInfo?.location && <span>{data.personalInfo.location}</span>}
+                    {data.personalInfo?.linkedin && (
+                        <span className="break-all">{data.personalInfo.linkedin}</span>
                     )}
-                    {data.personal_info?.website && (
-                        <span className="break-all">{data.personal_info.website}</span>
+                    {data.personalInfo?.website && (
+                        <span className="break-all">{data.personalInfo.website}</span>
                     )}
-                    {data.personal_info?.github && (
-                        <span className="break-all">{data.personal_info.github}</span>
+                    {data.personalInfo?.github && (
+                        <span className="break-all">{data.personalInfo.github}</span>
                     )}
                 </div>
             </header>
 
             {/* Professional Summary */}
-            {data.professional_summary && (
+            {data.professionalSummary && (
                 <section className="mb-10">
                     <p className=" text-gray-700">
-                        {data.professional_summary}
+                        {data.professionalSummary}
                     </p>
                 </section>
             )}
@@ -45,7 +45,7 @@ const MinimalTemplate = ({ data, accent_color }) => {
             {/* Experience */}
             {data.experience && data.experience.length > 0 && (
                 <section className="mb-10">
-                    <h2 className="text-sm uppercase tracking-widest mb-6 font-medium" style={{ color: accent_color }}>
+                    <h2 className="text-sm uppercase tracking-widest mb-6 font-medium" style={{ color: color }}>
                         Experience
                     </h2>
 
@@ -71,14 +71,14 @@ const MinimalTemplate = ({ data, accent_color }) => {
             )}
 
             {/* Projects */}
-            {data.project && data.project.length > 0 && (
+            {data.projects && data.projects.length > 0 && (
                 <section className="mb-10">
-                    <h2 className="text-sm uppercase tracking-widest mb-6 font-medium" style={{ color: accent_color }}>
+                    <h2 className="text-sm uppercase tracking-widest mb-6 font-medium" style={{ color: color }}>
                         Projects
                     </h2>
 
                     <div className="space-y-4">
-                        {data.project.map((proj, index) => (
+                        {data.projects.map((proj, index) => (
                             <div key={index} className="flex flex-col gap-2 justify-between items-baseline">
                                 <h3 className="text-lg font-medium ">{proj.name}</h3>
                                 <p className="text-gray-600">{proj.description}</p>
@@ -91,7 +91,7 @@ const MinimalTemplate = ({ data, accent_color }) => {
             {/* Education */}
             {data.education && data.education.length > 0 && (
                 <section className="mb-10">
-                    <h2 className="text-sm uppercase tracking-widest mb-6 font-medium" style={{ color: accent_color }}>
+                    <h2 className="text-sm uppercase tracking-widest mb-6 font-medium" style={{ color: color }}>
                         Education
                     </h2>
 
@@ -117,7 +117,7 @@ const MinimalTemplate = ({ data, accent_color }) => {
             {/* Skills */}
             {data.skills && data.skills.length > 0 && (
                 <section>
-                    <h2 className="text-sm uppercase tracking-widest mb-6 font-medium" style={{ color: accent_color }}>
+                    <h2 className="text-sm uppercase tracking-widest mb-6 font-medium" style={{ color: color }}>
                         Skills
                     </h2>
 

@@ -2,7 +2,7 @@ import { CiMail } from "react-icons/ci";
 import { IoLocationOutline } from "react-icons/io5";
 import { LuPhone } from "react-icons/lu";
 
-const MinimalImageTemplate = ({ data, accent_color }) => {
+const MinimalImageTemplate = ({ data, color }) => {
     const formatDate = (dateStr) => {
         if (!dateStr) return "";
         const [year, month] = dateStr.split("-");
@@ -18,14 +18,14 @@ const MinimalImageTemplate = ({ data, accent_color }) => {
 
                 <div className="col-span-1  py-10">
                     {/* Image */}
-                    {data.personal_info?.image && typeof data.personal_info.image === 'string' ? (
+                    {data.personalInfo?.image && typeof data.personalInfo.image === 'string' ? (
                         <div className="mb-6">
-                            <img src={data.personal_info.image} alt="Profile" className="w-32 h-32 object-cover rounded-full mx-auto" style={{ background: accent_color+'70' }} />
+                            <img src={data.personalInfo.image} alt="Profile" className="w-32 h-32 object-cover rounded-full mx-auto" style={{ background: color+'70' }} />
                         </div>
                     ) : (
-                        data.personal_info?.image && typeof data.personal_info.image === 'object' ? (
+                        data.personalInfo?.image && typeof data.personalInfo.image === 'object' ? (
                             <div className="mb-6">
-                                <img src={URL.createObjectURL(data.personal_info.image)} alt="Profile" className="w-32 h-32 object-cover rounded-full mx-auto" />
+                                <img src={URL.createObjectURL(data.personalInfo.image)} alt="Profile" className="w-32 h-32 object-cover rounded-full mx-auto" />
                             </div>
                         ) : null
                     )}
@@ -34,10 +34,10 @@ const MinimalImageTemplate = ({ data, accent_color }) => {
                 {/* Name + Title */}
                 <div className="col-span-2 flex flex-col justify-center py-10 px-8">
                     <h1 className="text-4xl font-bold text-zinc-700 tracking-widest">
-                        {data.personal_info?.full_name || "Your Name"}
+                        {data.personalInfo?.full_name || "Your Name"}
                     </h1>
                     <p className="uppercase text-zinc-600 font-medium text-sm tracking-widest">
-                        {data?.personal_info?.profession || "Profession"}
+                        {data?.personalInfo?.profession || "Profession"}
                     </p>
                 </div>
 
@@ -51,22 +51,22 @@ const MinimalImageTemplate = ({ data, accent_color }) => {
                             CONTACT
                         </h2>
                         <div className="space-y-2 text-sm">
-                            {data.personal_info?.phone && (
+                            {data.personalInfo?.phone && (
                                 <div className="flex items-center gap-2">
-                                    <LuPhone size={14} style={{ color: accent_color }} />
-                                    <span>{data.personal_info.phone}</span>
+                                    <LuPhone size={14} style={{ color: color }} />
+                                    <span>{data.personalInfo.phone}</span>
                                 </div>
                             )}
-                            {data.personal_info?.email && (
+                            {data.personalInfo?.email && (
                                 <div className="flex items-center gap-2">
-                                    <CiMail size={14} style={{ color: accent_color }} />
-                                    <span>{data.personal_info.email}</span>
+                                    <CiMail size={14} style={{ color: color }} />
+                                    <span>{data.personalInfo.email}</span>
                                 </div>
                             )}
-                            {data.personal_info?.location && (
+                            {data.personalInfo?.location && (
                                 <div className="flex items-center gap-2">
-                                    <IoLocationOutline size={14} style={{ color: accent_color }} />
-                                    <span>{data.personal_info.location}</span>
+                                    <IoLocationOutline size={14} style={{ color: color }} />
+                                    <span>{data.personalInfo.location}</span>
                                 </div>
                             )}
                         </div>
@@ -111,13 +111,13 @@ const MinimalImageTemplate = ({ data, accent_color }) => {
                 <main className="col-span-2 p-8 pt-0">
 
                     {/* Summary */}
-                    {data.professional_summary && (
+                    {data.professionalSummary && (
                         <section className="mb-8">
-                            <h2 className="text-sm font-semibold tracking-widest mb-3" style={{ color: accent_color }} >
+                            <h2 className="text-sm font-semibold tracking-widest mb-3" style={{ color: color }} >
                                 SUMMARY
                             </h2>
                             <p className="text-zinc-700 leading-relaxed">
-                                {data.professional_summary}
+                                {data.professionalSummary}
                             </p>
                         </section>
                     )}
@@ -125,7 +125,7 @@ const MinimalImageTemplate = ({ data, accent_color }) => {
                     {/* Experience */}
                     {data.experience && data.experience.length > 0 && (
                         <section>
-                            <h2 className="text-sm font-semibold tracking-widest mb-4" style={{ color: accent_color }} >
+                            <h2 className="text-sm font-semibold tracking-widest mb-4" style={{ color: color }} >
                                 EXPERIENCE
                             </h2>
                             <div className="space-y-6 mb-8">
@@ -140,7 +140,7 @@ const MinimalImageTemplate = ({ data, accent_color }) => {
                                                 {exp.is_current ? "Present" : formatDate(exp.end_date)}
                                             </span>
                                         </div>
-                                        <p className="text-sm mb-2" style={{ color: accent_color }} >
+                                        <p className="text-sm mb-2" style={{ color: color }} >
                                             {exp.company}
                                         </p>
                                         {exp.description && (
@@ -157,16 +157,16 @@ const MinimalImageTemplate = ({ data, accent_color }) => {
                     )}
 
                     {/* Projects */}
-                    {data.project && data.project.length > 0 && (
+                    {data.projects && data.projects.length > 0 && (
                         <section>
-                            <h2 className="text-sm uppercase tracking-widest font-semibold" style={{ color: accent_color }}>
+                            <h2 className="text-sm uppercase tracking-widest font-semibold" style={{ color: color }}>
                                 PROJECTS
                             </h2>
                             <div className="space-y-4">
-                                {data.project.map((project, index) => (
+                                {data.projects.map((project, index) => (
                                     <div key={index}>
                                         <h3 className="text-md font-medium text-zinc-800 mt-3">{project.name}</h3>
-                                        <p className="text-sm mb-1" style={{ color: accent_color }} >
+                                        <p className="text-sm mb-1" style={{ color: color }} >
                                             {project.type}
                                         </p>
                                         {project.description && (

@@ -1,3 +1,4 @@
+import { Types } from "mongoose"
 import { resumeModel } from "../Models/resumeModel.js"
 import { userModel } from "../Models/userModel.js"
 
@@ -52,13 +53,19 @@ export const updateResume = async(req,res)=>{
     try {
         const userId = req.userId
         const {resumeId} = req.params
-        const {resumeData} = req.body
+        const resumeData = req.body
 
-        if(!resumeId){
+        if(!resumeId || !Types.ObjectId.isValid(resumeId)){
             return res.status(404).json({message : "Invalid resume id"})
+        }        
+        
+        const resume = await resumeModel.findByIdAndUpdate({_id : resumeId,user : userId},{resumeData},{new:true})
+
+        if(!resume){
+            return res.status(404).json({message : "Resume not found"})
         }
 
-        const resume = await resumeModel.findByIdAndUpdate(resumeId,{resumeData},{new:true})
+        res.status(200).json({message : "Resume updated successfully",resume})
 
     } catch (error) {
         res.status(500).json({message : error.message})

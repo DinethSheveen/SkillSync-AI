@@ -5,17 +5,26 @@ import { RiDeleteBin6Line } from "react-icons/ri";
 import { BiEdit } from "react-icons/bi";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import toast from "react-hot-toast";
 
 function Resumes({setResumeTitle,setEditTitlePopup}) {
 
     const [resumes, setResumes] = useState(null)
     const resumeColors = ["#e07870","#cc78e3","#ffdf20","#7bf1a8"]
     
-    const deleteResume = (id)=>{
+    // DELETE RESUME FUNCTION
+    const deleteResume = async(id)=>{
         const confirmation = confirm("Do you want to delete this resume")
 
         if(confirmation){
-            setResumes(resumes.filter((resume)=>{return resume._id !== id}))
+            try{
+                const response = await axios.delete(`http://localhost:3000/api/resumes/delete/${id}`,{headers:{Authorization : localStorage.getItem("token")}})
+                toast.success(response?.data?.message);
+                setResumes(resumes.filter((resume)=>{return resume._id !== id}))
+            }
+            catch(error){
+                toast.error(error?.response?.data);
+            }
         }
     }
 
@@ -40,7 +49,7 @@ function Resumes({setResumeTitle,setEditTitlePopup}) {
                     <div className="resume-card flex flex-col justify-between items-center h-full">
                         <div className="resume-edit-options flex justify-end gap-2 items-center w-full transition-all duration-300 opacity-0">
                             <RiDeleteBin6Line className="cursor-pointer" size={18} onClick={()=>{deleteResume(resume._id)}}/>
-                            <BiEdit className="cursor-pointer" size={18} onClick={()=>{setEditTitlePopup(true); setResumeTitle(resume.title)}} />
+                            <BiEdit className="cursor-pointer" size={18} onClick={()=>{setEditTitlePopup(true); setResumeTitle(resume.resumeTitle)}} />
                         </div>
                         <Link to={`builder/${resume._id}`} className="flex flex-col gap-2 items-center">
                             <TbFileCv size={30}/>

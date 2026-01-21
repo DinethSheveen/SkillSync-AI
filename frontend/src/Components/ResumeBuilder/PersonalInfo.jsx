@@ -9,7 +9,7 @@ function PersonalInfo({icon,title,data,setResumeData}) {
 
     const fields = [
         {
-            key : "full_name",
+            key : "fullName",
             label : "Full Name",
             icon : <FiUser size={15}/>,
             required : true,

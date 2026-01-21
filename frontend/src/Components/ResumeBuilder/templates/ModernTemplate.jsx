@@ -18,7 +18,7 @@ const ModernTemplate = ({ data, color }) => {
 			{/* Header */}
 			<header className="p-8 text-white" style={{ backgroundColor: color }}>
 				<h1 className="text-4xl font-light mb-3">
-					{data.personalInfo?.full_name || "Your Name"}
+					{data.personalInfo?.fullName || "Your Name"}
 				</h1>
 
 				<div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-sm ">

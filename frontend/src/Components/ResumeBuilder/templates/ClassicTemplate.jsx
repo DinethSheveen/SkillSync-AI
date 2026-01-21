@@ -18,7 +18,7 @@ const ClassicTemplate = ({ data, color }) => {
             {/* Header */}
             <header className="text-center mb-8 pb-6 border-b-2" style={{ borderColor: color }}>
                 <h1 className="text-3xl font-bold mb-2" style={{ color: color }}>
-                    {data?.personalInfo?.full_name || "Your Name"}
+                    {data?.personalInfo?.fullName || "Your Name"}
                 </h1>
 
                 <div className="flex flex-wrap justify-center gap-4 text-sm text-gray-600">

@@ -48,6 +48,26 @@ export const getResume = async(req,res)=>{
     }
 }
 
+// EDIT RESUME TITLE ENDPOINT
+export const updateTitle = async(req,res)=>{
+    try {
+        const userId = req.userId
+        const {resumeId} = req.params
+        const {resumeTitle} = req.body
+
+        if(!resumeId || !Types.ObjectId.isValid(resumeId)){
+            return res.status(404).json({message : "Invalid resume id"})
+        }        
+        
+        const resume = await resumeModel.findByIdAndUpdate({_id:resumeId,user:userId},{resumeTitle})
+
+        res.status(200).json({message : "Resume title changed successfully",resume})
+
+    } catch (error) {
+        res.status(500).json({message : error.message})
+    }
+} 
+
 // UPDATE RESUME
 export const updateResume = async(req,res)=>{
     try {

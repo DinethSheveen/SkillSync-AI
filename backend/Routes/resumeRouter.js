@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { createResume, deleteResume, getResume, updateResume } from "../Controllers/resumeController.js";
+import { createResume, deleteResume, getResume, updateResume, updateTitle } from "../Controllers/resumeController.js";
 import getMe from "../Middelware/authMiddleware.js";
 
 const resumeRouter = Router()
@@ -10,6 +10,9 @@ resumeRouter.post("/create",getMe,createResume)
 
 // ROUTE TO GET ALL RESUMES
 resumeRouter.get("/get",getMe,getResume)
+
+// ROUTE TO UPDATE RESUME TITLE
+resumeRouter.put("/update-title/:resumeId",getMe,updateTitle)
 
 // ROUTE TO UPDATE RESUME
 resumeRouter.put("/update/:resumeId",getMe,updateResume)

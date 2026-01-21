@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react"
-import { dummyResumeData } from "../../assets/assets"
 import dayjs from "dayjs"
 import { TbFileCv } from "react-icons/tb";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { BiEdit } from "react-icons/bi";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 function Resumes({setResumeTitle,setEditTitlePopup}) {
 
@@ -19,9 +19,15 @@ function Resumes({setResumeTitle,setEditTitlePopup}) {
         }
     }
 
-    useEffect(()=>{
-        const fetchResumes = () =>{
-            setResumes(dummyResumeData)
+    useEffect(()=>{        
+        const fetchResumes = async() =>{
+            try {
+                const response = await axios.get("http://localhost:3000/api/resumes/get",{headers:{Authorization:localStorage.getItem("token")}})
+                console.log(response);
+                setResumes(response?.data?.resumes)
+            } catch (error) {
+                console.log(error.response);
+            }
         }
         fetchResumes()
     },[])
@@ -31,14 +37,14 @@ function Resumes({setResumeTitle,setEditTitlePopup}) {
         { resumes && resumes.map((resume,index)=>{
             return (
                 <div style={{backgroundColor : resumeColors[index % resumeColors.length]}} className="max-h-60 p-2 rounded-lg" key={resume._id}>
-                    <div className="resume-card flex flex-col justify-between items-center h-full cursor-pointer">
+                    <div className="resume-card flex flex-col justify-between items-center h-full">
                         <div className="resume-edit-options flex justify-end gap-2 items-center w-full transition-all duration-300 opacity-0">
-                            <RiDeleteBin6Line size={18} onClick={()=>{deleteResume(resume._id)}}/>
-                            <BiEdit size={18} onClick={()=>{setEditTitlePopup(true); setResumeTitle(resume.title)}} />
+                            <RiDeleteBin6Line className="cursor-pointer" size={18} onClick={()=>{deleteResume(resume._id)}}/>
+                            <BiEdit className="cursor-pointer" size={18} onClick={()=>{setEditTitlePopup(true); setResumeTitle(resume.title)}} />
                         </div>
                         <Link to={`builder/${resume._id}`} className="flex flex-col gap-2 items-center">
                             <TbFileCv size={30}/>
-                            <p>{resume.title}</p>
+                            <p className="font-semibold">Resume : {resume.resumeTitle}</p>
                         </Link>
                         <p className="text-[13px]">Updated at {dayjs(resume.updatedAt).format("DD/MM/YYYY")}</p>
                     </div>

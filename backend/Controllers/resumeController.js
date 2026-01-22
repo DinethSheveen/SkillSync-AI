@@ -30,7 +30,7 @@ export const createResume = async(req,res)=>{
     }
 }
 
-// RETRIEVE RESUME 
+// RETRIEVE RESUMES OF THE USER
 export const getResume = async(req,res)=>{
     try {
         const userId = req.userId
@@ -48,6 +48,27 @@ export const getResume = async(req,res)=>{
     }
 }
 
+// RERIEVE RESUME BY ID
+export const getResumeById = async(req,res)=>{
+    const userId = req.userId
+    const {resumeId} = req.params
+
+    // IF THE RESUME IF IS INVALID
+    if(!resumeId || !Types.ObjectId.isValid(resumeId)){
+        return res.status(404).json({message : "Invalid resume id"})
+    }
+
+    try {
+        // IF THE RESUME ID IS VALID
+        const resume = await resumeModel.findById({_id : resumeId, user : userId })
+
+        res.status(200).json({resume})
+    } catch (error) {
+        res.status(500).json({message : "Server Error"})
+    }
+
+}
+
 // EDIT RESUME TITLE ENDPOINT
 export const updateTitle = async(req,res)=>{
     try {
@@ -55,6 +76,7 @@ export const updateTitle = async(req,res)=>{
         const {resumeId} = req.params
         const {resumeTitle} = req.body
 
+        // IF THE RESUME IF IS INVALID
         if(!resumeId || !Types.ObjectId.isValid(resumeId)){
             return res.status(404).json({message : "Invalid resume id"})
         }        

@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react"
 import { Link, useParams } from "react-router-dom"
-import { dummyResumeData } from "../assets/assets"
 import { IoIosArrowRoundBack, IoIosColorPalette, IoIosEyeOff, IoMdEye } from "react-icons/io";
 import { FaRegUser } from "react-icons/fa";
 import { GoProjectSymlink } from "react-icons/go";
@@ -16,23 +15,27 @@ import Experience from "../Components/ResumeBuilder/Experience";
 import Projects from "../Components/ResumeBuilder/Projects";
 import Skills from "../Components/ResumeBuilder/Skills";
 import SaveButton from "../Components/ResumeBuilder/SaveButton";
+import axios from "axios";
 
 function Builder() {
 
   const { resumeId } = useParams()
   const [activeSectionIndex, setActiveSectionIndex] = useState(0)
   const [resumeData, setResumeData] = useState({
-    personalInfo : {},
-    professionalSummary : "",
-    _id : "",
     resumeTitle : "",
-    skills : [],
-    experience : [],
-    education : [],
-    projects : [],
-    public : false,
-    template : "classic",
-    color : "#14B8A6"
+    _id : "",
+    user : "",
+    resumeData : {
+      personalInfo : {},
+      professionalSummary : "",
+      skills : [],
+      experience : [],
+      education : [],
+      projects : [],
+      public : false,
+      template : "classic",
+      color : "#14B8A6"
+    }
   })
   const [templateMenu, setTemplateMenu] = useState(false)
   const [colorMenu, setColorMenu] = useState(false)
@@ -99,15 +102,18 @@ function Builder() {
 
   // CHANGE VISIBILITY OF THE RESUME LOGIC
   const changeResumeVisibility = ()=>{
-    setResumeData(prev => ({...prev,public : !resumeData.public}))
+    setResumeData(prev => ({...prev,resumeData : {...prev.resumeData,public : !prev.resumeData.public}}))
   }
   
   useEffect(()=>{
-    const loadResumeData = () => {
-      const resume = dummyResumeData.find((resume)=>{return resume._id == resumeId})
+    const loadResumeData = async() => {
+      const response = await axios.get(`http://localhost:3000/api/resumes/get-by-id/${resumeId}`,{headers : {Authorization : localStorage.getItem("token")}})
+      const resume = response?.data?.resume
+      
+      // const resume = dummyResumeData.find((resume)=>{return resume._id == resumeId})
       if(resume){
         setResumeData(resume)
-        document.title = resume.title
+        document.title = resume?.resumeTitle
       }
     }
     loadResumeData()
@@ -126,7 +132,7 @@ function Builder() {
         
         {/* SHARE - INVISIBILE UNLESS PUBLIC */}
         {
-          resumeData.public?
+          resumeData?.resumeData?.public?
           <div className="flex items-center gap-0.5 px-2 py-1 rounded-md cursor-pointer bg-green-500 text-white" onClick={shareResume}>
             <MdOutlineIosShare />
             <p>Share</p>
@@ -136,8 +142,8 @@ function Builder() {
         
         {/* PUBLIC OR PRIVATE */}
         <div className="flex items-center gap-0.5 px-2 py-1 rounded-md cursor-pointer bg-black text-white" onClick={changeResumeVisibility}>
-          {resumeData.public? <IoMdEye />:<IoIosEyeOff />}
-          <p>{resumeData.public? "Public" : "Private" }</p>
+          {resumeData?.resumeData?.public? <IoMdEye />:<IoIosEyeOff />}
+          <p>{resumeData?.resumeData?.public? "Public" : "Private" }</p>
         </div>
 
         {/* DOWNLOAD */}
@@ -169,8 +175,8 @@ function Builder() {
                 <p>Color</p>
               </div>
 
-              <TemplateSelector templateMenu={templateMenu} setTemplateMenu={setTemplateMenu} setResumeData={setResumeData} resumeTemplate={resumeData.template} />
-              <ColorSelector setResumeData={setResumeData} setColorMenu={setColorMenu} colorMenu={colorMenu} resumeColor={resumeData.accent_color} />
+              <TemplateSelector templateMenu={templateMenu} setTemplateMenu={setTemplateMenu} setResumeData={setResumeData} resumeTemplate={resumeData?.resumeData?.template} />
+              <ColorSelector setResumeData={setResumeData} setColorMenu={setColorMenu} colorMenu={colorMenu} resumeColor={resumeData?.resumeData?.color} />
             
             </div>
             {/* PREVIOUS AND NEXT BUTTONS */}
@@ -194,21 +200,21 @@ function Builder() {
 
           {/* FLEX ITEM 03 - INFORMATION FILL IN */}
           {activeSection?.name === "personalInfo" ? 
-            <PersonalInfo setResumeData={setResumeData} data={resumeData?.personalInfo} icon={activeSection?.icon} title={activeSection?.title} />
+            <PersonalInfo setResumeData={setResumeData} data={resumeData?.resumeData?.personalInfo} icon={activeSection?.icon} title={activeSection?.title} />
             :
             activeSection?.name === "summary" ?
-            <Summary setResumeData={setResumeData} professionalSummary={resumeData?.professionalSummary} icon={activeSection?.icon} title={activeSection?.title} />
+            <Summary setResumeData={setResumeData} professionalSummary={resumeData?.resumeData?.professionalSummary} icon={activeSection?.icon} title={activeSection?.title} />
             :
             activeSection?.name === "education" ?
-            <Education setResumeData={setResumeData} data={resumeData?.education} icon={activeSection?.icon} title={activeSection?.title} />
+            <Education setResumeData={setResumeData} data={resumeData?.resumeData?.education} icon={activeSection?.icon} title={activeSection?.title} />
             :
             activeSection?.name === "experience" ?
-            <Experience setResumeData={setResumeData} data={resumeData?.experience} icon={activeSection?.icon} title={activeSection?.title} />
+            <Experience setResumeData={setResumeData} data={resumeData?.resumeData?.experience} icon={activeSection?.icon} title={activeSection?.title} />
             :
             activeSection?.name === "projects"?
-            <Projects setResumeData={setResumeData} data={resumeData?.projects} title={activeSection?.title} icon={activeSection?.icon} />
+            <Projects setResumeData={setResumeData} data={resumeData?.resumeData?.projects} title={activeSection?.title} icon={activeSection?.icon} />
             : 
-            <Skills setResumeData={setResumeData} data={resumeData?.skills} title={activeSection?.title} icon={activeSection?.icon}  />
+            <Skills setResumeData={setResumeData} data={resumeData?.resumeData?.skills} title={activeSection?.title} icon={activeSection?.icon}  />
           }
 
           {/* SAVE BUTTON */}
@@ -218,7 +224,7 @@ function Builder() {
         {/* RESUME  */}
         <div className="w-full flex flex-col justify-between items-center gap-2 print-area">
           <div className="flex-1">
-            <Preview data={resumeData} template={resumeData?.template} color={resumeData?.color}/>
+            <Preview data={resumeData?.resumeData} template={resumeData?.resumeData?.template} color={resumeData?.resumeData?.color}/>
           </div>
         </div>
       </div>

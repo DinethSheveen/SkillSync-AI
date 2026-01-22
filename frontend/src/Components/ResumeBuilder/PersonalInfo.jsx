@@ -107,7 +107,7 @@ function PersonalInfo({icon,title,data,setResumeData}) {
                         <p>{field.required && <span className="text-red-600">*</span>}</p>
                     </div>
 
-                    <input type={field.type} className="outline-none border border-slate-500 rounded-md px-2 py-1 text-sm focus:border-cyan-600 focus:border-2" value={data?.[field.key] || ""} onChange={(e)=>{setResumeData(prev=>({...prev,personalInfo:{...prev.personalInfo,[field.key]:e.target.value}}))}} required={field.required} placeholder={`Enter your ${field.label}`}/>
+                    <input type={field.type} className="outline-none border border-slate-500 rounded-md px-2 py-1 text-sm focus:border-cyan-600 focus:border-2" value={data?.[field.key] || ""} onChange={(e)=>{setResumeData(prev=> ({...prev,resumeData : {...prev.resumeData,personalInfo : {...prev.resumeData.personalInfo,[field.key] : e.target.value}}}))}} required={field.required} placeholder={`Enter your ${field.label}`}/>
                 </div>
             )
         })}

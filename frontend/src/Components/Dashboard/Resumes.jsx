@@ -42,6 +42,11 @@ function Resumes({setResumeTitle,setEditTitlePopup}) {
     },[])
 
   return (
+    resumes && resumes.length === 0?
+    <div>
+        <p className="text-md text-gray-600 italic">Once created, your resumes will appear here...</p>
+    </div>
+    :
     <div className="resumes flex-1 grid grid-cols-2 gap-2 justify-start md:grid-cols-5 lg:grid-cols-6">
         { resumes && resumes.map((resume,index)=>{
             return (

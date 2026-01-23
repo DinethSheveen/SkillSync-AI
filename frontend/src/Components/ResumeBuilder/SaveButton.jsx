@@ -1,5 +1,6 @@
 import axios from "axios"
 import { useParams } from "react-router-dom"
+import toast from "react-hot-toast"
 
 function SaveButton({resumeData}) {
 
@@ -10,11 +11,9 @@ function SaveButton({resumeData}) {
     try {
 
       const response = await axios.put(`http://localhost:3000/api/resumes/update/${resumeId}`,resumeData,{headers : {Authorization : localStorage.getItem("token")}})
-      console.log(response);
-      console.log(resumeData);
-      
+      toast.success(response?.data?.message);      
     } catch (error) {
-      console.log(error?.response);
+      toast.error(error?.response?.data?.message);
     }
   }
 

@@ -101,7 +101,10 @@ export const updateResume = async(req,res)=>{
             return res.status(404).json({message : "Invalid resume id"})
         }        
         
-        const resume = await resumeModel.findByIdAndUpdate({_id : resumeId,user : userId},{resumeData},{new:true})
+        console.log(resumeData);
+        
+
+        const resume = await resumeModel.findByIdAndUpdate({_id : resumeId,user : userId},resumeData,{new:true})
 
         if(!resume){
             return res.status(404).json({message : "Resume not found"})

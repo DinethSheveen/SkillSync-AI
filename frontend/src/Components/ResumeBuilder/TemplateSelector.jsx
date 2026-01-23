@@ -34,7 +34,7 @@ function TemplateSelector({setTemplateMenu,templateMenu,setResumeData,resumeTemp
             {
                 templates.map((template)=>{
                     return (
-                        <div key={template.id} onClick={()=>{setTemplateMenu(prev=>!prev); setSelectedTemplate(template.id); setResumeData(prev=> ({...prev, template : template.id}))}} className={`bg-gray-500 m-1 p-1 rounded-md ${selectedTemplate === template.id ? "border-2 border-gray-900":"opacity-50 cursor-pointer"}`}>
+                        <div key={template.id} onClick={()=>{setTemplateMenu(prev=>!prev); setSelectedTemplate(template.id); setResumeData(prev => ({...prev,resumeData : {...prev.resumeData,template : template.id}}))}} className={`bg-gray-500 m-1 p-1 rounded-md ${selectedTemplate === template.id ? "border-2 border-gray-900":"opacity-50 cursor-pointer"}`}>
                             <div className="flex justify-between items-center font-bold">
                                 <p className="my-1 text-white">{template.name}</p>
                                 {selectedTemplate === template.id && <p className="text-white">Selected</p>}    

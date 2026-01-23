@@ -101,8 +101,11 @@ export const updateResume = async(req,res)=>{
             return res.status(404).json({message : "Invalid resume id"})
         }        
         
-        console.log(resumeData);
+        // IF THE REQUIRED FIELDS ARE NOT FILLED
         
+        if(!resumeData?.resumeData?.personalInfo?.fullName || !resumeData?.resumeData?.personalInfo?.email){
+            return res.status(400).json({message : "Fill in the required fields to save the resume"})
+        }
 
         const resume = await resumeModel.findByIdAndUpdate({_id : resumeId,user : userId},resumeData,{new:true})
 

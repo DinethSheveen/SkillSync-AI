@@ -69,7 +69,7 @@ function PersonalInfo({icon,title,data,setResumeData}) {
     const handleImageUpload = (file)=>{
         const imageFile = file;
         const image = URL.createObjectURL(imageFile);
-        setResumeData(prev=> ({...prev,personalInfo:{...prev.personalInfo,image:image}}))
+        setResumeData(prev=> ({...prev,resumeData : {...prev.resumeData,personalInfo : {...prev.resumeData.personalInfo,image : image}}}))
     }
 
   return (

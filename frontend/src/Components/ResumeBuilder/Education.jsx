@@ -17,12 +17,12 @@ function Education({data, setResumeData, icon, title}) {
 
     // ADD EDUCATION ENTRY
     const addEducation = ()=>{
-        setResumeData(prev => ({...prev,education : [...prev.education , {institution: "",degree: "",field: "",graduation_date: "",gpa: ""}]}))
+        setResumeData(prev => ({...prev,resumeData : {...prev.resumeData,education : [...prev.resumeData.education , {institution: "",degree: "",field: "",graduation_date: "",gpa: ""}]}}))
     }
 
     // DELETE EDUCATION ENTRY
     const deleteEducation = (indexedEducation)=>{
-        setResumeData(prev => ({...prev,education : [...prev.education.filter((_,index)=>{return index !== indexedEducation})]}))
+        setResumeData(prev => ({...prev,resumeData : {...prev.resumeData,education: [...prev.resumeData.education.filter((_,index)=>{return index !== indexedEducation})]}}))
     }
     
     // LOAD EDUCATION DATA WHENEVER data PROP CHANGES
@@ -68,46 +68,46 @@ function Education({data, setResumeData, icon, title}) {
                             </div>
                             <form>
                                 <div className="grid grid-cols-2 items-center gap-2">
-                                    <input type="text" placeholder="Institution Name" className="p-2 border border-gray-300 rounded-lg" value={edu.institution} onChange={(e)=>{setResumeData(prev => ({...prev,education : prev.education.map((element,i)=>{
+                                    <input type="text" placeholder="Institution Name" className="p-2 border border-gray-300 rounded-lg" value={edu.institution} onChange={(e)=>{setResumeData(prev => ({...prev,resumeData : {...prev.resumeData,education : prev.resumeData.education.map((element,i)=>{
                                         return (
                                             i === index ? 
                                             {...element, institution: e.target.value}
                                             :
                                             element
                                         )
-                                    })}))}} />
-                                    <input type="text" placeholder="Degree (e.g., Bachelors, Masters)" className="p-2 border border-gray-300 rounded-lg" value={edu.degree} onChange={(e)=>{setResumeData(prev => ({...prev,education : prev.education.map((element,i)=>{
+                                    })}}))}} />
+                                    <input type="text" placeholder="Degree (e.g., Bachelors, Masters)" className="p-2 border border-gray-300 rounded-lg" value={edu.degree} onChange={(e)=>{setResumeData(prev => ({...prev,resumeData : {...prev.resumeData,education : prev.resumeData.education.map((element,i)=>{
                                         return (
                                             i === index ? 
                                             {...element, degree: e.target.value}
                                             :
                                             element
                                         )
-                                    })}))}} />
-                                    <input type="text" placeholder="Field of Study" className="p-2 border border-gray-300 rounded-lg" value={edu.field} onChange={(e)=>{setResumeData(prev => ({...prev,education : prev.education.map((element,i)=>{
+                                    })}}))}}/>
+                                    <input type="text" placeholder="Field of Study" className="p-2 border border-gray-300 rounded-lg" value={edu.field} onChange={(e)=>{setResumeData(prev => ({...prev,resumeData : {...prev.resumeData,education : prev.resumeData.education.map((element,i)=>{
                                         return (
                                             i === index ? 
                                             {...element, field: e.target.value}
                                             :
                                             element
                                         )
-                                    })}))}}/>
-                                    <input type="month" placeholder="End Date" className="p-2 border border-gray-300 rounded-lg" value={edu.graduation_date} onChange={(e)=>{setResumeData(prev => ({...prev,education : prev.education.map((element,i)=>{
+                                    })}}))}}/>
+                                    <input type="month" placeholder="End Date" className="p-2 border border-gray-300 rounded-lg" value={edu.graduation_date} onChange={(e)=>{setResumeData(prev => ({...prev,resumeData : {...prev.resumeData,education : prev.resumeData.education.map((element,i)=>{
                                         return (
                                             i === index ? 
                                             {...element, graduation_date: e.target.value}
                                             :
                                             element
                                         )
-                                    })}))}}/>
-                                    <input type="text" placeholder="Grade (optional)" className="p-2 border border-gray-300 rounded-lg" value={edu.gpa} onChange={(e)=>{setResumeData(prev => ({...prev,education : prev.education.map((element,i)=>{
+                                    })}}))}}/>
+                                    <input type="text" placeholder="Grade (optional)" className="p-2 border border-gray-300 rounded-lg" value={edu.gpa} onChange={(e)=>{setResumeData(prev => ({...prev,resumeData : {...prev.resumeData,education : prev.resumeData.education.map((element,i)=>{
                                         return (
                                             i === index ? 
                                             {...element, gpa: e.target.value}
                                             :
                                             element
                                         )
-                                    })}))}} />
+                                    })}}))}} />
                                 </div>
                             </form>
                         </div>

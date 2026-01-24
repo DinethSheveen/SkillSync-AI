@@ -14,20 +14,20 @@ function Projects({setResumeData,data,title,icon}) {
     ])
 
     const addProject = ()=>{
-        setResumeData(prev => ({...prev,projects : [...prev.projects,{name:"",type:"",description:""}]}))
+        setResumeData(prev => ({...prev,resumeData : {...prev.resumeData,projects : [...prev.resumeData.projects , {name: "",type: "",description: ""}]}}))
     }
 
+
     const deleteProject = (indexedProject)=>{
-        setResumeData(prev => ({...prev,projects : projectsList.filter((_,index)=>{return index !== indexedProject})}))
+        setResumeData(prev => ({...prev,resumeData : {...prev.resumeData,projects : projectsList.filter((_,index)=>{return index !== indexedProject})}}))
     }
 
     useEffect(()=>{
         const loadProjects = ()=>{
-            setProjectsList(data)
+            setProjectsList(data || [])
         }
-        
-        loadProjects()
-    },[projectsList,data])
+        loadProjects()        
+    },[data])
 
   return (
     <div className="projects">
@@ -47,8 +47,8 @@ function Projects({setResumeData,data,title,icon}) {
             <p className="text-slate-500 text-[12px]">Let’s continue with your projects</p>
             
             {/* PROJECTS SECTIONS */}
-            {
-                projectsList.length === 0 ?
+            {                
+                projectsList && projectsList.length === 0 ?
                 <div className="flex flex-col justify-center items-center gap-1">
                     <FaProjectDiagram size={60} className="text-gray-300" />
                     <p className="text-gray-500 text-sm">Project section is currently empty</p>
@@ -64,30 +64,30 @@ function Projects({setResumeData,data,title,icon}) {
                             </div>
 
                             <form className="flex flex-col gap-2 px-2">
-                                <input type="text" placeholder="Project Name" className="p-2 border border-gray-300 rounded-lg outline-none focus:ring-1 focus:ring-cyan-500" value={project.name} onChange={(e)=>{setResumeData(prev => ({...prev,project : prev.project.map((element,i)=>{
+                                <input type="text" placeholder="Project Name" className="p-2 border border-gray-300 rounded-lg outline-none focus:ring-1 focus:ring-cyan-500" value={project.name} onChange={(e)=>{setResumeData(prev => ({...prev,resumeData : {...prev.resumeData,projects : prev.resumeData.projects.map((element,i)=>{
                                     return (
                                         i === index?
                                         {...element,name : e.target.value}
                                         :
                                         element
                                     )
-                                })}))}} />
-                                <input type="text" placeholder="Project Type" className="p-2 border border-gray-300 rounded-lg outline-none focus:ring-1 focus:ring-cyan-500" value={project.type} onChange={(e)=>{setResumeData(prev => ({...prev,project : prev.project.map((element,i)=>{
+                                })}}))}} />
+                                <input type="text" placeholder="Project Type" className="p-2 border border-gray-300 rounded-lg outline-none focus:ring-1 focus:ring-cyan-500" value={project.type} onChange={(e)=>{setResumeData(prev => ({...prev,resumeData : {...prev.resumeData,projects : prev.resumeData.projects.map((element,i)=>{
                                     return (
                                         i === index?
                                         {...element,type : e.target.value}
                                         :
                                         element
                                     )
-                                })}))}} />
-                                <textarea rows={5}  placeholder="Describe your project..." className="p-2 border border-gray-300 rounded-lg outline-none focus:ring-1 focus:ring-cyan-500 resize-none" value={project.description} onChange={(e)=>{setResumeData(prev => ({...prev,project : prev.project.map((element,i)=>{
+                                })}}))}} />
+                                <textarea rows={5}  placeholder="Describe your project..." className="p-2 border border-gray-300 rounded-lg outline-none focus:ring-1 focus:ring-cyan-500 resize-none" value={project.description} onChange={(e)=>{setResumeData(prev => ({...prev,resumeData : {...prev.resumeData,projects : prev.resumeData.projects.map((element,i)=>{
                                     return (
                                         i === index?
                                         {...element,description : e.target.value}
                                         :
                                         element
                                     )
-                                })}))}} />
+                                })}}))}} />
                             </form>
                         </div>
                     )

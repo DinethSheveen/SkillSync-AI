@@ -23,7 +23,7 @@ function Summary({icon,title,professionalSummary,setResumeData}) {
 
         {/* TEXTAREA */}
         <div className="flex flex-col gap-1 px-2">
-            <textarea placeholder="Skilled in full-stack development, with experience in React, Node.js, and MongoDB. Adept at problem-solving and eager to contribute to dynamic teams." className="w-full h-32 resize-none outline-none border border-slate-500 rounded-md px-2 py-1 text-sm focus:border-cyan-600 focus:border-2" value={professionalSummary || ""} onChange={(e)=>{setResumeData(prev => ({...prev,professionalSummary:e.target.value}))}} />
+            <textarea placeholder="Skilled in full-stack development, with experience in React, Node.js, and MongoDB. Adept at problem-solving and eager to contribute to dynamic teams." className="w-full h-32 resize-none outline-none border border-slate-500 rounded-md px-2 py-1 text-sm focus:border-cyan-600 focus:border-2" value={professionalSummary || ""} onChange={(e)=> setResumeData(prev => ({...prev,resumeData : {...prev.resumeData,professionalSummary : e.target.value }}))} />
 
             {/* TIP */}
             <div className="text-slate-400 text-center">

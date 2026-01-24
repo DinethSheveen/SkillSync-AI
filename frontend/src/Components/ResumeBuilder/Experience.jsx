@@ -28,12 +28,12 @@ function Experience({title,icon,setResumeData,data}) {
 
     // ADD EXPERIENCE ENTRY
     const addExperience = ()=>{        
-        setResumeData(prev => ({...prev,experience : [...prev.experience,{company : "", position: "", start_date: "", end_date: "", description: "", is_current: false,}]}))
+        setResumeData(prev => ({...prev,resumeData : {...prev.resumeData,experience : [...prev.resumeData.experience,{company : "", position: "", start_date: "", end_date: "", description: "", is_current: false,}]}}))
     }
 
     // DELETE EXPERIENCE ENTRY
     const deleteExperience = (indexedExperience) => {
-        setResumeData(prev=> ({...prev,experience : experience.filter((_,index)=>{return index !== indexedExperience})}))
+        setResumeData(prev=> ({...prev,resumeData : {...prev.resumeData,experience : experience.filter((_,index)=>{return index !== indexedExperience})}}))
     }
 
   return (
@@ -55,7 +55,7 @@ function Experience({title,icon,setResumeData,data}) {
             
             {/* EXPERIENCE SECTIONS */}
             {
-                experience.length===0?
+                experience && experience.length===0?
                 <div className="flex flex-col justify-center items-center gap-1">
                     <BsLaptop size={60} className="text-gray-300" />
                     <p className="text-gray-500 text-sm">Experience section is currently empty</p>
@@ -72,52 +72,48 @@ function Experience({title,icon,setResumeData,data}) {
 
                             <form>
                                 <div className="grid grid-cols-2 gap-2 items-center">
-                                    <input type="text" placeholder="Company Name" className="p-2 border border-gray-300 rounded-lg outline-none focus:ring-1 focus:ring-cyan-500" value={exp?.company} onChange={(e)=>{setResumeData(prev => ({...prev,experience : prev.experience.map((element,i)=>{
+                                    <input type="text" placeholder="Company Name" className="p-2 border border-gray-300 rounded-lg outline-none focus:ring-1 focus:ring-cyan-500" value={exp?.company} onChange={(e)=>{setResumeData(prev => ({...prev,resumeData : {...prev.resumeData,experience : prev.resumeData.experience.map((element,i)=>{
                                         return(
                                             i === index ?
                                             {...element,company : e.target.value}
                                             :
                                             element
                                         )
-                                    }) }))}} />
-                                    <input type="text" placeholder="Job Title" className="p-2 border border-gray-300 rounded-lg outline-none focus:ring-1 focus:ring-cyan-500" value={exp?.position} onChange={(e)=>{setResumeData(prev => ({...prev,experience : prev.experience.map((element,i)=>{
+                                    })}}))}} />
+                                    <input type="text" placeholder="Job Title" className="p-2 border border-gray-300 rounded-lg outline-none focus:ring-1 focus:ring-cyan-500" value={exp?.position} onChange={(e)=>{setResumeData(prev => ({...prev,resumeData : {...prev.resumeData,experience : prev.resumeData.experience.map((element,i)=>{
                                         return(
-                                            i === index?
-                                            {...element, position : e.target.value}
+                                            i === index ?
+                                            {...element,position : e.target.value}
                                             :
                                             element
                                         )
-                                    })}))}} />
-                                    <input type="month" className="p-2 border border-gray-300 rounded-lg outline-none focus:ring-1 focus:ring-cyan-500" value={exp?.start_date} onChange={(e)=>{
-                                        setResumeData(prev => ({...prev,experience:prev.experience.map((element,i)=>{
-                                            return (
-                                                i === index?
-                                                {...element,start_date : e.target.value}
-                                                :
-                                                element
-                                            )
-                                        })}))
-                                    }} />
-                                    <input type="month" className="p-2 border border-gray-300 rounded-lg outline-none focus:ring-1 focus:ring-cyan-500" value={exp?.end_date} onChange={(e)=>{
-                                        setResumeData(prev => ({...prev,experience:prev.experience.map((element,i)=>{
-                                            return (
-                                                i === index?
-                                                {...element,end_date : e.target.value}
-                                                :
-                                                element
-                                            )
-                                        })}))
-                                    }} />
+                                    })}}))}} />
+                                    <input type="month" className="p-2 border border-gray-300 rounded-lg outline-none focus:ring-1 focus:ring-cyan-500" value={exp?.start_date} onChange={(e)=>{setResumeData(prev => ({...prev,resumeData : {...prev.resumeData,experience : prev.resumeData.experience.map((element,i)=>{
+                                        return(
+                                            i === index ?
+                                            {...element,start_date : e.target.value}
+                                            :
+                                            element
+                                        )
+                                    })}}))}} />
+                                    <input type="month" className="p-2 border border-gray-300 rounded-lg outline-none focus:ring-1 focus:ring-cyan-500" value={exp?.end_date} onChange={(e)=>{setResumeData(prev => ({...prev,resumeData : {...prev.resumeData,experience : prev.resumeData.experience.map((element,i)=>{
+                                        return(
+                                            i === index ?
+                                            {...element,end_date : e.target.value}
+                                            :
+                                            element
+                                        )
+                                    })}}))}} />
                                 </div>
                                 
-                                <input type="checkbox" checked={exp?.is_current} onChange={()=>{setResumeData(prev => ({...prev,experience : prev.experience.map((element,i)=>{
-                                    return (
-                                        i === index?
-                                        {...element,is_current : !exp.is_current}
-                                        :
-                                        element
-                                    )
-                                })}))}} /> Current workplace
+                                <input type="checkbox" checked={exp?.is_current} onChange={(e)=>{setResumeData(prev => ({...prev,resumeData : {...prev.resumeData,experience : prev.resumeData.experience.map((element,i)=>{
+                                        return(
+                                            i === index ?
+                                            {...element,is_current : e.target.value}
+                                            :
+                                            element
+                                        )
+                                    })}}))}} /> Current workplace
 
                                 <div className="flex justify-between items-center my-4">
                                     <p className="font-semibold">Job Description</p>
@@ -126,14 +122,14 @@ function Experience({title,icon,setResumeData,data}) {
                                         <p className="text-[14px] font-bold">AI Enhance</p>
                                     </div>
                                 </div>
-                                <textarea rows={5} className="w-full p-2 border border-gray-400 resize-none rounded-md outline-none focus:ring focus:ring-cyan-500" placeholder="Tell us about your job..." value={exp?.description} onChange={(e)=>{setResumeData(prev => ({...prev,experience : prev.experience.map((element,i)=>{
+                                <textarea rows={5} className="w-full p-2 border border-gray-400 resize-none rounded-md outline-none focus:ring focus:ring-cyan-500" placeholder="Tell us about your job..." value={exp?.description} onChange={(e)=>{setResumeData(prev => ({...prev,resumeData : {...prev.resumeData,experience : prev.resumeData.experience.map((element,i)=>{
                                     return (
                                         i === index?
                                         {...element, description : e.target.value}
                                         :
                                         element
                                     )
-                                })}))}} />
+                                })}}))}} />
                             </form>
                         </div>
                     )

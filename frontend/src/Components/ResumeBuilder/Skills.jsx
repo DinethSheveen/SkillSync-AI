@@ -10,13 +10,13 @@ function Skills({setResumeData,data,title,icon}) {
 
     const addSkill = (newSkill)=>{
         if(newSkill !== ""){
-            setResumeData(prev => ({...prev,skills : [...prev.skills,newSkill]}))
+            setResumeData(prev => ({...prev,resumeData : {...prev.resumeData,skills : [...prev.resumeData.skills,newSkill]}}))
         }
         setNewSkill("")
     }
 
     const deleteSkill = (indexedSkill)=>{
-        setResumeData(prev => ({...prev,skills : skills.filter((_,index)=>{return index !== indexedSkill})}))
+        setResumeData(prev => ({...prev,resumeData : {...prev.resumeData,skills : skills.filter((_,index)=>{return index !== indexedSkill})}}))
     }
 
     useEffect(()=>{

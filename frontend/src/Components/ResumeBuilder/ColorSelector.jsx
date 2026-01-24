@@ -1,8 +1,5 @@
-import { useState } from "react";
-
 function ColorSelector({setResumeData,resumeColor,setColorMenu,colorMenu}) {
 
-    const [selectedColor, setSelectedColor] = useState(resumeColor)
     const colors = [
         { name: "Cyan", value: "#14B8A6" },
         { name: "Blue", value: "#3B82F6" },
@@ -21,10 +18,10 @@ function ColorSelector({setResumeData,resumeColor,setColorMenu,colorMenu}) {
                 {
                     colors.map((color)=>{
                         return (
-                            <div key={color.value} onClick={()=>{setColorMenu(prev=>!prev); setSelectedColor(color.value); setResumeData(prev => ({...prev,resumeData:{...prev.resumeData,color : color.value}}))}} className={` m-1 p-1 rounded-md ${selectedColor === color.value ? "border-2 border-gray-900":"opacity-50 cursor-pointer"}`} style={{backgroundColor : color.value}}>
+                            <div key={color.value} onClick={()=>{setColorMenu(prev=>!prev); setResumeData(prev => ({...prev,resumeData:{...prev.resumeData,color : color.value}}))}} className={` m-1 p-1 rounded-md ${resumeColor === color.value ? "border-2 border-gray-900":"opacity-50 cursor-pointer"}`} style={{backgroundColor : color.value}}>
                                 <div className="flex justify-between items-center font-bold">
                                     <p className="my-1 text-white">{color.name}</p>
-                                    {selectedColor === color.value && <p className="text-white">Selected</p>}    
+                                    {resumeColor === color.value && <p className="text-white">Selected</p>}    
                                 </div>
                             </div>
                         )

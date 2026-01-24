@@ -1,8 +1,4 @@
-import { useState } from "react"
-
 function TemplateSelector({setTemplateMenu,templateMenu,setResumeData,resumeTemplate}) {
-
-    const [selectedTemplate, setSelectedTemplate] = useState(resumeTemplate)
     
     const templates = [
         {
@@ -25,7 +21,7 @@ function TemplateSelector({setTemplateMenu,templateMenu,setResumeData,resumeTemp
             name : "Minimal Image",
             description :"A minimalist design that incorporates a profile image for a personal touch."
         }
-    ]
+    ]    
 
   return (
     templateMenu &&
@@ -34,10 +30,10 @@ function TemplateSelector({setTemplateMenu,templateMenu,setResumeData,resumeTemp
             {
                 templates.map((template)=>{
                     return (
-                        <div key={template.id} onClick={()=>{setTemplateMenu(prev=>!prev); setSelectedTemplate(template.id); setResumeData(prev => ({...prev,resumeData : {...prev.resumeData,template : template.id}}))}} className={`bg-gray-500 m-1 p-1 rounded-md ${selectedTemplate === template.id ? "border-2 border-gray-900":"opacity-50 cursor-pointer"}`}>
+                        <div key={template.id} onClick={()=>{setTemplateMenu(prev=>!prev); setResumeData(prev => ({...prev,resumeData : {...prev.resumeData,template : template.id}}))}} className={`bg-gray-500 m-1 p-1 rounded-md ${resumeTemplate === template.id ? "border-2 border-gray-900":"opacity-50 cursor-pointer"}`}>
                             <div className="flex justify-between items-center font-bold">
                                 <p className="my-1 text-white">{template.name}</p>
-                                {selectedTemplate === template.id && <p className="text-white">Selected</p>}    
+                                {resumeTemplate === template.id && <p className="text-white">Selected</p>}    
                             </div>
                             <p className="text-sm mb-2 bg-gray-100 p-1 rounded-sm">{template.description}</p>
                         </div>

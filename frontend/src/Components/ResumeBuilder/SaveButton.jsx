@@ -19,7 +19,7 @@ function SaveButton({resumeData}) {
 
   return (
     // SAVE BUTTON 
-    <div onClick={saveResumeData} className="my-2">
+    <div onClick={saveResumeData} className="my-2 w-fit">
         <button className="border border-violet-500 text-violet-800 bg-violet-300 cursor-pointer py-2 px-4 w-fit rounded-lg hover:bg-violet-400 active:bg-violet-500">Save Changes</button>
     </div>
   )

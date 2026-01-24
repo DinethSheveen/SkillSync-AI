@@ -57,7 +57,7 @@ const resumeSchema = mongoose.Schema({
                 gpa : {type : String}
             }
         ],
-        project : [
+        projects : [
             {
                 name : {type : String},
                 type : {type : String},

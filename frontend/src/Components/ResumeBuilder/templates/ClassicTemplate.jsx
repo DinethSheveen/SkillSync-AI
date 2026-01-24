@@ -139,7 +139,7 @@ const ClassicTemplate = ({ data, color }) => {
                                     {edu.gpa && <p className="text-sm text-gray-600">GPA: {edu.gpa}</p>}
                                 </div>
                                 <div className="text-sm text-gray-600">
-                                    <p>{formatDate(edu.graduation_date)}</p>
+                                    <p>{formatDate(edu.graduationDate)}</p>
                                 </div>
                             </div>
                         ))}

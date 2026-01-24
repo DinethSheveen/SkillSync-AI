@@ -149,7 +149,7 @@ const ModernTemplate = ({ data, color }) => {
 										</h3>
 										<p style={{ color: color }}>{edu.institution}</p>
 										<div className="flex justify-between items-center text-sm text-gray-600">
-											<span>{formatDate(edu.graduation_date)}</span>
+											<span>{formatDate(edu.graduationDate)}</span>
 											{edu.gpa && <span>GPA: {edu.gpa}</span>}
 										</div>
 									</div>

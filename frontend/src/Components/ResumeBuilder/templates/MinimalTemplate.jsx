@@ -106,7 +106,7 @@ const MinimalTemplate = ({ data, color }) => {
                                     {edu.gpa && <p className="text-sm text-gray-500">GPA: {edu.gpa}</p>}
                                 </div>
                                 <span className="text-sm text-gray-500">
-                                    {formatDate(edu.graduation_date)}
+                                    {formatDate(edu.graduationDate)}
                                 </span>
                             </div>
                         ))}

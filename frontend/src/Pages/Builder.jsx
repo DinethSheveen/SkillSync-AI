@@ -33,8 +33,8 @@ function Builder() {
       education : [],
       projects : [],
       public : false,
-      template : "classic",
-      color : "#14B8A6"
+      template : "",
+      color : ""
     }
   })
   const [templateMenu, setTemplateMenu] = useState(false)
@@ -103,7 +103,7 @@ function Builder() {
   // CHANGE VISIBILITY OF THE RESUME LOGIC
   const changeResumeVisibility = ()=>{
     setResumeData(prev => ({...prev,resumeData : {...prev.resumeData,public : !prev.resumeData.public}}))
-  }
+  }  
   
   useEffect(()=>{
     const loadResumeData = async() => {
@@ -222,8 +222,8 @@ function Builder() {
         </div>
 
         {/* RESUME  */}
-        <div className="w-full flex flex-col justify-between items-center gap-2 print-area">
-          <div className="flex-1">
+        <div className="w-full flex flex-1 flex-col justify-between items-center gap-2 print-area">
+          <div>
             <Preview data={resumeData?.resumeData} template={resumeData?.resumeData?.template} color={resumeData?.resumeData?.color}/>
           </div>
         </div>

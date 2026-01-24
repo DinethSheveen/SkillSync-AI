@@ -10,14 +10,14 @@ function Education({data, setResumeData, icon, title}) {
             institution: "",
             degree: "",
             field: "",
-            graduation_date: "",
+            graduationDate: "",
             gpa: ""
         }
     ])
 
     // ADD EDUCATION ENTRY
     const addEducation = ()=>{
-        setResumeData(prev => ({...prev,resumeData : {...prev.resumeData,education : [...prev.resumeData.education , {institution: "",degree: "",field: "",graduation_date: "",gpa: ""}]}}))
+        setResumeData(prev => ({...prev,resumeData : {...prev.resumeData,education : [...prev.resumeData.education , {institution: "",degree: "",field: "",graduationDate: "",gpa: ""}]}}))
     }
 
     // DELETE EDUCATION ENTRY
@@ -92,10 +92,10 @@ function Education({data, setResumeData, icon, title}) {
                                             element
                                         )
                                     })}}))}}/>
-                                    <input type="month" placeholder="End Date" className="p-2 border border-gray-300 rounded-lg" value={edu.graduation_date} onChange={(e)=>{setResumeData(prev => ({...prev,resumeData : {...prev.resumeData,education : prev.resumeData.education.map((element,i)=>{
+                                    <input type="month" placeholder="End Date" className="p-2 border border-gray-300 rounded-lg" value={edu.graduationDate??""} onChange={(e)=>{setResumeData(prev => ({...prev,resumeData : {...prev.resumeData,education : prev.resumeData.education.map((element,i)=>{
                                         return (
                                             i === index ? 
-                                            {...element, graduation_date: e.target.value}
+                                            {...element, graduationDate: e.target.value}
                                             :
                                             element
                                         )

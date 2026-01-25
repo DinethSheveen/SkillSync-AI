@@ -96,7 +96,7 @@ function Experience({title,icon,setResumeData,data}) {
                                             element
                                         )
                                     })}}))}} />
-                                    <input type="month" className="p-2 border border-gray-300 rounded-lg outline-none focus:ring-1 focus:ring-cyan-500" value={exp?.end_date} onChange={(e)=>{setResumeData(prev => ({...prev,resumeData : {...prev.resumeData,experience : prev.resumeData.experience.map((element,i)=>{
+                                    <input type="month" className="p-2 border border-gray-300 rounded-lg outline-none focus:ring-1 focus:ring-cyan-500" value={exp.is_current?"":exp?.end_date} onChange={(e)=>{setResumeData(prev => ({...prev,resumeData : {...prev.resumeData,experience : prev.resumeData.experience.map((element,i)=>{
                                         return(
                                             i === index ?
                                             {...element,end_date : e.target.value}
@@ -106,10 +106,10 @@ function Experience({title,icon,setResumeData,data}) {
                                     })}}))}} />
                                 </div>
                                 
-                                <input type="checkbox" checked={exp?.is_current} onChange={(e)=>{setResumeData(prev => ({...prev,resumeData : {...prev.resumeData,experience : prev.resumeData.experience.map((element,i)=>{
+                                <input type="checkbox" checked={exp?.is_current} onChange={()=>{setResumeData(prev => ({...prev,resumeData : {...prev.resumeData,experience : prev.resumeData.experience.map((element,i)=>{
                                         return(
                                             i === index ?
-                                            {...element,is_current : e.target.value}
+                                            {...element,is_current : !exp.is_current}
                                             :
                                             element
                                         )

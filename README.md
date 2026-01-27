@@ -24,8 +24,10 @@ The project is currently under active development, and features may change as th
 ### Frontend
 
 * **React.js**
-* **TailwindCSS, JavaScript (ES6+)**
-* Axios (API communication)
+* **Redux**
+* **TailwindCSS**
+* **JavaScript (ES6+)**
+* **Axios (API communication)**
 
 ### Backend
 

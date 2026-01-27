@@ -4,8 +4,13 @@ import { useState } from "react"
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios"
 import toast from  "react-hot-toast"
+import { useDispatch } from "react-redux";
+import { login } from "../App/Config/userSlice";
 
 function Login() {
+
+    // DISPATCH FOR GLOBAL STATE HANDLING
+    const dispatch = useDispatch()    
 
     const navigate = useNavigate()
     const [formData, setFormData] = useState({
@@ -18,8 +23,17 @@ function Login() {
         try {
             const response = await axios.post("http://localhost:3000/api/auth/login",formData)
             toast.success(response?.data?.message)
-            localStorage.setItem("token",response?.data?.token)
             setFormData({password : "", email : ""})
+            
+            dispatch(login({
+                token : response.data.token,
+                user : response.data.userInfo 
+            }))
+            
+            // SAVING TOKEN AND THE USER INFO
+            localStorage.setItem("token",response?.data?.token)
+            localStorage.setItem("user",JSON.stringify(response?.data?.userInfo))
+
             navigate("/app")
         } catch (error) {
             toast.error(error?.response?.data?.message);

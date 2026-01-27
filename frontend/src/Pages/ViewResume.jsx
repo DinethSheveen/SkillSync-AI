@@ -1,9 +1,12 @@
 import { useEffect, useState } from "react"
 import Preview from "../Components/ResumeBuilder/Preview"
-import { useParams } from "react-router-dom"
+import { Navigate, useParams } from "react-router-dom"
 import axios from "axios"
+import { useSelector } from "react-redux"
 
 function ViewResume() {
+
+  const {isAuthenticated,user} = useSelector(state => state.user)
 
   const {resumeId} = useParams()
   const [resume, setResume] = useState(null)  
@@ -19,9 +22,12 @@ function ViewResume() {
   },[resumeId])
 
   return (
-    <div className="max-w-[60%] py-5 mx-auto">
-      <Preview data={resume} template={resume?.template} color={resume?.color}/>
-    </div>
+      isAuthenticated && user?
+        <div className="max-w-[60%] py-5 mx-auto">
+          <Preview data={resume} template={resume?.template} color={resume?.color}/>
+        </div>
+      :
+      <Navigate to="/login" />
   )
 }
 

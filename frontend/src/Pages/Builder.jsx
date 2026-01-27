@@ -79,7 +79,7 @@ function Builder() {
   // SHARE RESUME LOGIC
   const shareResume = ()=>{
     const location = window.location.href
-    const clientUrl = location.split("/app/")[0]
+    const clientUrl = location.split("/dashboard/")[0]
     const viewUrl = clientUrl+"/preview/"+resumeId    
 
     if(navigator.share){
@@ -122,7 +122,7 @@ function Builder() {
   return (
     <div className="builder">
       {/* LINK TO DASHBOARD */}
-      <Link to="/app" className="inline-flex py-3 px-1 items-center gap-1 text-slate-600 print:hidden">
+      <Link to="/dashboard" className="inline-flex py-3 px-1 items-center gap-1 text-slate-600 print:hidden">
         <IoIosArrowRoundBack size={25}/>
         <p>Dashboard</p>  
       </Link>

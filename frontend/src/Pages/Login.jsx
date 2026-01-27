@@ -5,7 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios"
 import toast from  "react-hot-toast"
 import { useDispatch } from "react-redux";
-import { login } from "../App/Config/userSlice";
+import { initAuth, login } from "../App/Config/userSlice";
 
 function Login() {
 
@@ -29,12 +29,14 @@ function Login() {
                 token : response.data.token,
                 user : response.data.userInfo 
             }))
+
+            dispatch(initAuth())
             
             // SAVING TOKEN AND THE USER INFO
             localStorage.setItem("token",response?.data?.token)
             localStorage.setItem("user",JSON.stringify(response?.data?.userInfo))
 
-            navigate("/app")
+            navigate("/dashboard")
         } catch (error) {
             toast.error(error?.response?.data?.message);
         }

@@ -1,13 +1,17 @@
 import { Link, useNavigate } from "react-router-dom"
 import logo from "/logo.png"
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
+import { logout } from "../App/Config/userSlice"
 
 function Navbar() {
     const {user} = useSelector(state => state.user)
+    const dispatch = useDispatch()
 
     const navigate = useNavigate()
-    const logout = ()=>{
+    const log_out = ()=>{
+        dispatch(logout())
         localStorage.removeItem("token")
+        localStorage.removeItem("user")
         navigate("/")
     }
 
@@ -20,7 +24,7 @@ function Navbar() {
                 </Link>
                 <div className="flex gap-2 items-center">
                     <p>Hello {user?.name}</p>
-                    <button onClick={logout} className="border border-violet-600 px-2 py-1 rounded-[5px] text-violet-700 hover:text-white hover:bg-violet-700 transition-colors">Log Out</button>
+                    <button onClick={log_out} className="border border-violet-600 px-2 py-1 rounded-[5px] text-violet-700 hover:text-white hover:bg-violet-700 transition-colors">Log Out</button>
                 </div>
             </div>
         </div>

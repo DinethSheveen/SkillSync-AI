@@ -7,8 +7,30 @@ import ViewResume from './Pages/ViewResume'
 import Login from './Pages/Login'
 import Register from './Pages/Register'
 import { Toaster } from "react-hot-toast"
+import { useDispatch } from 'react-redux'
+import { useEffect } from 'react'
+import { login } from './App/Config/userSlice'
 
 function App() {
+
+  const dispatch = useDispatch()
+  
+  useEffect(()=>{
+    const token = localStorage.getItem("token")
+    const user = JSON.parse(localStorage.getItem("user"))
+
+    console.log(user);
+    
+
+    if(token && user){
+      dispatch(login({
+        token,
+        user
+      }))
+    }
+
+  },[])
+
   return (
     <>
       <Toaster />

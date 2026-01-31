@@ -25,7 +25,7 @@ function TemplateSelector({setTemplateMenu,templateMenu,setResumeData,resumeTemp
 
   return (
     templateMenu &&
-        <div className="absolute top-10 left-0 bg-gray-200 rounded-md shadow-lg z-20">
+        <div className="absolute top-10 left-0 h-90 overflow-scroll scrollbar-hide bg-gray-200 rounded-md shadow-lg z-20">
             <hr className="my-3 border border-gray-400" />
             {
                 templates.map((template)=>{

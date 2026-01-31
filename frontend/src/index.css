@@ -17,3 +17,9 @@ html{
     margin: 0;
   }
 }
+
+
+/* REMOVE SCROLL MARGINS */
+.scrollbar-hide{
+  scrollbar-width: none;
+}

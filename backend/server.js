@@ -4,6 +4,7 @@ import cors from "cors"
 import connectDatabase from "./Config/dbConfig.js"
 import authRouter from "./Routes/authRouter.js"
 import resumeRouter from "./Routes/resumeRouter.js"
+import aiRouter from "./Routes/aiRouter.js"
 
 // APP CONFIG
 const app = express()
@@ -18,6 +19,7 @@ await connectDatabase()
 // ROUTING
 app.use("/api/auth",authRouter)
 app.use("/api/resumes",resumeRouter)
+app.use("/api/ai-enhance",aiRouter)
 
 // PORT
 const PORT  = process.env.PORT 

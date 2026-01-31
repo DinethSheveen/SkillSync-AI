@@ -40,7 +40,7 @@ The project is currently under active development, and features may change as th
 
 ### AI Integration
 
-* **GEMINI API** *(to be integrated)*
+* **OPEN API** *(to be integrated)*
 
 ### Other Tools
 
@@ -81,7 +81,7 @@ Some features described above are **not yet implemented**.
 ```
 resume-builder/
 │
-├── frontend/        # React frontend
+├── frontend/        # React & TailwindCSS frontend
 ├── backend/        # Node.js & Express backend
 ├── .gitignore
 └── README.md
@@ -97,7 +97,6 @@ resume-builder/
 
 * Node.js (v18 or later recommended)
 * MongoDB (cloud)
-* npm
 
 ### Installation
 
@@ -127,9 +126,14 @@ npm run dev
 The following environment variables will be required:
 
 ```
-PORT= *✅Implemented*
-MONGODB_URI= *✅Implemented*
-SECRET_KEY= *✅Implemented*
+PORT = *✅Implemented*
+MONGODB_URI = *✅Implemented*
+SECRET_KEY = *✅Implemented*
+VITE_BASE_URL = *✅Implemented*  
+OPENAI_API_KEY = *✅Implemented*
+OPENAI_AI_MODEL = *✅Implemented* 
+OPENAI_BASE_URL = *✅Implemented*
+
 
 ```
 

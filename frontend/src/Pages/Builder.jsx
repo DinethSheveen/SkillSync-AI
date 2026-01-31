@@ -157,7 +157,7 @@ function Builder() {
       <div className="flex flex-col justify-between items-start gap-5 p-2 md:flex-row">
         
         {/* SECTIONS LIST */}
-        <div className="min-w-full flex flex-col gap-3 justify-between bg-gray-100 rounded-lg px-1 py-4 relative overflow-hidden md:min-w-[40%] md:max-w-[40%] print:hidden">
+        <div className="min-w-full flex flex-col gap-3 justify-between bg-gray-100 rounded-lg px-1 py-4 relative md:min-w-[40%] md:max-w-[40%] print:hidden">
           {/*FLEX ITEM 01 - PROGRESS BAR */}
           <div className="absolute top-0 left-0 right-0 h-1 bg-cyan-500 transition-all duration-800" style={{width: `${(activeSectionIndex / (sections.length-1))*100}%`}}>
           </div>

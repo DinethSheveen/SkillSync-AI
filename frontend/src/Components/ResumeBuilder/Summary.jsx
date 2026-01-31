@@ -1,6 +1,12 @@
 import { WiStars } from "react-icons/wi";
 
 function Summary({icon,title,professionalSummary,setResumeData}) {
+
+
+    const enhanceSummary = async()=>{}
+
+    
+
   return (
     <div className="flex flex-col justify-between gap-3 px-2">
         {/* HEADING */}
@@ -14,7 +20,7 @@ function Summary({icon,title,professionalSummary,setResumeData}) {
                     <p className="text-slate-500 text-[12px]">Tell us about yourself</p>
                 </div>
                 
-                <div className="flex items-center gap-1 text-amber-600 bg-yellow-400 py-1 px-2 rounded-md opacity-80 cursor-pointer hover:opacity-100 transition-colors">
+                <div onClick={enhanceSummary} className="flex items-center gap-1 text-amber-600 bg-yellow-400 py-1 px-2 rounded-md opacity-80 cursor-pointer hover:opacity-100 transition-colors">
                     <WiStars size={20}/>
                     <p className="text-[14px] font-bold">AI Enhance</p>
                 </div>

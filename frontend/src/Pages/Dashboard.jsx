@@ -4,8 +4,8 @@ import { IoCloseOutline } from "react-icons/io5";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Resumes from "../Components/Dashboard/Resumes";
-import axios from "axios"
 import toast from "react-hot-toast"
+import api from "../Api/axiosConfig";
 
 function Dashboard() {
 
@@ -19,7 +19,7 @@ function Dashboard() {
   const handleResumeCreate = async(e)=>{
     try {
       e.preventDefault()
-      const response = await axios.post("http://localhost:3000/api/resumes/create",{resumeTitle},{headers : {Authorization : localStorage.getItem("token")}})
+      const response = await api.post("/api/resumes/create",{resumeTitle},{headers : {Authorization : localStorage.getItem("token")}})
       toast.success(response?.data?.message);
       setResumeTitle("")
       setCreateResumePopup(false)

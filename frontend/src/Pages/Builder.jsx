@@ -15,7 +15,7 @@ import Experience from "../Components/ResumeBuilder/Experience";
 import Projects from "../Components/ResumeBuilder/Projects";
 import Skills from "../Components/ResumeBuilder/Skills";
 import SaveButton from "../Components/ResumeBuilder/SaveButton";
-import axios from "axios";
+import api from "../Api/axiosConfig";
 
 function Builder() {
 
@@ -107,7 +107,7 @@ function Builder() {
   
   useEffect(()=>{
     const loadResumeData = async() => {
-      const response = await axios.get(`http://localhost:3000/api/resumes/get-by-id/${resumeId}`,{headers : {Authorization : localStorage.getItem("token")}})
+      const response = await api.get(`/api/resumes/get-by-id/${resumeId}`,{headers : {Authorization : localStorage.getItem("token")}})
       const resume = response?.data?.resume
       
       // const resume = dummyResumeData.find((resume)=>{return resume._id == resumeId})

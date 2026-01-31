@@ -2,10 +2,10 @@ import { HiOutlineMailOpen } from "react-icons/hi";
 import { IoLockClosedOutline } from "react-icons/io5";
 import { useState } from "react"
 import { Link, useNavigate } from "react-router-dom";
-import axios from "axios"
 import toast from  "react-hot-toast"
 import { useDispatch } from "react-redux";
 import { initAuth, login } from "../App/Config/userSlice";
+import api from "../Api/axiosConfig";
 
 function Login() {
 
@@ -21,7 +21,7 @@ function Login() {
     const handleSubmit = async (e) => {
         e.preventDefault()
         try {
-            const response = await axios.post("http://localhost:3000/api/auth/login",formData)
+            const response = await api.post("/api/auth/login",formData)
             toast.success(response?.data?.message)
             setFormData({password : "", email : ""})
             

@@ -3,8 +3,8 @@ import { FaRegUser } from "react-icons/fa";
 import { HiOutlineMailOpen } from "react-icons/hi";
 import { IoLockClosedOutline } from "react-icons/io5";
 import { Link, useNavigate } from "react-router-dom";
-import axios from "axios"
 import toast from "react-hot-toast"
+import api from '../Api/axiosConfig';
 
 function Register() {
     const [formData, setFormData] = useState({
@@ -18,7 +18,7 @@ function Register() {
     const handleSubmit = async (e) => {
         e.preventDefault()
         try {
-            const response = await axios.post("http://localhost:3000/api/auth/register",formData)
+            const response = await api.post("/api/auth/register",formData)
             toast.success(response?.data?.message)
             setFormData({name : "",  password : "", email : ""})
             navigate("/login")

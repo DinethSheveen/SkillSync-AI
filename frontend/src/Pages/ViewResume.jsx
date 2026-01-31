@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react"
 import Preview from "../Components/ResumeBuilder/Preview"
 import { Navigate, useParams } from "react-router-dom"
-import axios from "axios"
 import { useSelector } from "react-redux"
+import api from "../Api/axiosConfig"
 
 function ViewResume() {
 
@@ -13,7 +13,7 @@ function ViewResume() {
 
   useEffect(()=>{
     const fetchResumeData = async()=>{
-      const response = await axios.get(`http://localhost:3000/api/resumes/get-by-id/${resumeId}`,{headers : {Authorization : localStorage.getItem("token")}})
+      const response = await api.get(`/api/resumes/get-by-id/${resumeId}`,{headers : {Authorization : localStorage.getItem("token")}})
       
       setResume(response?.data?.resume?.resumeData)
       document.title = response?.data?.resume?.resumeTitle

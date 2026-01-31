@@ -4,8 +4,8 @@ import { TbFileCv } from "react-icons/tb";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { BiEdit } from "react-icons/bi";
 import { Link } from "react-router-dom";
-import axios from "axios";
 import toast from "react-hot-toast";
+import api from "../../Api/axiosConfig";
 
 function Resumes({setResumeTitle,setEditTitlePopup}) {
 
@@ -18,7 +18,7 @@ function Resumes({setResumeTitle,setEditTitlePopup}) {
 
         if(confirmation){
             try{
-                const response = await axios.delete(`http://localhost:3000/api/resumes/delete/${id}`,{headers:{Authorization : localStorage.getItem("token")}})
+                const response = await api.delete(`/api/resumes/delete/${id}`,{headers:{Authorization : localStorage.getItem("token")}})
                 toast.success(response?.data?.message);
                 setResumes(resumes.filter((resume)=>{return resume._id !== id}))
             }
@@ -31,7 +31,7 @@ function Resumes({setResumeTitle,setEditTitlePopup}) {
     useEffect(()=>{        
         const fetchResumes = async() =>{
             try {
-                const response = await axios.get("http://localhost:3000/api/resumes/get",{headers:{Authorization:localStorage.getItem("token")}})
+                const response = await api.get("/api/resumes/get",{headers:{Authorization:localStorage.getItem("token")}})
                 console.log(response);
                 setResumes(response?.data?.resumes)
             } catch (error) {

@@ -1,11 +1,32 @@
 import { WiStars } from "react-icons/wi";
+import api from "../../Api/axiosConfig";
+import { useState } from "react";
+import toast from "react-hot-toast";
 
 function Summary({icon,title,professionalSummary,setResumeData}) {
 
+    const [loading,setLoading] = useState(false)
 
-    const enhanceSummary = async()=>{}
+    const enhanceSummary = async()=>{        
+        let aiContent;
+        try {
+            setLoading(true)
+            const response = await api.post("/api/ai-enhance/summary",{userContent : professionalSummary},{headers:{Authorization : localStorage.getItem("token")}})
 
-    
+            console.log(response.data.message);
+            aiContent = response.data.message
+            toast.success("Summary generated successfully")
+            
+        } catch (error) {
+            toast.error(error?.response?.data?.message || error.response.data || "Error in generating summary")
+            console.log(error);            
+        }
+        finally{
+            setLoading(false)
+        }
+
+        setResumeData(prev => ({...prev,resumeData : {...prev.resumeData,professionalSummary : aiContent?.content}}))        
+    }
 
   return (
     <div className="flex flex-col justify-between gap-3 px-2">
@@ -20,9 +41,9 @@ function Summary({icon,title,professionalSummary,setResumeData}) {
                     <p className="text-slate-500 text-[12px]">Tell us about yourself</p>
                 </div>
                 
-                <div onClick={enhanceSummary} className="flex items-center gap-1 text-amber-600 bg-yellow-400 py-1 px-2 rounded-md opacity-80 cursor-pointer hover:opacity-100 transition-colors">
+                <div onClick={enhanceSummary} className={`flex items-center gap-1 text-amber-600 bg-yellow-400 py-1 px-2 rounded-md opacity-80 cursor-pointer hover:opacity-100 transition-colors ${loading? "animate-pulse":""}`}>
                     <WiStars size={20}/>
-                    <p className="text-[14px] font-bold">AI Enhance</p>
+                    <p className="text-[14px] font-bold">{loading?"Enhancing...":"AI Enhance"}</p>
                 </div>
             </div>
         </div>

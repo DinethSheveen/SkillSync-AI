@@ -5,6 +5,6 @@ import getMe from "../Middelware/authMiddleware.js";
 const aiRouter = Router();
 
 aiRouter.post("/summary",getMe,enhanceSummary)
-aiRouter.post("/skills",getMe,enhanceJobDescription)
+aiRouter.post("/job-description",getMe,enhanceJobDescription)
 
 export default aiRouter;

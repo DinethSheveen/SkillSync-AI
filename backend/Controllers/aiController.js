@@ -45,7 +45,7 @@ export const enhanceJobDescription = async(req,res)=>{
         model: process.env.OPENAI_AI_MODEL,
         messages: [
             {   role: "system",
-                content: `You are an expert in developing job descriptions. You should be generating a powerful job description depending on what is given to you, similar to what is in${userContent}. The job description should only be 2 to 3 lines maximum. Do not give options, just generate one job description so that it could be used in the resume.` 
+                content: `You are an expert in developing job descriptions. You should be generating a powerful job description depending on what is given to you, similar to what is in ${userContent}. The job description should only be 2 to 3 lines maximum. Do not give options, just generate one job description so that it could be used in the resume.` 
             },
             {
                 role: "user",

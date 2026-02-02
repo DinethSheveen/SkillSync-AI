@@ -69,8 +69,10 @@ The project is **still in progress**. Current focus areas include:
 * UI/UX design for resume builder  *✅Completed*
 * Backend API development  *✅Completed*
 * Database schema design  *✅Completed*
-* AI service research and integration planning *🚧Pending...*
+* AI service research and integration planning *✅Completed*
 * Export Resume as a pdf *🚧Pending...*
+* Uploading existing Resume as a pdf *🚧Pending...*
+* Uploading image files to the Resume *🚧Pending...*
 
 Some features described above are **not yet implemented**.
 

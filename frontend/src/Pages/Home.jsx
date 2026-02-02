@@ -1,5 +1,5 @@
 import Banner from '../Components/Home/Banner'
-import CTA from '../Components/Home/CTA.JSX'
+import CTA from '../Components/Home/CTA'
 import Features from '../Components/Home/Features'
 import Footer from '../Components/Home/Footer'
 import Hero from '../Components/Home/Hero'

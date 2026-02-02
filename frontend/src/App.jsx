@@ -19,10 +19,7 @@ function App() {
 
   useEffect(()=>{
     const token = localStorage.getItem("token")
-    const user = JSON.parse(localStorage.getItem("user"))
-
-    console.log(user);
-    
+    const user = JSON.parse(localStorage.getItem("user"))    
 
     if(token && user){
       dispatch(login({
@@ -33,7 +30,7 @@ function App() {
     else{
       dispatch(initAuth())
     }
-  },[])
+  },[dispatch])
   
   if(!isAuthInit){
     return null

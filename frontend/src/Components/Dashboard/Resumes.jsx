@@ -32,10 +32,9 @@ function Resumes({setResumeTitle,setEditTitlePopup}) {
         const fetchResumes = async() =>{
             try {
                 const response = await api.get("/api/resumes/get",{headers:{Authorization:localStorage.getItem("token")}})
-                console.log(response);
                 setResumes(response?.data?.resumes)
             } catch (error) {
-                console.log(error.response);
+                toast.error(error?.message || error?.response?.data?.message || "Error in fetching your resumes")
             }
         }
         fetchResumes()

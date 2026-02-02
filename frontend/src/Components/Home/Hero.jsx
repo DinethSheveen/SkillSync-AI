@@ -29,7 +29,7 @@ function Hero() {
 
             <div className="flex items-center gap-2 md:pr-1">
                 <Link to="/register" className="hidden md:inline-block bg-violet-600 hover:bg-violet-800 text-white px-4 md:px-6 py-2 md:py-3 rounded-full text-xs md:text-sm transition cursor-pointer">
-                    Get Started
+                    Register
                 </Link>
                 <Link to={"/login"} className="hidden md:inline-block bg-transparent text-violet-600 border-2 border-violet-700 hover:bg-violet-700 hover:text-white px-4 md:px-6 py-2 md:py-3 rounded-full text-xs md:text-sm transition cursor-pointer">
                     Login
@@ -55,34 +55,15 @@ function Hero() {
         </p>
 
         <div className='flex gap-3 mt-10'>
-            <button className="bg-violet-600 hover:bg-violet-700 text-white text-xs md:text-sm px-6 py-3 rounded-lg transition cursor-pointer">
+            <Link to={"/dashboard"} className="bg-violet-600 hover:bg-violet-700 text-white text-xs md:text-sm px-6 py-3 rounded-lg transition cursor-pointer">
                 Get Started Now
-            </button>
-            <button className="bg-white hover:bg-white/5 border border-violet-400 text-gray-600 text-xs md:text-sm px-5 py-3 rounded-lg transition cursor-pointer">
-                Book a demo
-            </button>
+            </Link>
+            <Link to={"/dashboard"} className="bg-white hover:bg-white/5 border border-violet-400 text-gray-600 text-xs md:text-sm px-5 py-3 rounded-lg transition cursor-pointer">
+                Create Resume
+            </Link>
         </div>
 
         <div className='w-full max-w-200 h-0.75 mt-10 bg-linear-to-r from-white/10 via-violet-600 to-white/10'></div>
-
-        {/* <div className='grid grid-cols-2 md:grid-cols-4 gap-8 py-18 max-w-[930px] w-full'>
-            <div className='text-center'>
-                <h2 className='font-medium text-2xl md:text-3xl text-gray-800'>20+</h2>
-                <p className='text-xs md:text-sm text-gray-500'>Years Experience</p>
-            </div>
-            <div className='text-center'>
-                <h2 className='font-medium text-2xl md:text-3xl text-gray-800'>12k+</h2>
-                <p className='text-xs md:text-sm text-gray-500'>Projects Completed</p>
-            </div>
-            <div className='text-center'>
-                <h2 className='font-medium text-2xl md:text-3xl text-gray-800'>5k+</h2>
-                <p className='text-xs md:text-sm text-gray-500'>Happy Customers</p>
-            </div>
-            <div className='text-center'>
-                <h2 className='font-medium text-2xl md:text-3xl text-gray-800'>5+</h2>
-                <p className='text-xs md:text-sm text-gray-500'>Countries</p>
-            </div>
-        </div> */}
     </div>
   )
 }

@@ -5,7 +5,7 @@ import toast from "react-hot-toast";
 
 function Summary({icon,title,professionalSummary,setResumeData}) {
 
-    const [loading,setLoading] = useState(false)
+    const [loading,setLoading] = useState()
 
     const enhanceSummary = async()=>{        
         let aiContent;
@@ -13,13 +13,11 @@ function Summary({icon,title,professionalSummary,setResumeData}) {
             setLoading(true)
             const response = await api.post("/api/ai-enhance/summary",{userContent : professionalSummary},{headers:{Authorization : localStorage.getItem("token")}})
 
-            console.log(response.data.message);
             aiContent = response.data.message
             toast.success("Summary generated successfully")
             
         } catch (error) {
-            toast.error(error?.response?.data?.message || error.response.data || "Error in generating summary")
-            console.log(error);            
+            toast.error(error?.response?.data?.message || error.response.data || "Error in generating summary")          
         }
         finally{
             setLoading(false)
@@ -41,7 +39,7 @@ function Summary({icon,title,professionalSummary,setResumeData}) {
                     <p className="text-slate-500 text-[12px]">Tell us about yourself</p>
                 </div>
                 
-                <div onClick={enhanceSummary} className={`flex items-center gap-1 text-amber-600 bg-yellow-400 py-1 px-2 rounded-md opacity-80 cursor-pointer hover:opacity-100 transition-colors ${loading? "animate-pulse":""}`}>
+                <div onClick={loading? undefined : enhanceSummary} className={`flex items-center gap-1 text-amber-600 bg-yellow-400 py-1 px-2 rounded-md opacity-80 hover:opacity-100 transition-colors ${loading? "animate-pulse cursor-not-allowed":"cursor-pointer"}`}>
                     <WiStars size={20}/>
                     <p className="text-[14px] font-bold">{loading?"Enhancing...":"AI Enhance"}</p>
                 </div>

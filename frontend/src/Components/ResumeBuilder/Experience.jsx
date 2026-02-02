@@ -3,9 +3,12 @@ import { CiCirclePlus } from "react-icons/ci";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { WiStars } from "react-icons/wi";
 import { BsLaptop } from "react-icons/bs";
+import api from "../../Api/axiosConfig";
+import toast from "react-hot-toast";
 
 function Experience({title,icon,setResumeData,data}) {
 
+    const [loading,setLoading] = useState(false)
     const [experience, setExperience] = useState([
             {
                 company: "",
@@ -13,7 +16,7 @@ function Experience({title,icon,setResumeData,data}) {
                 start_date: "",
                 end_date: "",
                 description: "",
-                is_current: false,
+                isCurrent: false,
             }
         ]
     )
@@ -24,16 +27,43 @@ function Experience({title,icon,setResumeData,data}) {
             setExperience(data)
         }
         loadExperience()
-    },[data,experience])
+    },[data])
 
     // ADD EXPERIENCE ENTRY
     const addExperience = ()=>{        
-        setResumeData(prev => ({...prev,resumeData : {...prev.resumeData,experience : [...prev.resumeData.experience,{company : "", position: "", start_date: "", end_date: "", description: "", is_current: false,}]}}))
+        setResumeData(prev => ({...prev,resumeData : {...prev.resumeData,experience : [...prev.resumeData.experience,{company : "", position: "", start_date: "", end_date: "", description: "", isCurrent: false,}]}}))
     }
 
     // DELETE EXPERIENCE ENTRY
     const deleteExperience = (indexedExperience) => {
         setResumeData(prev=> ({...prev,resumeData : {...prev.resumeData,experience : experience.filter((_,index)=>{return index !== indexedExperience})}}))
+    }
+
+    // ENHANCE THE JOB DESCRIPTION WITH AI
+    const enhanceJobDescription = async(index)=>{        
+        let aiContent;
+        try {
+            setLoading(true)
+            const response = await api.post("/api/ai-enhance/summary",{userContent : data[index].description},{headers:{Authorization : localStorage.getItem("token")}})
+
+            aiContent = response.data.message
+            toast.success("Summary generated successfully")
+            
+        } catch (error) {
+            toast.error(error?.response?.data?.message || error.response.data || "Error in generating job description")       
+        }
+        finally{
+            setLoading(false)
+        }    
+
+        setResumeData((prev)=>({...prev,resumeData : {...prev.resumeData,experience : prev.resumeData.experience.map((exp,i)=>{
+            return (
+                i === index?
+                {...exp,description : aiContent?.content}
+                :
+                exp
+            )
+        })}}))
     }
 
   return (
@@ -96,7 +126,7 @@ function Experience({title,icon,setResumeData,data}) {
                                             element
                                         )
                                     })}}))}} />
-                                    <input type="month" className="p-2 border border-gray-300 rounded-lg outline-none focus:ring-1 focus:ring-cyan-500" value={exp.is_current?"":exp?.end_date} onChange={(e)=>{setResumeData(prev => ({...prev,resumeData : {...prev.resumeData,experience : prev.resumeData.experience.map((element,i)=>{
+                                    <input type="month" className="p-2 border border-gray-300 rounded-lg outline-none focus:ring-1 focus:ring-cyan-500" value={exp.isCurrent?"":exp?.end_date} onChange={(e)=>{setResumeData(prev => ({...prev,resumeData : {...prev.resumeData,experience : prev.resumeData.experience.map((element,i)=>{
                                         return(
                                             i === index ?
                                             {...element,end_date : e.target.value}
@@ -106,10 +136,10 @@ function Experience({title,icon,setResumeData,data}) {
                                     })}}))}} />
                                 </div>
                                 
-                                <input type="checkbox" checked={exp?.is_current ?? false} onChange={()=>{setResumeData(prev => ({...prev,resumeData : {...prev.resumeData,experience : prev.resumeData.experience.map((element,i)=>{
+                                <input type="checkbox" checked={exp?.isCurrent ?? false} onChange={()=>{setResumeData(prev => ({...prev,resumeData : {...prev.resumeData,experience : prev.resumeData.experience.map((element,i)=>{
                                         return(
                                             i === index ?
-                                            {...element,is_current : !element.is_current}
+                                            {...element,isCurrent : !element.isCurrent}
                                             :
                                             element
                                         )
@@ -117,11 +147,13 @@ function Experience({title,icon,setResumeData,data}) {
 
                                 <div className="flex justify-between items-center my-4">
                                     <p className="font-semibold">Job Description</p>
-                                    <div className="flex items-center gap-1 text-amber-600 bg-yellow-400 p-0.5 rounded-md opacity-80 cursor-pointer hover:opacity-100 transition-colors">
+                                
+                                    <div onClick={()=>loading? undefined : enhanceJobDescription(index)} className={`flex items-center gap-1 text-amber-600 bg-yellow-400 p-1 rounded-md opacity-80 hover:opacity-100 transition-colors ${loading?"animate-pulse cursor-not-allowed":"cursor-pointer"}`}>
                                         <WiStars size={20}/>
-                                        <p className="text-[14px] font-bold">AI Enhance</p>
+                                        <p className="text-[14px] font-bold">{loading?"Enhancing...":"AI Enhance"}</p>
                                     </div>
                                 </div>
+
                                 <textarea rows={5} className="w-full p-2 border border-gray-400 resize-none rounded-md outline-none focus:ring focus:ring-cyan-500" placeholder="Tell us about your job..." value={exp?.description} onChange={(e)=>{setResumeData(prev => ({...prev,resumeData : {...prev.resumeData,experience : prev.resumeData.experience.map((element,i)=>{
                                     return (
                                         i === index?

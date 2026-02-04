@@ -2,7 +2,7 @@ import { useState } from "react"
 import { Link } from "react-router-dom"
 import { IoMdClose } from "react-icons/io";
 import { HiMenuAlt2 } from "react-icons/hi";
-import logo from "/logo.png"
+import logo from "../../../public/logo.png"
 
 function Hero() {
 

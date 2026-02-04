@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom"
-import logo from "/logo.png"
+import logo from "../../public/logo.png"
 import { useDispatch, useSelector } from "react-redux"
 import { logout } from "../App/Config/userSlice"
 

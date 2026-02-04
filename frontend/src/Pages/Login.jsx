@@ -12,6 +12,7 @@ function Login() {
     // DISPATCH FOR GLOBAL STATE HANDLING
     const dispatch = useDispatch()    
 
+    const [loading,setLoading] = useState()
     const navigate = useNavigate()
     const [formData, setFormData] = useState({
         email: '',
@@ -21,6 +22,7 @@ function Login() {
     const handleSubmit = async (e) => {
         e.preventDefault()
         try {
+            setLoading(true)
             const response = await api.post("/api/auth/login",formData)
             toast.success(response?.data?.message)
             setFormData({password : "", email : ""})
@@ -46,6 +48,9 @@ function Login() {
         } catch (error) {
             toast.error(error?.response?.data?.message);
         }
+        finally{
+            setLoading(false)
+        }
     }
 
     const handleChange = (e) => {        
@@ -55,7 +60,7 @@ function Login() {
 
   return (
     <div className="min-h-screen flex justify-center items-center">
-        <form onSubmit={handleSubmit} className="sm:w-87.5 w-[90%] text-center border border-gray-300/60 rounded-2xl px-8 bg-white">
+        <form onSubmit={loading? undefined : handleSubmit} className="sm:w-87.5 w-[90%] text-center border border-gray-300/60 rounded-2xl px-8 bg-white">
             <h1 className="text-gray-900 text-3xl mt-10 font-medium">Login</h1>
             <p>Please sign in to continue</p>
             
@@ -73,8 +78,8 @@ function Login() {
                 <button className="text-sm" type="reset">Forgot password?</button>
             </div>
 
-            <button type="submit" className="mt-2 w-full h-11 rounded-full text-white bg-violet-700 hover:opacity-90 transition-opacity">
-                Login
+            <button type="submit" className={`mt-2 w-full h-11 rounded-full text-white bg-violet-700 hover:opacity-90 transition-opacity ${loading?"animate-pulse cursor-not-allowed":"cursor-pointer"}`}>
+                {loading ? "Logging In...":"Login"}
             </button>
             <p className="text-gray-500 text-sm mt-3 mb-11">Don't have an account?<Link to={"/register"} className="text-violet-500 hover:underline">click here</Link></p>
         </form>

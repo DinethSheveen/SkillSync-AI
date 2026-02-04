@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import Resumes from "../Components/Dashboard/Resumes";
 import toast from "react-hot-toast"
 import api from "../Api/axiosConfig";
+import pdfToText from "react-pdftotext"
 
 function Dashboard() {
 
@@ -14,6 +15,7 @@ function Dashboard() {
   const [editTitlePopup, setEditTitlePopup] = useState(false)
   const [resumeTitle, setResumeTitle] = useState("")
   const [resume, setResume] = useState(null)
+  const [uploading,setUploading] = useState(false)
   const navigate = useNavigate()
 
   const handleResumeCreate = async(e)=>{
@@ -29,11 +31,39 @@ function Dashboard() {
     }
   }
 
-  const handleResumeUpload = (e)=>{
+  const handleResumeUpload = async(e)=>{
     e.preventDefault()
+    try {
+      setUploading(true)
+      if(!resume){
+        return toast.error("Upload your resume to continue...")
+      }
+
+      if(!resumeTitle || resumeTitle===""){
+        return toast.error("Give your resume a title")
+      }
+
+      const file = await pdfToText(resume)
+
+      const response = await api.post("/api/ai-enhance/upload-resume",{resumeTitle,resume : file},{headers : {Authorization : localStorage.getItem("token") }})
+      
+      const parsedResume = JSON.parse(response.data.resume.content)
+      console.log(response);
+      console.log(parsedResume);
+      setResume(parsedResume)
+      navigate(`builder/${response?.data?.newResume._id}`)
+      
+    } catch (error) {
+      console.log(error);
+    }
+    finally{
+      setUploading(false)
+    }
+
+    setResume(null)
     setResumeTitle("")
     setUploadResumePopup(false)
-    navigate("builder/ansjan")
+    // navigate("builder/ansjan")
   }
 
   const handleTitleChange = (e)=>{
@@ -85,7 +115,7 @@ function Dashboard() {
 
       {uploadResumePopup &&
         // ALERT BOX ON UPLOAD RESUME
-        <form onSubmit={handleResumeUpload} className="absolute top-[10%] left-0 w-full flex flex-col justify-between items-center transition-all duration-300 z-10">
+        <form onSubmit={uploading? undefined : handleResumeUpload} className="absolute top-[10%] left-0 w-full flex flex-col justify-between items-center transition-all duration-300 z-10">
             {/* ALERT TITLE */}
             <div className="flex flex-col justify-between items-center w-[75%] max-w-125 gap-5 backdrop-blur-lg shadow-lg px-4 py-5 bg-white rounded-lg">
               <div className="flex gap-5 justify-between items-center w-full">
@@ -119,7 +149,7 @@ function Dashboard() {
               </div>
 
               {/* BUTTON */}
-              <button  className="bg-yellow-600 text-white text-center px-4 py-2 rounded-lg w-full hover:bg-yellow-700 transition-colors">Upload Resume</button>
+              <button className={`bg-yellow-600 text-white text-center px-4 py-2 rounded-lg w-full hover:bg-yellow-700 transition-colors ${uploading?"animate-pulse cursor-not-allowed":"cursor-pointer"}`}>{uploading?"Uploading...":"Upload Resume"}</button>
             </div>
         </form> 
       }

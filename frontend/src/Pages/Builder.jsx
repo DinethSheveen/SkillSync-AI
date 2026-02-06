@@ -15,7 +15,7 @@ import Experience from "../Components/ResumeBuilder/Experience";
 import Projects from "../Components/ResumeBuilder/Projects";
 import Skills from "../Components/ResumeBuilder/Skills";
 import SaveButton from "../Components/ResumeBuilder/SaveButton";
-import api from "../Api/axiosConfig";
+import api from "../Config/axiosConfig";
 
 function Builder() {
 

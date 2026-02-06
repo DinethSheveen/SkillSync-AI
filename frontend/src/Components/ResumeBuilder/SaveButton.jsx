@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom"
 import toast from "react-hot-toast"
-import api from "../../Api/axiosConfig"
+import api from "../../Config/axiosConfig"
 
 function SaveButton({resumeData}) {
 
@@ -9,7 +9,6 @@ function SaveButton({resumeData}) {
   const saveResumeData = async(e) =>{
     e.preventDefault()
     try {
-
       const response = await api.put(`/api/resumes/update/${resumeId}`,resumeData,{headers : {Authorization : localStorage.getItem("token")}})
       toast.success(response?.data?.message);      
     } catch (error) {

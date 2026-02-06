@@ -5,7 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import toast from  "react-hot-toast"
 import { useDispatch } from "react-redux";
 import { initAuth, login } from "../App/Config/userSlice";
-import api from "../Api/axiosConfig";
+import api from "../Config/axiosConfig";
 
 function Login() {
 
@@ -40,11 +40,6 @@ function Login() {
 
             navigate("/dashboard")
 
-            // REMOVE TOKEN ANS USER INFORMATION AFTER EXPIRY
-            setTimeout(()=>{
-                localStorage.removeItem("token")
-                localStorage.removeItem("user")
-            },1000*60*60)
         } catch (error) {
             toast.error(error?.response?.data?.message);
         }

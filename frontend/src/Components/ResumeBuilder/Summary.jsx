@@ -1,5 +1,5 @@
 import { WiStars } from "react-icons/wi";
-import api from "../../Api/axiosConfig";
+import api from "../../Config/axiosConfig";
 import { useState } from "react";
 import toast from "react-hot-toast";
 

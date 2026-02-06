@@ -5,7 +5,7 @@ import { RiDeleteBin6Line } from "react-icons/ri";
 import { BiEdit } from "react-icons/bi";
 import { Link } from "react-router-dom";
 import toast from "react-hot-toast";
-import api from "../../Api/axiosConfig";
+import api from "../../Config/axiosConfig";
 
 function Resumes({setResumeTitle,setEditTitlePopup}) {
 

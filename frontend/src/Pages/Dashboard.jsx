@@ -5,8 +5,9 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Resumes from "../Components/Dashboard/Resumes";
 import toast from "react-hot-toast"
-import api from "../Api/axiosConfig";
+import api from "../Config/axiosConfig";
 import pdfToText from "react-pdftotext"
+import { isTokenExpired } from "../Config/jwt";
 
 function Dashboard() {
 
@@ -17,6 +18,16 @@ function Dashboard() {
   const [resume, setResume] = useState(null)
   const [uploading,setUploading] = useState(false)
   const navigate = useNavigate()
+
+  const tokenValid = isTokenExpired(localStorage.getItem("token"))
+  console.log(tokenValid);
+  
+
+  if(tokenValid){
+      localStorage.removeItem("token")
+      localStorage.removeItem("user")
+      navigate("/login")
+  }
 
   const handleResumeCreate = async(e)=>{
     try {
@@ -63,7 +74,6 @@ function Dashboard() {
     setResume(null)
     setResumeTitle("")
     setUploadResumePopup(false)
-    // navigate("builder/ansjan")
   }
 
   const handleTitleChange = (e)=>{

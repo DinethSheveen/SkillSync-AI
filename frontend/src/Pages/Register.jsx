@@ -4,7 +4,7 @@ import { HiOutlineMailOpen } from "react-icons/hi";
 import { IoLockClosedOutline } from "react-icons/io5";
 import { Link, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast"
-import api from '../Api/axiosConfig';
+import api from '../Config/axiosConfig';
 
 function Register() {
     const [formData, setFormData] = useState({

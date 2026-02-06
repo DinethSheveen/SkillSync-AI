@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { FaProjectDiagram, FaPlus } from "react-icons/fa";
+import { FaPlus } from "react-icons/fa";
 import { BsStars } from "react-icons/bs";
 import { IoIosClose } from "react-icons/io";
 

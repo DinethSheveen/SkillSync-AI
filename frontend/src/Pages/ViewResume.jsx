@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import Preview from "../Components/ResumeBuilder/Preview"
 import { Navigate, useParams } from "react-router-dom"
 import { useSelector } from "react-redux"
-import api from "../Api/axiosConfig"
+import api from "../Config/axiosConfig"
 
 function ViewResume() {
 

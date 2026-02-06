@@ -3,7 +3,7 @@ import { CiCirclePlus } from "react-icons/ci";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { WiStars } from "react-icons/wi";
 import { BsLaptop } from "react-icons/bs";
-import api from "../../Api/axiosConfig";
+import api from "../../Config/axiosConfig";
 import toast from "react-hot-toast";
 
 function Experience({title,icon,setResumeData,data}) {

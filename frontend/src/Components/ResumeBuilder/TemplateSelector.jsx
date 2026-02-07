@@ -15,11 +15,6 @@ function TemplateSelector({setTemplateMenu,templateMenu,setResumeData,resumeTemp
             id : "minimal",
             name : "Minimal",
             description :"A simple and elegant layout focusing on content with minimal distractions."
-        },
-        {
-            id : "minimal-image",
-            name : "Minimal Image",
-            description :"A minimalist design that incorporates a profile image for a personal touch."
         }
     ]    
 

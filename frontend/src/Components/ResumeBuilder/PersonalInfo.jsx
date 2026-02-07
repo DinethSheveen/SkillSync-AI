@@ -66,12 +66,6 @@ function PersonalInfo({icon,title,data,setResumeData}) {
         }
     ]
 
-    const handleImageUpload = (file)=>{
-        const imageFile = file;
-        const image = URL.createObjectURL(imageFile);
-        setResumeData(prev=> ({...prev,resumeData : {...prev.resumeData,personalInfo : {...prev.resumeData.personalInfo,image : image}}}))
-    }
-
   return (
     <div className="flex flex-col justify-between gap-3 px-2">
         {/* HEADING */}
@@ -82,20 +76,6 @@ function PersonalInfo({icon,title,data,setResumeData}) {
             </div>
             <p className="text-slate-500 text-[12px]">Let’s begin with your personal information</p>
         </div>
-
-        {/* IMAGE SECTION */}
-         <label className="flex items-center gap-2 cursor-pointer px-2 w-fit">
-            <input type="file" accept=".jpg , .jpeg , .png" className="hidden" onChange={(e)=>{handleImageUpload(e.target.files[0])}}/>
-            {
-                data?.image?
-                <img src={data?.image} alt="profile" className="w-12 h-12 rounded-full object-cover border border-slate-500"/>
-                :
-                <div className="flex items-center gap-1">
-                    <FaCircleUser size={30} className="text-slate-500"/>
-                    <p className="text-slate-600">upload a profile image</p>
-                </div>
-            }
-        </label>
 
         {/* FORM FIELDS */}
         {fields.map((field)=>{

@@ -1,7 +1,6 @@
 import ModernTemplate from "../ResumeBuilder/templates/ModernTemplate.jsx";
 import ClassicTemplate from "../ResumeBuilder/templates/ClassicTemplate.jsx";
 import MinimalTemplate from "../ResumeBuilder/templates/MinimalTemplate.jsx";
-import MinimalImageTemplate from "../ResumeBuilder/templates/MinimalImageTemplate.jsx";
 
 function Preview({data,color,template,classes=""}) {
 
@@ -12,8 +11,6 @@ function Preview({data,color,template,classes=""}) {
                 return <ModernTemplate data={data} color={color} />;
             case "minimal":
                 return <MinimalTemplate data={data} color={color} />;
-            case "minimal-image":
-                return <MinimalImageTemplate data={data} color={color} />;
             default:
                 return <ClassicTemplate data={data} color={color} />;
         }

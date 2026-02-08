@@ -1,7 +1,5 @@
 # SkillSync-AI (AI-Powered Resume Builder)
 
-🚧 **Project Status:** ***In Progress*** 🚧
-
 This repository contains an **AI-powered Resume Builder** being developed using the **MERN stack (MongoDB, Express.js, React.js, Node.js)**. The goal of this project is to help users create professional, resumes with the assistance of AI-driven content suggestions and optimizations.
 
 ---
@@ -11,11 +9,10 @@ This repository contains an **AI-powered Resume Builder** being developed using 
 SkillSync-AI is a web application that allows users to:
 
 * Create and manage resumes through an intuitive UI
-* Receive AI-generated suggestions for resume sections (summary, experience, skills, etc.)
+* Upload existing resumes and edit them.
+* Receive AI-generated suggestions for resume sections (summary, experience)
 * Customize resume templates and colors
 * Export resumes in common formats (e.g., PDF)
-
-The project is currently under active development, and features may change as the system evolves.
 
 ---
 
@@ -40,16 +37,15 @@ The project is currently under active development, and features may change as th
 
 ### AI Integration
 
-* **OPEN API** *(to be integrated)*
+* **OPEN API**
 
 ### Other Tools
 
 * Git & GitHub (version control)
 * JWT (authentication – planned)
-* MULTER (File handling (uploads))
 ---
 
-## ✨ Planned Features
+## ✨ Application Features ✨
 
 * User authentication (sign up / login)
 * Resume creation and editing
@@ -58,27 +54,17 @@ The project is currently under active development, and features may change as th
 * Skill and experience optimization for ATS
 * Resume preview and export (PDF)
 * Dashboard for managing multiple resumes
+* Project structure setup (client & server)  
+* UI/UX design for resume builder  
+* Backend API development  
+* Database schema design 
+* AI service research and integration planning 
+* Export Resume as a pdf 
+* Uploading existing Resume as a pdf 
 
 ---
 
-## 🚧 Current Development Status
-
-The project is **still in progress**. Current focus areas include:
-
-* Project structure setup (client & server)  *✅Completed*
-* UI/UX design for resume builder  *✅Completed*
-* Backend API development  *✅Completed*
-* Database schema design  *✅Completed*
-* AI service research and integration planning *✅Completed*
-* Export Resume as a pdf *🚧Pending...*
-* Uploading existing Resume as a pdf *🚧Pending...*
-* Uploading image files to the Resume *🚧Pending...*
-
-Some features described above are **not yet implemented**.
-
----
-
-## 📂 Project Structure (Planned)
+## 📂 Project Structure
 
 ```
 resume-builder/
@@ -141,11 +127,7 @@ OPENAI_BASE_URL = *✅Implemented*
 
 ---
 
-## 📌 Disclaimer
-
-This project is currently under development. Features, architecture, and documentation are subject to change.
-
----
+# LIVE LINK : # https://skill-sync-ai-phi.vercel.app/
 
 
 ## ✨ *Building smarter resumes with AI* ✨
